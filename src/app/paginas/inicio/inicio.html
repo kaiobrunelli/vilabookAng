@@ -1,0 +1,56 @@
+<app-cabecalho />
+
+<main class="min-h-screen bg-slate-50">
+
+  <!-- HERO -->
+  <section class="relative min-h-[620px] flex items-center justify-center text-center px-6 pt-24 pb-16 bg-cover bg-center"
+    style="background-image: url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1600')">
+
+    <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60"></div>
+
+    <div class="relative z-10 max-w-2xl flex flex-col items-center gap-4">
+      <h1 class="text-5xl md:text-6xl font-black text-white leading-tight tracking-tight">
+        O lar não se procura.<br>
+        <span class="text-white/60">Se encontra.</span>
+      </h1>
+      <p class="text-white/80 text-lg font-light">
+        Seu imóvel ideal, a um clique de distância.
+      </p>
+
+      <!-- Barra de busca -->
+      <div class="mt-4 w-full max-w-lg flex gap-2 bg-white/15 backdrop-blur-xl border border-white/25 rounded-2xl p-1.5">
+        <input
+          type="text"
+          placeholder="Cidade, bairro, tipo de imóvel..."
+          class="flex-1 bg-white/90 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder-slate-400 outline-none"
+        />
+        <button class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm px-6 py-3 rounded-xl transition-colors whitespace-nowrap">
+          Buscar
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- LISTAGEM -->
+  <section class="max-w-7xl mx-auto px-6 py-12">
+
+    <div class="mb-8">
+      <span class="text-indigo-600 text-xs font-extrabold uppercase tracking-widest">
+        Chegou este mês
+      </span>
+      <h2 class="text-3xl font-bold text-slate-900 mt-1">
+        Residências Exclusivas
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      @for (imovel of imoveis; track imovel.id) {
+        <app-card-imovel [imovel]="imovel" />
+      }
+    </div>
+
+  </section>
+
+</main>
+
+
