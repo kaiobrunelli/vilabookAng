@@ -12,5 +12,11 @@ export const routes: Routes = [
     loadComponent: () => 
            import('./paginas/detalhes-imovel/detalhes-imovel')
       .then(m => m.DetalhesImovel)
-  }
+  },
+      {
+    path: 'cadastrar',                        // → URL: /
+    loadComponent: () =>
+      import('./paginas/cadastro-imovel/cadastro-imovel')
+      .then(m => m.CadastroImovel)
+  } 
 ];

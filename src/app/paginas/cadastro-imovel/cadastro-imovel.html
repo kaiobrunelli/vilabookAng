@@ -1,0 +1,410 @@
+<app-cabecalho />
+
+<main class="min-h-screen bg-slate-50 pt-28 pb-20 px-4">
+  <div class="max-w-2xl mx-auto">
+
+    <!-- Cabeçalho da página -->
+    <div class="mb-8 text-center">
+      <h1 class="text-3xl font-bold text-slate-900">Cadastrar Imóvel</h1>
+      <p class="text-slate-500 mt-2">Preencha as informações do seu imóvel</p>
+    </div>
+
+    <!-- Barra de progresso -->
+    <div class="mb-8">
+
+      <!-- Etapas -->
+      <div class="flex items-center justify-between mb-3">
+
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300"
+            [class.bg-indigo-600]="etapaAtual >= 1"
+            [class.text-white]="etapaAtual >= 1"
+            [class.bg-slate-200]="etapaAtual < 1"
+            [class.text-slate-400]="etapaAtual < 1">1</div>
+          <span class="text-xs font-semibold hidden sm:block"
+            [class.text-indigo-600]="etapaAtual >= 1"
+            [class.text-slate-400]="etapaAtual < 1">Básico</span>
+        </div>
+
+        <div class="flex-1 h-0.5 mx-3 transition-all duration-300"
+          [class.bg-indigo-600]="etapaAtual > 1"
+          [class.bg-slate-200]="etapaAtual <= 1">
+        </div>
+
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300"
+            [class.bg-indigo-600]="etapaAtual >= 2"
+            [class.text-white]="etapaAtual >= 2"
+            [class.bg-slate-200]="etapaAtual < 2"
+            [class.text-slate-400]="etapaAtual < 2">2</div>
+          <span class="text-xs font-semibold hidden sm:block"
+            [class.text-indigo-600]="etapaAtual >= 2"
+            [class.text-slate-400]="etapaAtual < 2">Detalhes</span>
+        </div>
+
+        <div class="flex-1 h-0.5 mx-3 transition-all duration-300"
+          [class.bg-indigo-600]="etapaAtual > 2"
+          [class.bg-slate-200]="etapaAtual <= 2">
+        </div>
+
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300"
+            [class.bg-indigo-600]="etapaAtual >= 3"
+            [class.text-white]="etapaAtual >= 3"
+            [class.bg-slate-200]="etapaAtual < 3"
+            [class.text-slate-400]="etapaAtual < 3">3</div>
+          <span class="text-xs font-semibold hidden sm:block"
+            [class.text-indigo-600]="etapaAtual >= 3"
+            [class.text-slate-400]="etapaAtual < 3">Localização</span>
+        </div>
+
+      </div>
+
+      <!-- Barra de progresso -->
+      <div class="w-full bg-slate-200 rounded-full h-1.5">
+        <div class="bg-indigo-600 h-1.5 rounded-full transition-all duration-500"
+          [style.width.%]="progressoPorcentagem">
+        </div>
+      </div>
+    </div>
+
+    <!-- Card do formulário -->
+    <div class="bg-white rounded-3xl shadow-sm border border-slate-100 p-8">
+
+      <!-- ETAPA 1: Informações básicas -->
+      @if (etapaAtual === 1) {
+        <div class="flex flex-col gap-6">
+
+          <h2 class="text-xl font-bold text-slate-800">Informações Básicas</h2>
+
+          <!-- Tipo do imóvel -->
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-3">Tipo do imóvel</label>
+            <div class="grid grid-cols-3 gap-3">
+
+              <button (click)="form.tipo = 'apartamento'"
+                class="py-3 px-4 rounded-xl border-2 text-sm font-semibold transition-all capitalize"
+                [class.border-indigo-600]="form.tipo === 'apartamento'"
+                [class.bg-indigo-50]="form.tipo === 'apartamento'"
+                [class.text-indigo-600]="form.tipo === 'apartamento'"
+                [class.border-slate-200]="form.tipo !== 'apartamento'"
+                [class.text-slate-500]="form.tipo !== 'apartamento'">
+                Apartamento
+              </button>
+
+              <button (click)="form.tipo = 'casa'"
+                class="py-3 px-4 rounded-xl border-2 text-sm font-semibold transition-all capitalize"
+                [class.border-indigo-600]="form.tipo === 'casa'"
+                [class.bg-indigo-50]="form.tipo === 'casa'"
+                [class.text-indigo-600]="form.tipo === 'casa'"
+                [class.border-slate-200]="form.tipo !== 'casa'"
+                [class.text-slate-500]="form.tipo !== 'casa'">
+                Casa
+              </button>
+
+              <button (click)="form.tipo = 'cobertura'"
+                class="py-3 px-4 rounded-xl border-2 text-sm font-semibold transition-all capitalize"
+                [class.border-indigo-600]="form.tipo === 'cobertura'"
+                [class.bg-indigo-50]="form.tipo === 'cobertura'"
+                [class.text-indigo-600]="form.tipo === 'cobertura'"
+                [class.border-slate-200]="form.tipo !== 'cobertura'"
+                [class.text-slate-500]="form.tipo !== 'cobertura'">
+                Cobertura
+              </button>
+
+            </div>
+          </div>
+
+          <!-- Finalidade -->
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-3">Finalidade</label>
+            <div class="grid grid-cols-2 gap-3">
+
+              <button (click)="form.finalidade = 'venda'"
+                class="py-3 px-4 rounded-xl border-2 text-sm font-semibold transition-all"
+                [class.border-indigo-600]="form.finalidade === 'venda'"
+                [class.bg-indigo-50]="form.finalidade === 'venda'"
+                [class.text-indigo-600]="form.finalidade === 'venda'"
+                [class.border-slate-200]="form.finalidade !== 'venda'"
+                [class.text-slate-500]="form.finalidade !== 'venda'">
+                Venda
+              </button>
+
+              <button (click)="form.finalidade = 'aluguel'"
+                class="py-3 px-4 rounded-xl border-2 text-sm font-semibold transition-all"
+                [class.border-indigo-600]="form.finalidade === 'aluguel'"
+                [class.bg-indigo-50]="form.finalidade === 'aluguel'"
+                [class.text-indigo-600]="form.finalidade === 'aluguel'"
+                [class.border-slate-200]="form.finalidade !== 'aluguel'"
+                [class.text-slate-500]="form.finalidade !== 'aluguel'">
+                Aluguel
+              </button>
+
+            </div>
+          </div>
+
+          <!-- Título -->
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-2">Título do anúncio</label>
+            <input
+              type="text"
+              [(ngModel)]="form.titulo"
+              placeholder="Ex: Apartamento moderno com 3 suítes"
+              class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm
+                     text-slate-800 outline-none focus:ring-2 focus:ring-indigo-400
+                     focus:border-transparent transition-all"
+            />
+          </div>
+
+          <!-- Descrição -->
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-2">Descrição</label>
+            <textarea
+              [(ngModel)]="form.descricao"
+              placeholder="Descreva os diferenciais do imóvel..."
+              rows="4"
+              class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm
+                     text-slate-800 outline-none focus:ring-2 focus:ring-indigo-400
+                     focus:border-transparent transition-all resize-none">
+            </textarea>
+          </div>
+
+        </div>
+      }
+
+      <!-- ETAPA 2: Detalhes -->
+      @if (etapaAtual === 2) {
+        <div class="flex flex-col gap-6">
+
+          <h2 class="text-xl font-bold text-slate-800">Detalhes do Imóvel</h2>
+
+          <!-- Contadores -->
+          <div class="grid grid-cols-3 gap-4">
+
+            <div class="bg-slate-50 rounded-2xl p-4 text-center">
+              <p class="text-xs font-bold text-slate-500 uppercase tracking-wide mb-3">Suítes</p>
+              <div class="flex items-center justify-center gap-3">
+                <button (click)="decrementar('suites')"
+                  class="w-8 h-8 rounded-full bg-white border border-slate-200
+                         flex items-center justify-center text-slate-600
+                         hover:border-indigo-400 hover:text-indigo-600 transition-all font-bold">−</button>
+                <span class="text-xl font-extrabold text-slate-800 w-6 text-center">{{ form.suites }}</span>
+                <button (click)="incrementar('suites')"
+                  class="w-8 h-8 rounded-full bg-white border border-slate-200
+                         flex items-center justify-center text-slate-600
+                         hover:border-indigo-400 hover:text-indigo-600 transition-all font-bold">+</button>
+              </div>
+            </div>
+
+            <div class="bg-slate-50 rounded-2xl p-4 text-center">
+              <p class="text-xs font-bold text-slate-500 uppercase tracking-wide mb-3">Banheiros</p>
+              <div class="flex items-center justify-center gap-3">
+                <button (click)="decrementar('banheiros')"
+                  class="w-8 h-8 rounded-full bg-white border border-slate-200
+                         flex items-center justify-center text-slate-600
+                         hover:border-indigo-400 hover:text-indigo-600 transition-all font-bold">−</button>
+                <span class="text-xl font-extrabold text-slate-800 w-6 text-center">{{ form.banheiros }}</span>
+                <button (click)="incrementar('banheiros')"
+                  class="w-8 h-8 rounded-full bg-white border border-slate-200
+                         flex items-center justify-center text-slate-600
+                         hover:border-indigo-400 hover:text-indigo-600 transition-all font-bold">+</button>
+              </div>
+            </div>
+
+            <div class="bg-slate-50 rounded-2xl p-4 text-center">
+              <p class="text-xs font-bold text-slate-500 uppercase tracking-wide mb-3">Vagas</p>
+              <div class="flex items-center justify-center gap-3">
+                <button (click)="decrementar('vagas')"
+                  class="w-8 h-8 rounded-full bg-white border border-slate-200
+                         flex items-center justify-center text-slate-600
+                         hover:border-indigo-400 hover:text-indigo-600 transition-all font-bold">−</button>
+                <span class="text-xl font-extrabold text-slate-800 w-6 text-center">{{ form.vagas }}</span>
+                <button (click)="incrementar('vagas')"
+                  class="w-8 h-8 rounded-full bg-white border border-slate-200
+                         flex items-center justify-center text-slate-600
+                         hover:border-indigo-400 hover:text-indigo-600 transition-all font-bold">+</button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Área -->
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-2">Área útil (m²)</label>
+            <input
+              type="number"
+              [(ngModel)]="form.area"
+              placeholder="Ex: 85"
+              class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm
+                     text-slate-800 outline-none focus:ring-2 focus:ring-indigo-400
+                     focus:border-transparent transition-all"
+            />
+          </div>
+
+          <!-- Preço -->
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-2">
+              {{ form.finalidade === 'aluguel' ? 'Valor do aluguel (R$)' : 'Valor de venda (R$)' }}
+            </label>
+            <input
+              type="number"
+              [(ngModel)]="form.preco"
+              placeholder="Ex: 770000"
+              class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm
+                     text-slate-800 outline-none focus:ring-2 focus:ring-indigo-400
+                     focus:border-transparent transition-all"
+            />
+          </div>
+
+          <!-- Condomínio e IPTU -->
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Condomínio (R$)</label>
+              <input
+                type="number"
+                [(ngModel)]="form.condominio"
+                placeholder="Ex: 800"
+                class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm
+                       text-slate-800 outline-none focus:ring-2 focus:ring-indigo-400
+                       focus:border-transparent transition-all"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-slate-700 mb-2">IPTU mensal (R$)</label>
+              <input
+                type="number"
+                [(ngModel)]="form.iptu"
+                placeholder="Ex: 209"
+                class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm
+                       text-slate-800 outline-none focus:ring-2 focus:ring-indigo-400
+                       focus:border-transparent transition-all"
+              />
+            </div>
+          </div>
+
+        </div>
+      }
+
+      <!-- ETAPA 3: Localização -->
+      @if (etapaAtual === 3) {
+        <div class="flex flex-col gap-6">
+
+          <h2 class="text-xl font-bold text-slate-800">Localização</h2>
+
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-2">Endereço</label>
+            <input
+              type="text"
+              [(ngModel)]="form.endereco"
+              placeholder="Ex: Rua das Flores, 123"
+              class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm
+                     text-slate-800 outline-none focus:ring-2 focus:ring-indigo-400
+                     focus:border-transparent transition-all"
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-2">Bairro</label>
+            <input
+              type="text"
+              [(ngModel)]="form.bairro"
+              placeholder="Ex: Savassi"
+              class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm
+                     text-slate-800 outline-none focus:ring-2 focus:ring-indigo-400
+                     focus:border-transparent transition-all"
+            />
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Cidade</label>
+              <input
+                type="text"
+                [(ngModel)]="form.cidade"
+                placeholder="Ex: Belo Horizonte"
+                class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm
+                       text-slate-800 outline-none focus:ring-2 focus:ring-indigo-400
+                       focus:border-transparent transition-all"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Estado</label>
+              <select
+                [(ngModel)]="form.estado"
+                class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm
+                       text-slate-800 outline-none focus:ring-2 focus:ring-indigo-400
+                       focus:border-transparent transition-all bg-white">
+                <option value="">Selecione</option>
+                <option value="MG">MG</option>
+                <option value="SP">SP</option>
+                <option value="RJ">RJ</option>
+                <option value="BA">BA</option>
+                <option value="PR">PR</option>
+                <option value="RS">RS</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Resumo -->
+          <div class="bg-indigo-50 rounded-2xl p-5 border border-indigo-100">
+            <p class="text-xs font-bold text-indigo-600 uppercase tracking-wide mb-3">
+              Resumo do cadastro
+            </p>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <span class="text-slate-500">Tipo:</span>
+              <span class="font-semibold text-slate-800 capitalize">{{ form.tipo || '—' }}</span>
+              <span class="text-slate-500">Finalidade:</span>
+              <span class="font-semibold text-slate-800 capitalize">{{ form.finalidade || '—' }}</span>
+              <span class="text-slate-500">Área:</span>
+              <span class="font-semibold text-slate-800">{{ form.area || '—' }}m²</span>
+              <span class="text-slate-500">Suítes:</span>
+              <span class="font-semibold text-slate-800">{{ form.suites }}</span>
+              <span class="text-slate-500">Preço:</span>
+              <span class="font-semibold text-slate-800">
+                R$ {{ form.preco.toLocaleString('pt-BR') }}
+              </span>
+            </div>
+          </div>
+
+        </div>
+      }
+
+    </div>
+    <!-- FIM Card formulário -->
+
+    <!-- Botões de navegação -->
+    <div class="flex justify-between mt-6">
+
+      @if (etapaAtual > 1) {
+        <button
+          (click)="voltarEtapa()"
+          class="flex items-center gap-2 text-slate-500 hover:text-slate-800
+                 font-semibold text-sm transition-colors px-4 py-3">
+          ← Voltar
+        </button>
+      } @else {
+        <div></div>
+      }
+
+      @if (etapaAtual < 3) {
+        <button
+          (click)="avancarEtapa()"
+          class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold
+                 text-sm px-8 py-3 rounded-xl transition-all shadow-lg
+                 shadow-indigo-500/30 active:scale-95">
+          Continuar →
+        </button>
+      } @else {
+        <button
+          (click)="submeter()"
+          class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold
+                 text-sm px-8 py-3 rounded-xl transition-all shadow-lg
+                 shadow-emerald-500/30 active:scale-95">
+          ✅ Publicar imóvel
+        </button>
+      }
+
+    </div>
+
+  </div>
+</main>

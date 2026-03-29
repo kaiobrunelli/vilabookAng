@@ -1,0 +1,82 @@
+<!-- Overlay escuro - clica fora para fechar -->
+<div
+  class="fixed inset-0 z-[999] bg-black/95 flex flex-col"
+  (click)="fechar.emit()">
+
+  <!-- Barra superior -->
+  <div
+    class="flex items-center justify-between px-6 py-4 border-b border-white/[0.06] flex-shrink-0"
+    (click)="$event.stopPropagation()">
+
+    <button
+      (click)="fechar.emit()"
+      class="flex items-center gap-2 text-white/60 hover:text-white
+             text-sm font-semibold bg-white/[0.06] hover:bg-white/[0.12]
+             px-4 py-2 rounded-lg transition-all">
+      ← Voltar ao imóvel
+    </button>
+
+    <span class="text-white/40 text-sm font-semibold">
+      {{ indiceAtivo + 1 }} / {{ imagens.length }}
+    </span>
+  </div>
+
+  <!-- Imagem principal -->
+  <div
+    class="flex-1 flex items-center justify-center relative px-16 py-6 min-h-0"
+    (click)="$event.stopPropagation()">
+
+    <button
+      (click)="anterior()"
+      class="absolute left-4 top-1/2 -translate-y-1/2 z-10
+             w-14 h-14 flex items-center justify-center rounded-full
+             bg-white/[0.08] hover:bg-white/20 text-white text-4xl
+             transition-all hover:scale-110">
+      ‹
+    </button>
+
+    <img
+      [src]="imagens[indiceAtivo]"
+      [alt]="'Foto ' + (indiceAtivo + 1)"
+      class="max-w-full object-contain rounded-xl shadow-2xl"
+      style="max-height: calc(100vh - 200px)"
+    />
+
+    <button
+      (click)="proximo()"
+      class="absolute right-4 top-1/2 -translate-y-1/2 z-10
+             w-14 h-14 flex items-center justify-center rounded-full
+             bg-white/[0.08] hover:bg-white/20 text-white text-4xl
+             transition-all hover:scale-110">
+      ›
+    </button>
+
+  </div>
+
+  <!-- Miniaturas -->
+  <div
+    class="flex-shrink-0 flex items-center gap-2 px-6 pb-6 overflow-x-auto justify-center"
+    (click)="$event.stopPropagation()">
+
+    @for (img of imagens; track img; let i = $index) {
+      <button
+        (click)="irPara(i)"
+        class="flex-shrink-0 rounded-lg overflow-hidden border-2 transition-all"
+        style="width:80px; height:58px"
+        [class.border-indigo-500]="i === indiceAtivo"
+        [class.opacity-100]="i === indiceAtivo"
+        [class.border-transparent]="i !== indiceAtivo"
+        [class.opacity-40]="i !== indiceAtivo">
+        <img [src]="img" [alt]="'Miniatura ' + (i + 1)"
+             class="w-full h-full object-cover" />
+      </button>
+    }
+
+  </div>
+
+  <!-- Dica teclado -->
+  <p class="text-center text-white/20 text-xs pb-4 flex-shrink-0">
+    Use ← → para navegar · Esc para fechar
+  </p>
+
+</div>

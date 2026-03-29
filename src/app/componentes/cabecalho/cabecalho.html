@@ -1,39 +1,42 @@
 <header class="fixed top-0 left-0 right-0 z-50 px-4 py-3">
-  <div class="max-w-7xl mx-auto flex items-center justify-between
+    <div class="max-w-7xl mx-auto flex items-center justify-between
               bg-white/80 backdrop-blur-md border border-white/60
               rounded-2xl px-6 py-3 shadow-sm">
 
-    <!-- Logo -->
-    <a routerLink="/" class="flex items-center gap-2">
-      <span class="w-8 h-8 flex items-center justify-center
+        <!-- Logo -->
+        <a routerLink="/" class="flex items-center gap-2">
+            <span class="w-8 h-8 flex items-center justify-center
                    rounded-lg bg-indigo-600 text-white font-bold text-sm">V</span>
-      <span class="text-xl font-bold text-slate-900">
-        Vila<span class="text-indigo-600">Book</span>
-      </span>
-    </a>
+            <span class="text-xl font-bold text-slate-900">
+                Vila<span class="text-indigo-600">Book</span>
+            </span>
+        </a>
 
-    <!-- Nav -->
-    <nav class="hidden md:flex items-center gap-8">
-      <a routerLink="/"
-         class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">
-        Comprar
-      </a>
-      <a routerLink="/"
-         class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">
-        Alugar
-      </a>
-      <a routerLink="/"
-         class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">
-        Vender
-      </a>
-    </nav>
+        <!-- Nav -->
+        <nav class="hidden md:flex items-center gap-8">
+            <a routerLink="/" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">
+                Comprar
+            </a>
+            <a routerLink="/" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">
+                Alugar
+            </a>
+            <a routerLink="/" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">
+                Vender
+            </a>
+        </nav>
 
-    <!-- Botão -->
-    <button class="bg-indigo-600 hover:bg-indigo-700 text-white
-                   text-sm font-bold px-5 py-2.5 rounded-xl
-                   shadow-lg shadow-indigo-500/30 transition-all">
-      Contato
-    </button>
+        <!-- Botões -->
+        <div class="flex items-center gap-3">
+            <a routerLink="/cadastrar" class="text-sm font-bold text-indigo-600 hover:text-indigo-700
+          border border-indigo-200 hover:border-indigo-400
+          px-4 py-2 rounded-xl transition-all">
+                + Anunciar
+            </a>
+            <button class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold
+                     px-5 py-2.5 rounded-xl shadow-lg shadow-indigo-500/30 transition-all">
+                Contato
+            </button>
+        </div>
 
-  </div>
+    </div>
 </header>

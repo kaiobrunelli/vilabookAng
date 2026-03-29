@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cabecalho',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './cabecalho.html',
   styleUrl: './cabecalho.css',
 })
