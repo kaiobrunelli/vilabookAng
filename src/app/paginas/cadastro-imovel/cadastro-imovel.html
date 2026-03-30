@@ -155,18 +155,21 @@
                 <!-- Telefone para contato -->
                 <div>
                     <label class="block text-sm font-semibold text-slate-700 mb-2">
-                        Telefone para contato (WhatsApp)
+                        WhatsApp para contato <span class="text-red-500">*</span>
                     </label>
                     <div class="relative">
-                        <!-- <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm font-semibold">
-                            🇧🇷 +55
-                        </span> -->
-                        <input type="tel" [(ngModel)]="form.telefone" placeholder="" maxlength="13"
-                            (ngModelChange)="mascararTelefone($event)" class="w-full border border-slate-200 rounded-xl pl-4 pr-4 py-3 text-sm
-                   text-slate-800 outline-none focus:ring-2 focus:ring-indigo-400
-                   focus:border-transparent transition-all" />
+                        <input type="tel" [(ngModel)]="form.telefone"
+                            (ngModelChange)="mascararTelefone($event); limparErro('telefone')"
+                            placeholder="Ex: 31 99999-9999" maxlength="13" class="w-full border rounded-xl pl-4 pr-4 py-3 text-sm
+             text-slate-800 outline-none focus:ring-2 transition-all" [class.border-red-300]="temErro('telefone')"
+                            [class.border-slate-200]="!temErro('telefone')"
+                            [class.focus:ring-indigo-400]="!temErro('telefone')" />
                     </div>
-                    <p class="text-slate-400 text-xs mt-1">DDD + número </p>
+                    @if (temErro('telefone')) {
+                    <p class="text-red-500 text-xs mt-1.5 font-medium">⚠ {{ erros['telefone'] }}</p>
+                    } @else {
+                    <p class="text-slate-400 text-xs mt-1">DDD + número</p>
+                    }
                 </div>
 
                 <!-- Descrição -->
@@ -186,7 +189,8 @@
                     <p class="text-slate-400 text-xs mt-1">Mínimo 3 caracteres</p>
                     }
                 </div>
-                <!-- Upload de imagens -->
+
+
                 <!-- Upload de imagens -->
                 <div>
                     <label class="block text-sm font-semibold text-slate-700 mb-3">

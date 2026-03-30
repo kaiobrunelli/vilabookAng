@@ -96,6 +96,12 @@ export class CadastroImovel {
         this.erros['descricao'] = 'A descrição é obrigatória';
       if (this.form.descricao.trim().length < 3)
         this.erros['descricao'] = 'A descrição deve ter pelo menos 20 caracteres';
+      if (!this.form.telefone.trim())
+        this.erros['telefone'] = 'O WhatsApp para contato é obrigatório';
+  
+    const apenasNumeros = this.form.telefone.replace(/\D/g, '');
+       if (this.form.telefone.trim() && apenasNumeros.length < 10)
+        this.erros['telefone'] = 'Informe um número válido com DDD';
     }
 
     if (this.etapaAtual === 2) {
