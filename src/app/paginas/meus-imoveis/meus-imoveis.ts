@@ -55,26 +55,36 @@ export class MeusImoveis implements OnInit {
     this.imovelEditando = null;
   }
 
-  async salvarEdicao(): Promise<void> {
-    if (!this.imovelEditando) return;
-    try {
-      this.salvando = true;
-      await this.supabase.atualizarImovel(this.imovelEditando.id, {
-        titulo: this.imovelEditando.titulo,
-        preco: this.imovelEditando.preco,
-        condominio: this.imovelEditando.condominio,
-        iptu: this.imovelEditando.iptu,
-        descricao: this.imovelEditando.descricao,
-        finalidade: this.imovelEditando.finalidade,
-      });
-      await this.carregarMeusImoveis();
-      this.fecharModal();
-    } catch (e) {
-      console.error(e);
-    } finally {
-      this.salvando = false;
+ async salvarEdicao(): Promise<void> {
+  if (!this.imovelEditando) return;
+  try {
+    this.salvando = true;
+    await this.supabase.atualizarImovel(this.imovelEditando.id, {
+      titulo: this.imovelEditando.titulo,
+      preco: this.imovelEditando.preco,
+      condominio: this.imovelEditando.condominio,
+      iptu: this.imovelEditando.iptu,
+      descricao: this.imovelEditando.descricao,
+      finalidade: this.imovelEditando.finalidade,
+    });
+
+    // Atualiza o item na lista local sem ir ao banco de novo
+    const indice = this.imoveis.findIndex(i => i.id === this.imovelEditando.id);
+    if (indice !== -1) {
+      this.imoveis[indice] = { ...this.imoveis[indice], ...this.imovelEditando };
+      this.imoveis = [...this.imoveis]; // novo array → força detecção
     }
+
+    this.fecharModal();
+    this.cdr.detectChanges(); // ← força re-renderizar
+
+  } catch (e) {
+    console.error(e);
+  } finally {
+    this.salvando = false;
+    this.cdr.detectChanges(); // ← garante que o spinner some
   }
+}
 
   async remover(id: string): Promise<void> {
     if (this.idRemovendo !== id) {
