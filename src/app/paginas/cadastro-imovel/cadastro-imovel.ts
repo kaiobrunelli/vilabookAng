@@ -34,9 +34,9 @@ export class CadastroImovel {
     finalidade: '',
     titulo: '',
     descricao: '',
-    suites: 1,
-    banheiros: 1,
-    vagas: 1,
+    suites: 0,
+    banheiros: 0,
+    vagas: 0,
     area: 0,
     preco: 0,
     condominio: 0,
@@ -118,8 +118,7 @@ export class CadastroImovel {
         this.erros['bairro'] = 'O bairro é obrigatório';
       if (!this.form.cidade.trim())
         this.erros['cidade'] = 'A cidade é obrigatória';
-      if (!this.form.estado)
-        this.erros['estado'] = 'Selecione o estado';
+ 
     }
 
     return Object.keys(this.erros).length === 0;
@@ -218,6 +217,7 @@ export class CadastroImovel {
         imagens: urlsImagens,
         novo: true,
         destaque: false,
+        estado: 'MG', // garante sempre MG independente do form
         criado_por: this.auth.usuario()?.uid,
         email_anunciante: this.auth.usuario()?.email,
         nome_anunciante: this.auth.usuario()?.displayName,

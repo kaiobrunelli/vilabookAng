@@ -25,11 +25,16 @@ export class Inicio implements OnInit {
   carregando = true;
   erro = '';
   snackVisivel = false;
+  mostrarSnack = false;
   async ngOnInit(): Promise<void> {
     if (sessionStorage.getItem('imovel_cadastrado')) {
       sessionStorage.removeItem('imovel_cadastrado');
-      this.snackVisivel = true;
-      setTimeout(() => this.snackVisivel = false, 4000);
+      this.mostrarSnack = true;
+
+      setTimeout(() => {
+        this.mostrarSnack = false;
+        this.cdr.detectChanges(); // ← força Angular a ver a mudança
+      }, 2000);
     }
     await this.carregarImoveis();
 

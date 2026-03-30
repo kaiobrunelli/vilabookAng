@@ -65,40 +65,22 @@
             <!-- Tipo do imóvel -->
             <div class="flex flex-col gap-6">
                 <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-3">
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">
                         Tipo do imóvel <span class="text-red-500">*</span>
                     </label>
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                        <button (click)="form.tipo = 'apartamento'; limparErro('tipo')"
-                            class="py-3 px-4 rounded-xl border-2 text-sm font-semibold transition-all"
-                            [class.border-indigo-600]="form.tipo === 'apartamento'"
-                            [class.bg-indigo-50]="form.tipo === 'apartamento'"
-                            [class.text-indigo-600]="form.tipo === 'apartamento'"
-                            [class.border-red-300]="temErro('tipo') && form.tipo !== 'apartamento'"
-                            [class.border-slate-200]="!temErro('tipo') && form.tipo !== 'apartamento'"
-                            [class.text-slate-500]="form.tipo !== 'apartamento'">
-                            🏢 Apartamento
-                        </button>
-                        <button (click)="form.tipo = 'casa'; limparErro('tipo')"
-                            class="py-3 px-4 rounded-xl border-2 text-sm font-semibold transition-all"
-                            [class.border-indigo-600]="form.tipo === 'casa'" [class.bg-indigo-50]="form.tipo === 'casa'"
-                            [class.text-indigo-600]="form.tipo === 'casa'"
-                            [class.border-red-300]="temErro('tipo') && form.tipo !== 'casa'"
-                            [class.border-slate-200]="!temErro('tipo') && form.tipo !== 'casa'"
-                            [class.text-slate-500]="form.tipo !== 'casa'">
-                            🏠 Casa
-                        </button>
-                        <button (click)="form.tipo = 'cobertura'; limparErro('tipo')"
-                            class="py-3 px-4 rounded-xl border-2 text-sm font-semibold transition-all"
-                            [class.border-indigo-600]="form.tipo === 'cobertura'"
-                            [class.bg-indigo-50]="form.tipo === 'cobertura'"
-                            [class.text-indigo-600]="form.tipo === 'cobertura'"
-                            [class.border-red-300]="temErro('tipo') && form.tipo !== 'cobertura'"
-                            [class.border-slate-200]="!temErro('tipo') && form.tipo !== 'cobertura'"
-                            [class.text-slate-500]="form.tipo !== 'cobertura'">
-                            🏙️ Cobertura
-                        </button>
-                    </div>
+                    <select [(ngModel)]="form.tipo" (ngModelChange)="limparErro('tipo')" class="w-full border rounded-xl px-4 py-3 text-sm text-slate-800
+           outline-none focus:ring-2 transition-all bg-white" [class.border-red-300]="temErro('tipo')"
+                        [class.border-slate-200]="!temErro('tipo')" [class.focus:ring-indigo-400]="!temErro('tipo')">
+                        <option value="">Selecione o tipo</option>
+                        <option value="apartamento">🏢 Apartamento</option>
+                        <option value="casa">🏠 Casa</option>
+                        <option value="cobertura">🏙️ Cobertura</option>
+                        <option value="lote">🟫 Lote</option>
+                        <option value="sitio">🌿 Sítio</option>
+                        <option value="fazenda">🐄 Fazenda</option>
+                        <option value="comercial">🏪 Comercial</option>
+                        <option value="rancho">🤠 Rancho</option>
+                    </select>
                     @if (temErro('tipo')) {
                     <p class="text-red-500 text-xs mt-1.5 font-medium">⚠ {{ erros['tipo'] }}</p>
                     }
@@ -381,7 +363,7 @@
                         Cidade <span class="text-red-500">*</span>
                     </label>
                     <select [(ngModel)]="form.cidade" (ngModelChange)="limparErro('cidade')" class="w-full border rounded-xl px-4 py-3 text-sm text-slate-800
-                 outline-none focus:ring-2 transition-all bg-white" [class.border-red-300]="temErro('cidade')"
+             outline-none focus:ring-2 transition-all bg-white" [class.border-red-300]="temErro('cidade')"
                         [class.border-slate-200]="!temErro('cidade')"
                         [class.focus:ring-indigo-400]="!temErro('cidade')">
                         <option value="">Selecione a cidade</option>
@@ -393,22 +375,13 @@
                     }
                 </div>
                 <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-2">
-                        Estado <span class="text-red-500">*</span>
-                    </label>
-                    <select [(ngModel)]="form.estado" (ngModelChange)="limparErro('estado')" class="w-full border rounded-xl px-4 py-3 text-sm text-slate-800
-                   outline-none focus:ring-2 transition-all bg-white" [class.border-red-300]="temErro('estado')"
-                        [class.border-slate-200]="!temErro('estado')"
-                        [class.focus:ring-indigo-400]="!temErro('estado')">
-                        <option value="">Selecione</option>
-                        <option value="MG">MG</option>
-                    </select>
-                    @if (temErro('estado')) {
-                    <p class="text-red-500 text-xs mt-1.5 font-medium">⚠ {{ erros['estado'] }}</p>
-                    }
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Estado</label>
+                    <div class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm
+                text-slate-400 bg-slate-50 cursor-not-allowed">
+                        MG
+                    </div>
                 </div>
             </div>
-
             <!-- Resumo -->
             <div class="bg-indigo-50 rounded-2xl p-5 border border-indigo-100">
                 <p class="text-xs font-bold text-indigo-600 uppercase tracking-wide mb-3">
