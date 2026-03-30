@@ -62,91 +62,112 @@
 
             <!-- ETAPA 1: Informações básicas -->
             @if (etapaAtual === 1) {
-            <div class="flex flex-col gap-6">
-
-                <h2 class="text-xl font-bold text-slate-800">Informações Básicas</h2>
-
-                <!-- Tipo do imóvel -->
-                <!-- Tipo do imóvel -->
+            <!-- Tipo do imóvel -->
+            <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-3">
+                    Tipo do imóvel <span class="text-red-500">*</span>
+                </label>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-
-                    <button (click)="form.tipo = 'apartamento'"
+                    <button (click)="form.tipo = 'apartamento'; limparErro('tipo')"
                         class="py-3 px-4 rounded-xl border-2 text-sm font-semibold transition-all"
                         [class.border-indigo-600]="form.tipo === 'apartamento'"
                         [class.bg-indigo-50]="form.tipo === 'apartamento'"
                         [class.text-indigo-600]="form.tipo === 'apartamento'"
-                        [class.border-slate-200]="form.tipo !== 'apartamento'"
+                        [class.border-red-300]="temErro('tipo') && form.tipo !== 'apartamento'"
+                        [class.border-slate-200]="!temErro('tipo') && form.tipo !== 'apartamento'"
                         [class.text-slate-500]="form.tipo !== 'apartamento'">
                         🏢 Apartamento
                     </button>
-
-                    <button (click)="form.tipo = 'casa'"
+                    <button (click)="form.tipo = 'casa'; limparErro('tipo')"
                         class="py-3 px-4 rounded-xl border-2 text-sm font-semibold transition-all"
                         [class.border-indigo-600]="form.tipo === 'casa'" [class.bg-indigo-50]="form.tipo === 'casa'"
-                        [class.text-indigo-600]="form.tipo === 'casa'" [class.border-slate-200]="form.tipo !== 'casa'"
+                        [class.text-indigo-600]="form.tipo === 'casa'"
+                        [class.border-red-300]="temErro('tipo') && form.tipo !== 'casa'"
+                        [class.border-slate-200]="!temErro('tipo') && form.tipo !== 'casa'"
                         [class.text-slate-500]="form.tipo !== 'casa'">
                         🏠 Casa
                     </button>
-
-                    <button (click)="form.tipo = 'cobertura'"
+                    <button (click)="form.tipo = 'cobertura'; limparErro('tipo')"
                         class="py-3 px-4 rounded-xl border-2 text-sm font-semibold transition-all"
                         [class.border-indigo-600]="form.tipo === 'cobertura'"
                         [class.bg-indigo-50]="form.tipo === 'cobertura'"
                         [class.text-indigo-600]="form.tipo === 'cobertura'"
-                        [class.border-slate-200]="form.tipo !== 'cobertura'"
+                        [class.border-red-300]="temErro('tipo') && form.tipo !== 'cobertura'"
+                        [class.border-slate-200]="!temErro('tipo') && form.tipo !== 'cobertura'"
                         [class.text-slate-500]="form.tipo !== 'cobertura'">
                         🏙️ Cobertura
                     </button>
-
                 </div>
+                @if (temErro('tipo')) {
+                <p class="text-red-500 text-xs mt-1.5 font-medium">⚠ {{ erros['tipo'] }}</p>
+                }
+            </div>
 
-                <!-- Finalidade -->
-                <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-3">Finalidade</label>
-                    <div class="grid grid-cols-2 gap-3">
-
-                        <button (click)="form.finalidade = 'venda'"
-                            class="py-3 px-4 rounded-xl border-2 text-sm font-semibold transition-all"
-                            [class.border-indigo-600]="form.finalidade === 'venda'"
-                            [class.bg-indigo-50]="form.finalidade === 'venda'"
-                            [class.text-indigo-600]="form.finalidade === 'venda'"
-                            [class.border-slate-200]="form.finalidade !== 'venda'"
-                            [class.text-slate-500]="form.finalidade !== 'venda'">
-                            Venda
-                        </button>
-
-                        <button (click)="form.finalidade = 'aluguel'"
-                            class="py-3 px-4 rounded-xl border-2 text-sm font-semibold transition-all"
-                            [class.border-indigo-600]="form.finalidade === 'aluguel'"
-                            [class.bg-indigo-50]="form.finalidade === 'aluguel'"
-                            [class.text-indigo-600]="form.finalidade === 'aluguel'"
-                            [class.border-slate-200]="form.finalidade !== 'aluguel'"
-                            [class.text-slate-500]="form.finalidade !== 'aluguel'">
-                            Aluguel
-                        </button>
-
-                    </div>
+            <!-- Finalidade -->
+            <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-3">
+                    Finalidade <span class="text-red-500">*</span>
+                </label>
+                <div class="grid grid-cols-2 gap-3">
+                    <button (click)="form.finalidade = 'venda'; limparErro('finalidade')"
+                        class="py-3 px-4 rounded-xl border-2 text-sm font-semibold transition-all"
+                        [class.border-indigo-600]="form.finalidade === 'venda'"
+                        [class.bg-indigo-50]="form.finalidade === 'venda'"
+                        [class.text-indigo-600]="form.finalidade === 'venda'"
+                        [class.border-red-300]="temErro('finalidade') && form.finalidade !== 'venda'"
+                        [class.border-slate-200]="!temErro('finalidade') && form.finalidade !== 'venda'"
+                        [class.text-slate-500]="form.finalidade !== 'venda'">
+                        Venda
+                    </button>
+                    <button (click)="form.finalidade = 'aluguel'; limparErro('finalidade')"
+                        class="py-3 px-4 rounded-xl border-2 text-sm font-semibold transition-all"
+                        [class.border-indigo-600]="form.finalidade === 'aluguel'"
+                        [class.bg-indigo-50]="form.finalidade === 'aluguel'"
+                        [class.text-indigo-600]="form.finalidade === 'aluguel'"
+                        [class.border-red-300]="temErro('finalidade') && form.finalidade !== 'aluguel'"
+                        [class.border-slate-200]="!temErro('finalidade') && form.finalidade !== 'aluguel'"
+                        [class.text-slate-500]="form.finalidade !== 'aluguel'">
+                        Aluguel
+                    </button>
                 </div>
+                @if (temErro('finalidade')) {
+                <p class="text-red-500 text-xs mt-1.5 font-medium">⚠ {{ erros['finalidade'] }}</p>
+                }
+            </div>
 
-                <!-- Título -->
-                <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-2">Título do anúncio</label>
-                    <input type="text" [(ngModel)]="form.titulo" placeholder="Ex: Apartamento moderno com 3 suítes"
-                        class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm
-                     text-slate-800 outline-none focus:ring-2 focus:ring-indigo-400
-                     focus:border-transparent transition-all" />
-                </div>
+            <!-- Título -->
+            <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-2">
+                    Título do anúncio <span class="text-red-500">*</span>
+                </label>
+                <input type="text" [(ngModel)]="form.titulo" (ngModelChange)="limparErro('titulo')"
+                    placeholder="Ex: Apartamento moderno com 3 suítes" class="w-full border rounded-xl px-4 py-3 text-sm text-slate-800
+                outline-none focus:ring-2 transition-all" [class.border-red-300]="temErro('titulo')"
+                    [class.focus:ring-red-300]="temErro('titulo')" [class.border-slate-200]="!temErro('titulo')"
+                    [class.focus:ring-indigo-400]="!temErro('titulo')" />
+                @if (temErro('titulo')) {
+                <p class="text-red-500 text-xs mt-1.5 font-medium">⚠ {{ erros['titulo'] }}</p>
+                } @else {
+                <p class="text-slate-400 text-xs mt-1">Mínimo 3 caracteres</p>
+                }
+            </div>
 
-                <!-- Descrição -->
-                <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-2">Descrição</label>
-                    <textarea [(ngModel)]="form.descricao" placeholder="Descreva os diferenciais do imóvel..." rows="4"
-                        class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm
-                     text-slate-800 outline-none focus:ring-2 focus:ring-indigo-400
-                     focus:border-transparent transition-all resize-none">
-            </textarea>
-                </div>
-
+            <!-- Descrição -->
+            <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-2">
+                    Descrição <span class="text-red-500">*</span>
+                </label>
+                <textarea [(ngModel)]="form.descricao" (ngModelChange)="limparErro('descricao')"
+                    placeholder="Descreva os diferenciais do imóvel..." rows="4" class="w-full border rounded-xl px-4 py-3 text-sm text-slate-800
+                   outline-none focus:ring-2 transition-all resize-none" [class.border-red-300]="temErro('descricao')"
+                    [class.border-slate-200]="!temErro('descricao')"
+                    [class.focus:ring-indigo-400]="!temErro('descricao')">
+  </textarea>
+                @if (temErro('descricao')) {
+                <p class="text-red-500 text-xs mt-1.5 font-medium">⚠ {{ erros['descricao'] }}</p>
+                } @else {
+                <p class="text-slate-400 text-xs mt-1">Mínimo 3 caracteres</p>
+                }
             </div>
             <!-- Upload de imagens -->
             <!-- Upload de imagens -->
@@ -249,21 +270,33 @@
             </div>
 
             <!-- Área -->
+            <!-- Área -->
             <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-2">Área útil (m²)</label>
-                <input type="number" [(ngModel)]="form.area" placeholder="Ex: 85" class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm
-                     text-slate-800 outline-none focus:ring-2 focus:ring-indigo-400
-                     focus:border-transparent transition-all" />
+                <label class="block text-sm font-semibold text-slate-700 mb-2">
+                    Área útil (m²) <span class="text-red-500">*</span>
+                </label>
+                <input type="number" [(ngModel)]="form.area" (ngModelChange)="limparErro('area')" placeholder="Ex: 85"
+                    class="w-full border rounded-xl px-4 py-3 text-sm text-slate-800
+                outline-none focus:ring-2 transition-all" [class.border-red-300]="temErro('area')"
+                    [class.border-slate-200]="!temErro('area')" [class.focus:ring-indigo-400]="!temErro('area')" />
+                @if (temErro('area')) {
+                <p class="text-red-500 text-xs mt-1.5 font-medium">⚠ {{ erros['area'] }}</p>
+                }
             </div>
 
             <!-- Preço -->
             <div>
                 <label class="block text-sm font-semibold text-slate-700 mb-2">
                     {{ form.finalidade === 'aluguel' ? 'Valor do aluguel (R$)' : 'Valor de venda (R$)' }}
+                    <span class="text-red-500">*</span>
                 </label>
-                <input type="number" [(ngModel)]="form.preco" placeholder="Ex: 770000" class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm
-                     text-slate-800 outline-none focus:ring-2 focus:ring-indigo-400
-                     focus:border-transparent transition-all" />
+                <input type="number" [(ngModel)]="form.preco" (ngModelChange)="limparErro('preco')"
+                    placeholder="Ex: 770000" class="w-full border rounded-xl px-4 py-3 text-sm text-slate-800
+                outline-none focus:ring-2 transition-all" [class.border-red-300]="temErro('preco')"
+                    [class.border-slate-200]="!temErro('preco')" [class.focus:ring-indigo-400]="!temErro('preco')" />
+                @if (temErro('preco')) {
+                <p class="text-red-500 text-xs mt-1.5 font-medium">⚠ {{ erros['preco'] }}</p>
+                }
             </div>
 
             <!-- Condomínio e IPTU -->
@@ -291,40 +324,67 @@
 
             <h2 class="text-xl font-bold text-slate-800">Localização</h2>
 
+            <!-- Endereço -->
             <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-2">Endereço</label>
-                <input type="text" [(ngModel)]="form.endereco" placeholder="Ex: Rua das Flores, 123" class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm
-                     text-slate-800 outline-none focus:ring-2 focus:ring-indigo-400
-                     focus:border-transparent transition-all" />
+                <label class="block text-sm font-semibold text-slate-700 mb-2">
+                    Endereço <span class="text-red-500">*</span>
+                </label>
+                <input type="text" [(ngModel)]="form.endereco" (ngModelChange)="limparErro('endereco')"
+                    placeholder="Ex: Rua das Flores, 123" class="w-full border rounded-xl px-4 py-3 text-sm text-slate-800
+                outline-none focus:ring-2 transition-all" [class.border-red-300]="temErro('endereco')"
+                    [class.border-slate-200]="!temErro('endereco')"
+                    [class.focus:ring-indigo-400]="!temErro('endereco')" />
+                @if (temErro('endereco')) {
+                <p class="text-red-500 text-xs mt-1.5 font-medium">⚠ {{ erros['endereco'] }}</p>
+                }
             </div>
 
+            <!-- Bairro -->
             <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-2">Bairro</label>
-                <input type="text" [(ngModel)]="form.bairro" placeholder="Ex: Savassi" class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm
-                     text-slate-800 outline-none focus:ring-2 focus:ring-indigo-400
-                     focus:border-transparent transition-all" />
+                <label class="block text-sm font-semibold text-slate-700 mb-2">
+                    Bairro <span class="text-red-500">*</span>
+                </label>
+                <input type="text" [(ngModel)]="form.bairro" (ngModelChange)="limparErro('bairro')"
+                    placeholder="Ex: Savassi" class="w-full border rounded-xl px-4 py-3 text-sm text-slate-800
+                outline-none focus:ring-2 transition-all" [class.border-red-300]="temErro('bairro')"
+                    [class.border-slate-200]="!temErro('bairro')" [class.focus:ring-indigo-400]="!temErro('bairro')" />
+                @if (temErro('bairro')) {
+                <p class="text-red-500 text-xs mt-1.5 font-medium">⚠ {{ erros['bairro'] }}</p>
+                }
             </div>
 
+            <!-- Cidade e Estado -->
             <div class="grid grid-cols-2 gap-4">
                 <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-2">Cidade</label>
-                    <input type="text" [(ngModel)]="form.cidade" placeholder="Ex: Belo Horizonte" class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm
-                       text-slate-800 outline-none focus:ring-2 focus:ring-indigo-400
-                       focus:border-transparent transition-all" />
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">
+                        Cidade <span class="text-red-500">*</span>
+                    </label>
+                    <select [(ngModel)]="form.cidade" (ngModelChange)="limparErro('cidade')" class="w-full border rounded-xl px-4 py-3 text-sm text-slate-800
+                 outline-none focus:ring-2 transition-all bg-white" [class.border-red-300]="temErro('cidade')"
+                        [class.border-slate-200]="!temErro('cidade')"
+                        [class.focus:ring-indigo-400]="!temErro('cidade')">
+                        <option value="">Selecione a cidade</option>
+                        <option value="Morada Nova de Minas">Morada Nova de Minas</option>
+                        <option value="Belo Horizonte">Belo Horizonte</option>
+                    </select>
+                    @if (temErro('cidade')) {
+                    <p class="text-red-500 text-xs mt-1.5 font-medium">⚠ {{ erros['cidade'] }}</p>
+                    }
                 </div>
                 <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-2">Estado</label>
-                    <select [(ngModel)]="form.estado" class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm
-                       text-slate-800 outline-none focus:ring-2 focus:ring-indigo-400
-                       focus:border-transparent transition-all bg-white">
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">
+                        Estado <span class="text-red-500">*</span>
+                    </label>
+                    <select [(ngModel)]="form.estado" (ngModelChange)="limparErro('estado')" class="w-full border rounded-xl px-4 py-3 text-sm text-slate-800
+                   outline-none focus:ring-2 transition-all bg-white" [class.border-red-300]="temErro('estado')"
+                        [class.border-slate-200]="!temErro('estado')"
+                        [class.focus:ring-indigo-400]="!temErro('estado')">
                         <option value="">Selecione</option>
                         <option value="MG">MG</option>
-                        <option value="SP">SP</option>
-                        <option value="RJ">RJ</option>
-                        <option value="BA">BA</option>
-                        <option value="PR">PR</option>
-                        <option value="RS">RS</option>
                     </select>
+                    @if (temErro('estado')) {
+                    <p class="text-red-500 text-xs mt-1.5 font-medium">⚠ {{ erros['estado'] }}</p>
+                    }
                 </div>
             </div>
 

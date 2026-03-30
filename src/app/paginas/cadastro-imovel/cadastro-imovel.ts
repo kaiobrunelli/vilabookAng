@@ -1,4 +1,4 @@
-import { Component, inject, ViewChild, ElementRef, ChangeDetectorRef  } from '@angular/core';
+import { Component, inject, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Cabecalho } from '../../componentes/cabecalho/cabecalho';
@@ -16,13 +16,17 @@ type Etapa = 1 | 2 | 3;
 export class CadastroImovel {
   private router = inject(Router);
   private supabase = inject(SupabaseService);
- private cdr = inject(ChangeDetectorRef); 
+  private cdr = inject(ChangeDetectorRef);
+
   @ViewChild('inputFotos') inputFotos!: ElementRef<HTMLInputElement>;
 
   etapaAtual: Etapa = 1;
   salvando = false;
   erroUpload = '';
   imagensPreview: { url: string; arquivo: File }[] = [];
+
+  // Erros por campo
+  erros: Record<string, string> = {};
 
   form = {
     tipo: '',
@@ -50,38 +54,66 @@ export class CadastroImovel {
     if (this.form[campo] > 0) this.form[campo]--;
   }
 
-  validarEtapa(): string | null {
+  // Limpa erro de um campo ao editar
+  limparErro(campo: string): void {
+    delete this.erros[campo];
+  }
+
+  validarEtapa(): boolean {
+    this.erros = {}; // limpa erros anteriores
+
     if (this.etapaAtual === 1) {
-      if (!this.form.tipo) return 'Selecione o tipo do imóvel';
-      if (!this.form.finalidade) return 'Selecione a finalidade';
-      if (!this.form.titulo.trim()) return 'Preencha o título do anúncio';
-      if (!this.form.descricao.trim()) return 'Preencha a descrição';
+      if (!this.form.tipo)
+        this.erros['tipo'] = 'Selecione o tipo do imóvel';
+      if (!this.form.finalidade)
+        this.erros['finalidade'] = 'Selecione a finalidade';
+      if (!this.form.titulo.trim())
+        this.erros['titulo'] = 'O título é obrigatório';
+      if (this.form.titulo.trim().length < 3)
+        this.erros['titulo'] = 'O título deve ter pelo menos 10 caracteres';
+      if (!this.form.descricao.trim())
+        this.erros['descricao'] = 'A descrição é obrigatória';
+      if (this.form.descricao.trim().length < 3)
+        this.erros['descricao'] = 'A descrição deve ter pelo menos 20 caracteres';
     }
+
     if (this.etapaAtual === 2) {
-      if (!this.form.area || this.form.area <= 0) return 'Informe a área do imóvel';
-      if (!this.form.preco || this.form.preco <= 0) return 'Informe o valor do imóvel';
+      if (!this.form.area || this.form.area <= 0)
+        this.erros['area'] = 'Informe a área do imóvel';
+      if (!this.form.preco || this.form.preco <= 0)
+        this.erros['preco'] = 'Informe o valor do imóvel';
     }
+
     if (this.etapaAtual === 3) {
-      if (!this.form.bairro.trim()) return 'Preencha o bairro';
-      if (!this.form.cidade.trim()) return 'Preencha a cidade';
-      if (!this.form.estado) return 'Selecione o estado';
+      if (!this.form.endereco.trim())
+        this.erros['endereco'] = 'O endereço é obrigatório';
+      if (!this.form.bairro.trim())
+        this.erros['bairro'] = 'O bairro é obrigatório';
+      if (!this.form.cidade.trim())
+        this.erros['cidade'] = 'A cidade é obrigatória';
+      if (!this.form.estado)
+        this.erros['estado'] = 'Selecione o estado';
     }
-    return null;
+
+    return Object.keys(this.erros).length === 0;
+  }
+
+  temErro(campo: string): boolean {
+    return !!this.erros[campo];
   }
 
   avancarEtapa(): void {
-    const erro = this.validarEtapa();
-    if (erro) {
-      this.erroUpload = erro;
+    if (!this.validarEtapa()) {
+      this.cdr.detectChanges();
       return;
     }
-    this.erroUpload = '';
     if (this.etapaAtual < 3) {
       this.etapaAtual = (this.etapaAtual + 1) as Etapa;
     }
   }
 
   voltarEtapa(): void {
+    this.erros = {};
     if (this.etapaAtual > 1) {
       this.etapaAtual = (this.etapaAtual - 1) as Etapa;
     }
@@ -92,6 +124,8 @@ export class CadastroImovel {
     this.inputFotos.nativeElement.click();
   }
 
+  // Substitui onSelecionarImagens e comprimirImagem por isso:
+
   async onSelecionarImagens(event: Event, input: HTMLInputElement): Promise<void> {
     const arquivos = Array.from((event.target as HTMLInputElement).files ?? []);
     if (!arquivos.length) return;
@@ -100,17 +134,21 @@ export class CadastroImovel {
 
     if (this.imagensPreview.length + arquivos.length > 5) {
       this.erroUpload = 'Máximo de 5 imagens permitidas.';
+      input.value = '';
       return;
     }
 
+    // Processa cada arquivo individualmente e força detecção após cada um
     for (const arquivo of arquivos) {
       const comprimido = await this.comprimirImagem(arquivo);
       const url = URL.createObjectURL(comprimido);
-      this.imagensPreview.push({ url, arquivo: comprimido });
+
+      // Cria novo array a cada iteração — força Angular a detectar mudança
+      this.imagensPreview = [...this.imagensPreview, { url, arquivo: comprimido }];
+      this.cdr.detectChanges();
     }
 
     input.value = '';
-    this.cdr.detectChanges();  // ← força re-renderizar após async
   }
 
   async comprimirImagem(arquivo: File): Promise<File> {
@@ -128,13 +166,13 @@ export class CadastroImovel {
   }
 
   removerImagem(indice: number): void {
-    this.imagensPreview.splice(indice, 1);
+    this.imagensPreview = this.imagensPreview.filter((_, i) => i !== indice);
+    this.cdr.detectChanges();
   }
 
   async submeter(): Promise<void> {
-    const erro = this.validarEtapa();
-    if (erro) {
-      this.erroUpload = erro;
+    if (!this.validarEtapa()) {
+      this.cdr.detectChanges();
       return;
     }
     if (this.salvando) return;
@@ -157,7 +195,6 @@ export class CadastroImovel {
       });
 
       this.router.navigate(['/']);
-
     } catch (e) {
       console.error(e);
       this.erroUpload = 'Erro ao cadastrar imóvel. Tente novamente.';
