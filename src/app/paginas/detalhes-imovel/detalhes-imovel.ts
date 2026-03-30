@@ -87,7 +87,7 @@ export class DetalhesImovel {
     return `https://wa.me/${numeroCompleto}?text=${mensagem}`;
   }
   get primeiroNome(): string {
-    const nome = this.auth.usuario()?.displayName || '';
-    return nome.split(' ')[0];
+    if (!this.imovel?.nome_anunciante) return 'Anunciante';
+    return this.imovel.nome_anunciante.split(' ')[0];
   }
 }

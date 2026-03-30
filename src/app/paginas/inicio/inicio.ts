@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Cabecalho } from '../../componentes/cabecalho/cabecalho';
 import { CardImovel } from '../../componentes/card-imovel/card-imovel';
 import { ImoveisService } from '../../servicos/imoveis';
+import { AuthService } from '../../servicos/auth';
+import { SupabaseService } from '../../servicos/supabase';
 
 type Filtro = 'todos' | 'venda' | 'aluguel';
 
@@ -17,7 +19,8 @@ export class Inicio implements OnInit {
   private imoveisService = inject(ImoveisService);
   private cdr = inject(ChangeDetectorRef);
   private route = inject(ActivatedRoute);
-
+    private supabase = inject(SupabaseService);
+auth = inject(AuthService);
   termoBusca = '';
   filtroAtivo: Filtro = 'todos';
   todosImoveis: any[] = [];
@@ -36,8 +39,13 @@ export class Inicio implements OnInit {
         this.cdr.detectChanges(); // ← força Angular a ver a mudança
       }, 2000);
     }
+    const { data: { user } } = await this.supabase.getUser();
+    const nome_anunciante : string = user?.user_metadata?.['full_name'] 
+               ?? user?.user_metadata?.['name'] 
+               ?? user?.email;
+    console.log(nome_anunciante);
     await this.carregarImoveis();
-
+    
     this.route.queryParams.subscribe(params => {
       const filtro = params['filtro'] as Filtro;
       if (filtro && ['todos', 'venda', 'aluguel'].includes(filtro)) {

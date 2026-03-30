@@ -212,6 +212,7 @@ export class CadastroImovel {
         const url = await this.supabase.uploadImagem(imagem.arquivo);
         urlsImagens.push(url);
       }
+      const { data: { user } } = await this.supabase.getUser();
       await this.supabase.cadastrarImovel({
         ...this.form,
         imagens: urlsImagens,
@@ -220,7 +221,8 @@ export class CadastroImovel {
         estado: 'MG', // garante sempre MG independente do form
         criado_por: this.auth.usuario()?.uid,
         email_anunciante: this.auth.usuario()?.email,
-        nome_anunciante: this.auth.usuario()?.displayName,
+        nome_anunciante: user?.user_metadata?.['name'] 
+        ?? 'Anônimo',             
       });
 
       sessionStorage.setItem('imovel_cadastrado', '1');

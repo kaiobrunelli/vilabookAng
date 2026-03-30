@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 export class SupabaseService {
   private supabase: SupabaseClient;
 
-  constructor() {    
+  constructor() {
     this.supabase = createClient(
       environment.supabaseUrl,
       environment.supabaseKey
@@ -149,5 +149,8 @@ export class SupabaseService {
       .eq('id', id);
 
     if (error) throw error;
+  }
+  async getUser() {
+    return this.supabase.auth.getUser();
   }
 }
