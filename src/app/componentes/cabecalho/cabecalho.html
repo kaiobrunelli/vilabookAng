@@ -13,14 +13,17 @@
 
         <!-- Nav -->
         <nav class="hidden md:flex items-center gap-8">
-            <a routerLink="/" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">
+            <a [routerLink]="['/']" [queryParams]="{filtro: 'venda'}"
+                class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors cursor-pointer">
                 Comprar
             </a>
-            <a routerLink="/" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">
+            <a [routerLink]="['/']" [queryParams]="{filtro: 'aluguel'}"
+                class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors cursor-pointer">
                 Alugar
             </a>
-            <a routerLink="/" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">
-                Vender
+            <a [routerLink]="['/']" [queryParams]="{filtro: 'todos'}"
+                class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors cursor-pointer">
+                Todos Imóveis
             </a>
         </nav>
 

@@ -1,5 +1,6 @@
-import { Component, inject, ChangeDetectorRef } from '@angular/core';
+import { Component, inject, ChangeDetectorRef, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Cabecalho } from '../../componentes/cabecalho/cabecalho';
 import { CardImovel } from '../../componentes/card-imovel/card-imovel';
 import { ImoveisService } from '../../servicos/imoveis';
@@ -12,9 +13,10 @@ type Filtro = 'todos' | 'venda' | 'aluguel';
   templateUrl: './inicio.html',
   styleUrl: './inicio.css',
 })
-export class Inicio {
+export class Inicio implements OnInit {
   private imoveisService = inject(ImoveisService);
-  private cdr = inject(ChangeDetectorRef);  // ← novo
+  private cdr = inject(ChangeDetectorRef);
+  private route = inject(ActivatedRoute);
 
   termoBusca = '';
   filtroAtivo: Filtro = 'todos';
@@ -23,8 +25,18 @@ export class Inicio {
   carregando = true;
   erro = '';
 
-  constructor() {
-    this.carregarImoveis();
+  async ngOnInit(): Promise<void> {
+    await this.carregarImoveis();
+
+    this.route.queryParams.subscribe(params => {
+      const filtro = params['filtro'] as Filtro;
+      if (filtro && ['todos', 'venda', 'aluguel'].includes(filtro)) {
+        this.alterarFiltro(filtro);
+        setTimeout(() => {
+          document.getElementById('listagem')?.scrollIntoView({ behavior: 'smooth' });
+        }, 50);
+      }
+    });
   }
 
   async carregarImoveis(): Promise<void> {
