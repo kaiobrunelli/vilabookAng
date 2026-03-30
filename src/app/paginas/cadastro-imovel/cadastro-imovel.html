@@ -67,40 +67,37 @@
                 <h2 class="text-xl font-bold text-slate-800">Informações Básicas</h2>
 
                 <!-- Tipo do imóvel -->
-                <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-3">Tipo do imóvel</label>
-                    <div class="grid grid-cols-3 gap-3">
+                <!-- Tipo do imóvel -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
 
-                        <button (click)="form.tipo = 'apartamento'"
-                            class="py-3 px-4 rounded-xl border-2 text-sm font-semibold transition-all capitalize"
-                            [class.border-indigo-600]="form.tipo === 'apartamento'"
-                            [class.bg-indigo-50]="form.tipo === 'apartamento'"
-                            [class.text-indigo-600]="form.tipo === 'apartamento'"
-                            [class.border-slate-200]="form.tipo !== 'apartamento'"
-                            [class.text-slate-500]="form.tipo !== 'apartamento'">
-                            Apartamento
-                        </button>
+                    <button (click)="form.tipo = 'apartamento'"
+                        class="py-3 px-4 rounded-xl border-2 text-sm font-semibold transition-all"
+                        [class.border-indigo-600]="form.tipo === 'apartamento'"
+                        [class.bg-indigo-50]="form.tipo === 'apartamento'"
+                        [class.text-indigo-600]="form.tipo === 'apartamento'"
+                        [class.border-slate-200]="form.tipo !== 'apartamento'"
+                        [class.text-slate-500]="form.tipo !== 'apartamento'">
+                        🏢 Apartamento
+                    </button>
 
-                        <button (click)="form.tipo = 'casa'"
-                            class="py-3 px-4 rounded-xl border-2 text-sm font-semibold transition-all capitalize"
-                            [class.border-indigo-600]="form.tipo === 'casa'" [class.bg-indigo-50]="form.tipo === 'casa'"
-                            [class.text-indigo-600]="form.tipo === 'casa'"
-                            [class.border-slate-200]="form.tipo !== 'casa'"
-                            [class.text-slate-500]="form.tipo !== 'casa'">
-                            Casa
-                        </button>
+                    <button (click)="form.tipo = 'casa'"
+                        class="py-3 px-4 rounded-xl border-2 text-sm font-semibold transition-all"
+                        [class.border-indigo-600]="form.tipo === 'casa'" [class.bg-indigo-50]="form.tipo === 'casa'"
+                        [class.text-indigo-600]="form.tipo === 'casa'" [class.border-slate-200]="form.tipo !== 'casa'"
+                        [class.text-slate-500]="form.tipo !== 'casa'">
+                        🏠 Casa
+                    </button>
 
-                        <button (click)="form.tipo = 'cobertura'"
-                            class="py-3 px-4 rounded-xl border-2 text-sm font-semibold transition-all capitalize"
-                            [class.border-indigo-600]="form.tipo === 'cobertura'"
-                            [class.bg-indigo-50]="form.tipo === 'cobertura'"
-                            [class.text-indigo-600]="form.tipo === 'cobertura'"
-                            [class.border-slate-200]="form.tipo !== 'cobertura'"
-                            [class.text-slate-500]="form.tipo !== 'cobertura'">
-                            Cobertura
-                        </button>
+                    <button (click)="form.tipo = 'cobertura'"
+                        class="py-3 px-4 rounded-xl border-2 text-sm font-semibold transition-all"
+                        [class.border-indigo-600]="form.tipo === 'cobertura'"
+                        [class.bg-indigo-50]="form.tipo === 'cobertura'"
+                        [class.text-indigo-600]="form.tipo === 'cobertura'"
+                        [class.border-slate-200]="form.tipo !== 'cobertura'"
+                        [class.text-slate-500]="form.tipo !== 'cobertura'">
+                        🏙️ Cobertura
+                    </button>
 
-                    </div>
                 </div>
 
                 <!-- Finalidade -->
@@ -176,9 +173,9 @@
 
                 <!-- Botão de upload -->
                 @if (imagensPreview.length < 5) { <label class="flex flex-col items-center justify-center gap-2
-             border-2 border-dashed border-slate-200 rounded-xl
-             p-6 cursor-pointer hover:border-indigo-400
-             hover:bg-indigo-50 transition-all">
+           border-2 border-dashed border-slate-200 rounded-xl
+           p-6 cursor-pointer hover:border-indigo-400
+           hover:bg-indigo-50 transition-all">
                     <span class="text-3xl">📷</span>
                     <span class="text-sm font-semibold text-slate-600">
                         Clique para adicionar fotos
@@ -186,8 +183,8 @@
                     <span class="text-xs text-slate-400">
                         JPG, PNG ou WEBP · Máx. 800KB após compressão
                     </span>
-                    <input type="file" accept="image/*" multiple class="hidden"
-                        (change)="onSelecionarImagens($event)" />
+                    <input #inputFotos type="file" accept="image/*" multiple class="hidden"
+                        (change)="onSelecionarImagens($event); inputFotos.value = ''" />
                     </label>
                     }
 

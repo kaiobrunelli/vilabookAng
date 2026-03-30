@@ -61,7 +61,10 @@ export class CadastroImovel {
       this.etapaAtual = (this.etapaAtual - 1) as Etapa;
     }
   }
-
+  limparInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    input.value = ''; // limpa o valor para permitir selecionar os mesmos arquivos
+  }
   // Selecionar e comprimir imagens
   async onSelecionarImagens(event: Event): Promise<void> {
     const input = event.target as HTMLInputElement;
