@@ -1,12 +1,12 @@
 import { Component, inject, ChangeDetectorRef, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Cabecalho } from '../../componentes/cabecalho/cabecalho';
 import { SupabaseService } from '../../servicos/supabase';
 
 @Component({
   selector: 'app-meus-imoveis',
-  imports: [Cabecalho, FormsModule],
+  imports: [Cabecalho, FormsModule,RouterLink],
   templateUrl: './meus-imoveis.html',
   styleUrl: './meus-imoveis.css',
 })
