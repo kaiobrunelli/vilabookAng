@@ -4,7 +4,7 @@ import { Location } from '@angular/common';
 import { ImoveisService } from '../../servicos/imoveis';
 import { Cabecalho } from '../../componentes/cabecalho/cabecalho';
 import { Galeria } from '../../componentes/galeria/galeria';
-
+import { AuthService } from '../../servicos/auth';
 @Component({
   selector: 'app-detalhes-imovel',
   imports: [Cabecalho, Galeria],
@@ -16,6 +16,9 @@ export class DetalhesImovel {
   private location = inject(Location);
   private imoveisService = inject(ImoveisService);
   private cdr = inject(ChangeDetectorRef);  // ← adiciona
+  auth = inject(AuthService);
+
+
 
   imovel: any = null;
   carregando = true;
@@ -61,5 +64,30 @@ export class DetalhesImovel {
       currency: 'BRL'
     });
     return this.imovel.finalidade === 'aluguel' ? `${valor}/mês` : valor;
+  }
+  get telefoneFormatado(): string {
+    const tel = this.imovel?.telefone?.replace(/\D/g, '') || '';
+    if (tel.length === 11) {
+      return `(${tel.slice(0, 2)}) ${tel.slice(2, 7)}-${tel.slice(7)}`;
+    }
+    if (tel.length === 10) {
+      return `(${tel.slice(0, 2)}) ${tel.slice(2, 6)}-${tel.slice(6)}`;
+    }
+    return this.imovel?.telefone || '';
+  }
+  get linkWhatsapp(): string {
+    const telefone = this.imovel?.telefone || '';
+    // Remove tudo que não é número
+    const numero = telefone.replace(/\D/g, '');
+    // Adiciona código do Brasil
+    const numeroCompleto = `55${numero}`;
+    const mensagem = encodeURIComponent(
+      `Olá! Vi o imóvel "${this.imovel?.titulo}" no VilaBook e gostaria de mais informações. 🏠`
+    );
+    return `https://wa.me/${numeroCompleto}?text=${mensagem}`;
+  }
+  get primeiroNome(): string {
+    const nome = this.auth.usuario()?.displayName || '';
+    return nome.split(' ')[0];
   }
 }

@@ -1,0 +1,16 @@
+<div class="bg-amber-200 flex flex-col">
+    <p>estudo works!</p>
+    <button (click)="verPaginaHome()" class="bg-pink-500 rounded-2xl w-fit  hover:bg-indigo-600 px-4 py-2">Ver Home Page </button>
+    <div>
+            @for(imovel of imoveis; track imovel.id){
+            <p>{{imovel.titulo  }}</p>
+            <p>{{imovel.cidade }}</p>
+            }
+          
+    </div>
+</div>
+<!-- <button (click)="verPaginaHome(); $event.stopPropagation()" class="mt-auto w-full bg-slate-50 hover:bg-indigo-600
+         text-slate-800 hover:text-white font-semibold text-sm
+         py-3 rounded-xl transition-colors duration-200">
+    Ver Página Inicial
+</button> --> 

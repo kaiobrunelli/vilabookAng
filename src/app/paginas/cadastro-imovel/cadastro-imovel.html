@@ -63,161 +63,178 @@
             <!-- ETAPA 1: Informações básicas -->
             @if (etapaAtual === 1) {
             <!-- Tipo do imóvel -->
-            <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-3">
-                    Tipo do imóvel <span class="text-red-500">*</span>
-                </label>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    <button (click)="form.tipo = 'apartamento'; limparErro('tipo')"
-                        class="py-3 px-4 rounded-xl border-2 text-sm font-semibold transition-all"
-                        [class.border-indigo-600]="form.tipo === 'apartamento'"
-                        [class.bg-indigo-50]="form.tipo === 'apartamento'"
-                        [class.text-indigo-600]="form.tipo === 'apartamento'"
-                        [class.border-red-300]="temErro('tipo') && form.tipo !== 'apartamento'"
-                        [class.border-slate-200]="!temErro('tipo') && form.tipo !== 'apartamento'"
-                        [class.text-slate-500]="form.tipo !== 'apartamento'">
-                        🏢 Apartamento
-                    </button>
-                    <button (click)="form.tipo = 'casa'; limparErro('tipo')"
-                        class="py-3 px-4 rounded-xl border-2 text-sm font-semibold transition-all"
-                        [class.border-indigo-600]="form.tipo === 'casa'" [class.bg-indigo-50]="form.tipo === 'casa'"
-                        [class.text-indigo-600]="form.tipo === 'casa'"
-                        [class.border-red-300]="temErro('tipo') && form.tipo !== 'casa'"
-                        [class.border-slate-200]="!temErro('tipo') && form.tipo !== 'casa'"
-                        [class.text-slate-500]="form.tipo !== 'casa'">
-                        🏠 Casa
-                    </button>
-                    <button (click)="form.tipo = 'cobertura'; limparErro('tipo')"
-                        class="py-3 px-4 rounded-xl border-2 text-sm font-semibold transition-all"
-                        [class.border-indigo-600]="form.tipo === 'cobertura'"
-                        [class.bg-indigo-50]="form.tipo === 'cobertura'"
-                        [class.text-indigo-600]="form.tipo === 'cobertura'"
-                        [class.border-red-300]="temErro('tipo') && form.tipo !== 'cobertura'"
-                        [class.border-slate-200]="!temErro('tipo') && form.tipo !== 'cobertura'"
-                        [class.text-slate-500]="form.tipo !== 'cobertura'">
-                        🏙️ Cobertura
-                    </button>
-                </div>
-                @if (temErro('tipo')) {
-                <p class="text-red-500 text-xs mt-1.5 font-medium">⚠ {{ erros['tipo'] }}</p>
-                }
-            </div>
-
-            <!-- Finalidade -->
-            <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-3">
-                    Finalidade <span class="text-red-500">*</span>
-                </label>
-                <div class="grid grid-cols-2 gap-3">
-                    <button (click)="form.finalidade = 'venda'; limparErro('finalidade')"
-                        class="py-3 px-4 rounded-xl border-2 text-sm font-semibold transition-all"
-                        [class.border-indigo-600]="form.finalidade === 'venda'"
-                        [class.bg-indigo-50]="form.finalidade === 'venda'"
-                        [class.text-indigo-600]="form.finalidade === 'venda'"
-                        [class.border-red-300]="temErro('finalidade') && form.finalidade !== 'venda'"
-                        [class.border-slate-200]="!temErro('finalidade') && form.finalidade !== 'venda'"
-                        [class.text-slate-500]="form.finalidade !== 'venda'">
-                        Venda
-                    </button>
-                    <button (click)="form.finalidade = 'aluguel'; limparErro('finalidade')"
-                        class="py-3 px-4 rounded-xl border-2 text-sm font-semibold transition-all"
-                        [class.border-indigo-600]="form.finalidade === 'aluguel'"
-                        [class.bg-indigo-50]="form.finalidade === 'aluguel'"
-                        [class.text-indigo-600]="form.finalidade === 'aluguel'"
-                        [class.border-red-300]="temErro('finalidade') && form.finalidade !== 'aluguel'"
-                        [class.border-slate-200]="!temErro('finalidade') && form.finalidade !== 'aluguel'"
-                        [class.text-slate-500]="form.finalidade !== 'aluguel'">
-                        Aluguel
-                    </button>
-                </div>
-                @if (temErro('finalidade')) {
-                <p class="text-red-500 text-xs mt-1.5 font-medium">⚠ {{ erros['finalidade'] }}</p>
-                }
-            </div>
-
-            <!-- Título -->
-            <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-2">
-                    Título do anúncio <span class="text-red-500">*</span>
-                </label>
-                <input type="text" [(ngModel)]="form.titulo" (ngModelChange)="limparErro('titulo')"
-                    placeholder="Ex: Apartamento moderno com 3 suítes" class="w-full border rounded-xl px-4 py-3 text-sm text-slate-800
-                outline-none focus:ring-2 transition-all" [class.border-red-300]="temErro('titulo')"
-                    [class.focus:ring-red-300]="temErro('titulo')" [class.border-slate-200]="!temErro('titulo')"
-                    [class.focus:ring-indigo-400]="!temErro('titulo')" />
-                @if (temErro('titulo')) {
-                <p class="text-red-500 text-xs mt-1.5 font-medium">⚠ {{ erros['titulo'] }}</p>
-                } @else {
-                <p class="text-slate-400 text-xs mt-1">Mínimo 3 caracteres</p>
-                }
-            </div>
-
-            <!-- Descrição -->
-            <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-2">
-                    Descrição <span class="text-red-500">*</span>
-                </label>
-                <textarea [(ngModel)]="form.descricao" (ngModelChange)="limparErro('descricao')"
-                    placeholder="Descreva os diferenciais do imóvel..." rows="4" class="w-full border rounded-xl px-4 py-3 text-sm text-slate-800
-                   outline-none focus:ring-2 transition-all resize-none" [class.border-red-300]="temErro('descricao')"
-                    [class.border-slate-200]="!temErro('descricao')"
-                    [class.focus:ring-indigo-400]="!temErro('descricao')">
-  </textarea>
-                @if (temErro('descricao')) {
-                <p class="text-red-500 text-xs mt-1.5 font-medium">⚠ {{ erros['descricao'] }}</p>
-                } @else {
-                <p class="text-slate-400 text-xs mt-1">Mínimo 3 caracteres</p>
-                }
-            </div>
-            <!-- Upload de imagens -->
-            <!-- Upload de imagens -->
-            <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-3">
-                    Fotos do imóvel
-                    <span class="text-slate-400 font-normal">(máximo 5)</span>
-                </label>
-
-                <!-- Preview das imagens -->
-                @if (imagensPreview.length > 0) {
-                <div class="grid grid-cols-3 gap-2 mb-3">
-                    @for (img of imagensPreview; track img.url; let i = $index) {
-                    <div class="relative aspect-square rounded-xl overflow-hidden group">
-                        <img [src]="img.url" class="w-full h-full object-cover" />
-                        <button type="button" (click)="removerImagem(i)" class="absolute top-1 right-1 w-6 h-6 bg-red-500 text-white
-                   rounded-full text-xs flex items-center justify-center
-                   opacity-0 group-hover:opacity-100 transition-opacity">
-                            ✕
+            <div class="flex flex-col gap-6">
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-3">
+                        Tipo do imóvel <span class="text-red-500">*</span>
+                    </label>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <button (click)="form.tipo = 'apartamento'; limparErro('tipo')"
+                            class="py-3 px-4 rounded-xl border-2 text-sm font-semibold transition-all"
+                            [class.border-indigo-600]="form.tipo === 'apartamento'"
+                            [class.bg-indigo-50]="form.tipo === 'apartamento'"
+                            [class.text-indigo-600]="form.tipo === 'apartamento'"
+                            [class.border-red-300]="temErro('tipo') && form.tipo !== 'apartamento'"
+                            [class.border-slate-200]="!temErro('tipo') && form.tipo !== 'apartamento'"
+                            [class.text-slate-500]="form.tipo !== 'apartamento'">
+                            🏢 Apartamento
+                        </button>
+                        <button (click)="form.tipo = 'casa'; limparErro('tipo')"
+                            class="py-3 px-4 rounded-xl border-2 text-sm font-semibold transition-all"
+                            [class.border-indigo-600]="form.tipo === 'casa'" [class.bg-indigo-50]="form.tipo === 'casa'"
+                            [class.text-indigo-600]="form.tipo === 'casa'"
+                            [class.border-red-300]="temErro('tipo') && form.tipo !== 'casa'"
+                            [class.border-slate-200]="!temErro('tipo') && form.tipo !== 'casa'"
+                            [class.text-slate-500]="form.tipo !== 'casa'">
+                            🏠 Casa
+                        </button>
+                        <button (click)="form.tipo = 'cobertura'; limparErro('tipo')"
+                            class="py-3 px-4 rounded-xl border-2 text-sm font-semibold transition-all"
+                            [class.border-indigo-600]="form.tipo === 'cobertura'"
+                            [class.bg-indigo-50]="form.tipo === 'cobertura'"
+                            [class.text-indigo-600]="form.tipo === 'cobertura'"
+                            [class.border-red-300]="temErro('tipo') && form.tipo !== 'cobertura'"
+                            [class.border-slate-200]="!temErro('tipo') && form.tipo !== 'cobertura'"
+                            [class.text-slate-500]="form.tipo !== 'cobertura'">
+                            🏙️ Cobertura
                         </button>
                     </div>
+                    @if (temErro('tipo')) {
+                    <p class="text-red-500 text-xs mt-1.5 font-medium">⚠ {{ erros['tipo'] }}</p>
                     }
                 </div>
-                }
 
-                <!-- Botão de upload separado do input -->
-                @if (imagensPreview.length < 5) { <div class="flex flex-col items-center justify-center gap-2
+                <!-- Finalidade -->
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-3">
+                        Finalidade <span class="text-red-500">*</span>
+                    </label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button (click)="form.finalidade = 'venda'; limparErro('finalidade')"
+                            class="py-3 px-4 rounded-xl border-2 text-sm font-semibold transition-all"
+                            [class.border-indigo-600]="form.finalidade === 'venda'"
+                            [class.bg-indigo-50]="form.finalidade === 'venda'"
+                            [class.text-indigo-600]="form.finalidade === 'venda'"
+                            [class.border-red-300]="temErro('finalidade') && form.finalidade !== 'venda'"
+                            [class.border-slate-200]="!temErro('finalidade') && form.finalidade !== 'venda'"
+                            [class.text-slate-500]="form.finalidade !== 'venda'">
+                            Venda
+                        </button>
+                        <button (click)="form.finalidade = 'aluguel'; limparErro('finalidade')"
+                            class="py-3 px-4 rounded-xl border-2 text-sm font-semibold transition-all"
+                            [class.border-indigo-600]="form.finalidade === 'aluguel'"
+                            [class.bg-indigo-50]="form.finalidade === 'aluguel'"
+                            [class.text-indigo-600]="form.finalidade === 'aluguel'"
+                            [class.border-red-300]="temErro('finalidade') && form.finalidade !== 'aluguel'"
+                            [class.border-slate-200]="!temErro('finalidade') && form.finalidade !== 'aluguel'"
+                            [class.text-slate-500]="form.finalidade !== 'aluguel'">
+                            Aluguel
+                        </button>
+                    </div>
+                    @if (temErro('finalidade')) {
+                    <p class="text-red-500 text-xs mt-1.5 font-medium">⚠ {{ erros['finalidade'] }}</p>
+                    }
+                </div>
+
+                <!-- Título -->
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">
+                        Título do anúncio <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" [(ngModel)]="form.titulo" (ngModelChange)="limparErro('titulo')"
+                        placeholder="Ex: Apartamento moderno com 3 suítes" class="w-full border rounded-xl px-4 py-3 text-sm text-slate-800
+                outline-none focus:ring-2 transition-all" [class.border-red-300]="temErro('titulo')"
+                        [class.focus:ring-red-300]="temErro('titulo')" [class.border-slate-200]="!temErro('titulo')"
+                        [class.focus:ring-indigo-400]="!temErro('titulo')" />
+                    @if (temErro('titulo')) {
+                    <p class="text-red-500 text-xs mt-1.5 font-medium">⚠ {{ erros['titulo'] }}</p>
+                    } @else {
+                    <p class="text-slate-400 text-xs mt-1">Mínimo 3 caracteres</p>
+                    }
+                </div>
+                <!-- Telefone para contato -->
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">
+                        Telefone para contato (WhatsApp)
+                    </label>
+                    <div class="relative">
+                        <!-- <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm font-semibold">
+                            🇧🇷 +55
+                        </span> -->
+                        <input type="tel" [(ngModel)]="form.telefone" placeholder="" maxlength="13"
+                            (ngModelChange)="mascararTelefone($event)" class="w-full border border-slate-200 rounded-xl pl-4 pr-4 py-3 text-sm
+                   text-slate-800 outline-none focus:ring-2 focus:ring-indigo-400
+                   focus:border-transparent transition-all" />
+                    </div>
+                    <p class="text-slate-400 text-xs mt-1">DDD + número </p>
+                </div>
+
+                <!-- Descrição -->
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">
+                        Descrição <span class="text-red-500">*</span>
+                    </label>
+                    <textarea [(ngModel)]="form.descricao" (ngModelChange)="limparErro('descricao')"
+                        placeholder="Descreva os diferenciais do imóvel..." rows="4" class="w-full border rounded-xl px-4 py-3 text-sm text-slate-800
+                   outline-none focus:ring-2 transition-all resize-none" [class.border-red-300]="temErro('descricao')"
+                        [class.border-slate-200]="!temErro('descricao')"
+                        [class.focus:ring-indigo-400]="!temErro('descricao')">
+  </textarea>
+                    @if (temErro('descricao')) {
+                    <p class="text-red-500 text-xs mt-1.5 font-medium">⚠ {{ erros['descricao'] }}</p>
+                    } @else {
+                    <p class="text-slate-400 text-xs mt-1">Mínimo 3 caracteres</p>
+                    }
+                </div>
+                <!-- Upload de imagens -->
+                <!-- Upload de imagens -->
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-3">
+                        Fotos do imóvel
+                        <span class="text-slate-400 font-normal">(máximo 5)</span>
+                    </label>
+
+                    <!-- Preview das imagens -->
+                    @if (imagensPreview.length > 0) {
+                    <div class="grid grid-cols-3 gap-2 mb-3">
+                        @for (img of imagensPreview; track img.url; let i = $index) {
+                        <div class="relative aspect-square rounded-xl overflow-hidden group">
+                            <img [src]="img.url" class="w-full h-full object-cover" />
+                            <button type="button" (click)="removerImagem(i)" class="absolute top-1 right-1 w-6 h-6 bg-red-500 text-white
+                   rounded-full text-xs flex items-center justify-center
+                   opacity-0 group-hover:opacity-100 transition-opacity">
+                                ✕
+                            </button>
+                        </div>
+                        }
+                    </div>
+                    }
+
+                    <!-- Botão de upload separado do input -->
+                    @if (imagensPreview.length < 5) { <div class="flex flex-col items-center justify-center gap-2
              border-2 border-dashed border-slate-200 rounded-xl
              p-6 cursor-pointer hover:border-indigo-400
              hover:bg-indigo-50 transition-all" (click)="triggerInput()">
-                    <span class="text-3xl">📷</span>
-                    <span class="text-sm font-semibold text-slate-600">
-                        Clique para adicionar fotos
-                    </span>
-                    <span class="text-xs text-slate-400">
-                        JPG, PNG ou WEBP · Máx. 800KB após compressão
-                    </span>
+                        <span class="text-3xl">📷</span>
+                        <span class="text-sm font-semibold text-slate-600">
+                            Clique para adicionar fotos
+                        </span>
+                        <span class="text-xs text-slate-400">
+                            JPG, PNG ou WEBP · Máx. 800KB após compressão
+                        </span>
+                </div>
+
+                <!-- Input totalmente separado, fora do label -->
+                <input #inputFotos type="file" accept="image/*" multiple class="hidden"
+                    (change)="onSelecionarImagens($event, inputFotos)" />
+                }
+
+                @if (erroUpload) {
+                <p class="text-red-500 text-xs mt-2 font-medium">{{ erroUpload }}</p>
+                }
             </div>
-
-            <!-- Input totalmente separado, fora do label -->
-            <input #inputFotos type="file" accept="image/*" multiple class="hidden"
-                (change)="onSelecionarImagens($event, inputFotos)" />
-            }
-
-            @if (erroUpload) {
-            <p class="text-red-500 text-xs mt-2 font-medium">{{ erroUpload }}</p>
-            }
         </div>
         }
-
         <!-- ETAPA 2: Detalhes -->
         @if (etapaAtual === 2) {
         <div class="flex flex-col gap-6">
@@ -270,7 +287,6 @@
             </div>
 
             <!-- Área -->
-            <!-- Área -->
             <div>
                 <label class="block text-sm font-semibold text-slate-700 mb-2">
                     Área útil (m²) <span class="text-red-500">*</span>
@@ -316,6 +332,7 @@
             </div>
 
         </div>
+
         }
 
         <!-- ETAPA 3: Localização -->

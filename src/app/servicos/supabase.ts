@@ -8,10 +8,7 @@ import { environment } from '../../environments/environment';
 export class SupabaseService {
   private supabase: SupabaseClient;
 
-  constructor() {
-    console.log('URL:', environment.supabaseUrl);
-    console.log('KEY:', environment.supabaseKey?.substring(0, 20));
-
+  constructor() {    
     this.supabase = createClient(
       environment.supabaseUrl,
       environment.supabaseKey

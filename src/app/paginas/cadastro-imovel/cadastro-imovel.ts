@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Cabecalho } from '../../componentes/cabecalho/cabecalho';
 import { SupabaseService } from '../../servicos/supabase';
 import imageCompression from 'browser-image-compression';
+import { AuthService } from '../../servicos/auth';
 
 type Etapa = 1 | 2 | 3;
 
@@ -17,9 +18,9 @@ export class CadastroImovel {
   private router = inject(Router);
   private supabase = inject(SupabaseService);
   private cdr = inject(ChangeDetectorRef);
-
   @ViewChild('inputFotos') inputFotos!: ElementRef<HTMLInputElement>;
 
+  auth = inject(AuthService);
   etapaAtual: Etapa = 1;
   salvando = false;
   erroUpload = '';
@@ -44,6 +45,7 @@ export class CadastroImovel {
     cidade: '',
     estado: '',
     endereco: '',
+    telefone: '',
   };
 
   incrementar(campo: 'suites' | 'banheiros' | 'vagas'): void {
@@ -59,6 +61,25 @@ export class CadastroImovel {
     delete this.erros[campo];
   }
 
+  // Método de máscara automática
+  mascararTelefone(valor: string): void {
+    // Remove tudo que não é número
+    const numeros = valor.replace(/\D/g, '');
+
+    // Aplica máscara:
+    let mascarado = '';
+    if (numeros.length <= 2) {
+      mascarado = numeros;
+    } else if (numeros.length <= 7) {
+      mascarado = `${numeros.slice(0, 2)} ${numeros.slice(2)}`;
+    } else if (numeros.length <= 11) {
+      mascarado = `${numeros.slice(0, 2)} ${numeros.slice(2, 7)}-${numeros.slice(7)}`;
+    } else {
+      mascarado = `${numeros.slice(0, 2)} ${numeros.slice(2, 7)}-${numeros.slice(7, 11)}`;
+    }
+
+    this.form.telefone = mascarado;
+  }
   validarEtapa(): boolean {
     this.erros = {}; // limpa erros anteriores
 
@@ -186,14 +207,17 @@ export class CadastroImovel {
         const url = await this.supabase.uploadImagem(imagem.arquivo);
         urlsImagens.push(url);
       }
-
       await this.supabase.cadastrarImovel({
         ...this.form,
         imagens: urlsImagens,
         novo: true,
         destaque: false,
+        criado_por: this.auth.usuario()?.uid,
+        email_anunciante: this.auth.usuario()?.email,
+        nome_anunciante: this.auth.usuario()?.displayName,
       });
 
+      sessionStorage.setItem('imovel_cadastrado', '1');
       this.router.navigate(['/']);
     } catch (e) {
       console.error(e);

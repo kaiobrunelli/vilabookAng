@@ -24,8 +24,13 @@ export class Inicio implements OnInit {
   imoveis: any[] = [];
   carregando = true;
   erro = '';
-
+  snackVisivel = false;
   async ngOnInit(): Promise<void> {
+    if (sessionStorage.getItem('imovel_cadastrado')) {
+      sessionStorage.removeItem('imovel_cadastrado');
+      this.snackVisivel = true;
+      setTimeout(() => this.snackVisivel = false, 4000);
+    }
     await this.carregarImoveis();
 
     this.route.queryParams.subscribe(params => {
