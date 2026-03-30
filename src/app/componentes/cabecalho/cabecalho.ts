@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../servicos/auth';
 
@@ -11,21 +11,13 @@ import { AuthService } from '../../servicos/auth';
 export class Cabecalho {
   auth = inject(AuthService);
   menuAberto = false;
+  @Input() filtroAtivo = 'todos'; // ← recebe da home
 
-  toggleMenu(): void {
-    this.menuAberto = !this.menuAberto;
-  }
-
-  fecharMenu(): void {
-    this.menuAberto = false;
-  }
-
+  toggleMenu(): void { this.menuAberto = !this.menuAberto; }
+  fecharMenu(): void { this.menuAberto = false; }
   async onAnunciarClick(): Promise<void> {
-    if (!this.auth.estaLogado) {
-      await this.auth.loginComGoogle();
-    }
+    if (!this.auth.estaLogado) await this.auth.loginComGoogle();
   }
-
   async onLogout(): Promise<void> {
     this.fecharMenu();
     await this.auth.logout();
