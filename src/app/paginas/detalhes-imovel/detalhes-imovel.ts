@@ -2,13 +2,12 @@ import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ImoveisService } from '../../servicos/imoveis';
-import { Imovel } from '../../modelos/imovel';
 import { Cabecalho } from '../../componentes/cabecalho/cabecalho';
-import { Galeria } from '../../componentes/galeria/galeria';   // ← novo
+import { Galeria } from '../../componentes/galeria/galeria';
 
 @Component({
   selector: 'app-detalhes-imovel',
-  imports: [Cabecalho, Galeria],                               // ← novo
+  imports: [Cabecalho, Galeria],
   templateUrl: './detalhes-imovel.html',
   styleUrl: './detalhes-imovel.css',
 })
@@ -17,22 +16,35 @@ export class DetalhesImovel {
   private location = inject(Location);
   private imoveisService = inject(ImoveisService);
 
-  imovel: Imovel | undefined;
-  galeriaAberta = false;        // ← novo
-  indiceGaleria = 0;            // ← novo
+  imovel: any = null;
+  carregando = true;
+  erro = '';
+  galeriaAberta = false;
+  indiceGaleria = 0;
 
   constructor() {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.imovel = this.imoveisService.buscarPorId(id);
+    const id = this.route.snapshot.paramMap.get('id') as string; // ← string, não Number()
+    this.carregarImovel(id);
   }
 
-abrirGaleria(indice: number): void {
-  console.log('imagens do imovel:', this.imovel?.imagens);  // ← adiciona
-  this.indiceGaleria = indice;
-  this.galeriaAberta = true;
-}
+  async carregarImovel(id: string): Promise<void> {
+    try {
+      this.carregando = true;
+      this.imovel = await this.imoveisService.buscarPorId(id); // ← await
+    } catch (e) {
+      this.erro = 'Imóvel não encontrado.';
+      console.error(e);
+    } finally {
+      this.carregando = false;
+    }
+  }
 
-  fecharGaleria(): void {                // ← novo
+  abrirGaleria(indice: number): void {
+    this.indiceGaleria = indice;
+    this.galeriaAberta = true;
+  }
+
+  fecharGaleria(): void {
     this.galeriaAberta = false;
   }
 

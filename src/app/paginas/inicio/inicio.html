@@ -2,131 +2,127 @@
 
 <main class="min-h-screen bg-slate-50">
 
-  <!-- HERO -->
-  <section class="relative min-h-[580px] flex items-center justify-center
+    <!-- HERO -->
+    <section class="relative min-h-[580px] flex items-center justify-center
                   text-center px-6 pt-24 pb-16 bg-cover bg-center"
-    style="background-image: url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1600')">
+        style="background-image: url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1600')">
 
-    <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60"></div>
 
-    <div class="relative z-10 max-w-2xl flex flex-col items-center gap-4">
-      <h1 class="text-5xl md:text-6xl font-black text-white leading-tight tracking-tight">
-        O lar não se procura.<br>
-        <span class="text-white/60">Se encontra.</span>
-      </h1>
-      <p class="text-white/80 text-lg font-light">
-        Seu imóvel ideal, a um clique de distância.
-      </p>
+        <div class="relative z-10 max-w-2xl flex flex-col items-center gap-4">
+            <h1 class="text-5xl md:text-6xl font-black text-white leading-tight tracking-tight">
+                O lar não se procura.<br>
+                <span class="text-white/60">Se encontra.</span>
+            </h1>
+            <p class="text-white/80 text-lg font-light">
+                Seu imóvel ideal, a um clique de distância.
+            </p>
 
-      <!-- Barra de busca -->
-      <div class="mt-4 w-full max-w-lg flex gap-2 bg-white/15 backdrop-blur-xl
+            <!-- Barra de busca -->
+            <div class="mt-4 w-full max-w-lg flex gap-2 bg-white/15 backdrop-blur-xl
                   border border-white/25 rounded-2xl p-1.5">
-        <input
-          type="text"
-          placeholder="Cidade, bairro, tipo de imóvel..."
-          [(ngModel)]="termoBusca"
-          (keyup.enter)="onBuscar()"
-          class="flex-1 bg-white/90 rounded-xl px-4 py-3 text-sm
-                 text-slate-800 placeholder-slate-400 outline-none"
-        />
-        <button
-          (click)="onBuscar()"
-          class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold
+                <input type="text" placeholder="Cidade, bairro, tipo de imóvel..." [(ngModel)]="termoBusca"
+                    (keyup.enter)="onBuscar()" class="flex-1 bg-white/90 rounded-xl px-4 py-3 text-sm
+                 text-slate-800 placeholder-slate-400 outline-none" />
+                <button (click)="onBuscar()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold
                  text-sm px-6 py-3 rounded-xl transition-colors whitespace-nowrap">
-          Buscar
-        </button>
-      </div>
-    </div>
-  </section>
+                    Buscar
+                </button>
+            </div>
+        </div>
+    </section>
 
-  <!-- FILTROS -->
-  <section class="sticky top-[72px] z-40 bg-slate-50/90 backdrop-blur-sm
+    <!-- FILTROS -->
+    <section class="sticky top-[72px] z-40 bg-slate-50/90 backdrop-blur-sm
                   border-b border-slate-200 px-6 py-3">
-    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4 flex-wrap">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4 flex-wrap">
 
-      <!-- Abas -->
-      <div class="flex gap-1 bg-white border border-slate-200 rounded-xl p-1">
+            <!-- Abas -->
+            <div class="flex gap-1 bg-white border border-slate-200 rounded-xl p-1">
 
-        <button
-          (click)="alterarFiltro('todos')"
-          class="text-sm font-semibold px-4 py-2 rounded-lg transition-all"
-          [class.bg-indigo-600]="filtroAtivo === 'todos'"
-          [class.text-white]="filtroAtivo === 'todos'"
-          [class.text-slate-500]="filtroAtivo !== 'todos'">
-          Todos
-        </button>
+                <button (click)="alterarFiltro('todos')"
+                    class="text-sm font-semibold px-4 py-2 rounded-lg transition-all"
+                    [class.bg-indigo-600]="filtroAtivo === 'todos'" [class.text-white]="filtroAtivo === 'todos'"
+                    [class.text-slate-500]="filtroAtivo !== 'todos'">
+                    Todos
+                </button>
 
-        <button
-          (click)="alterarFiltro('venda')"
-          class="text-sm font-semibold px-4 py-2 rounded-lg transition-all"
-          [class.bg-indigo-600]="filtroAtivo === 'venda'"
-          [class.text-white]="filtroAtivo === 'venda'"
-          [class.text-slate-500]="filtroAtivo !== 'venda'">
-          Comprar
-        </button>
+                <button (click)="alterarFiltro('venda')"
+                    class="text-sm font-semibold px-4 py-2 rounded-lg transition-all"
+                    [class.bg-indigo-600]="filtroAtivo === 'venda'" [class.text-white]="filtroAtivo === 'venda'"
+                    [class.text-slate-500]="filtroAtivo !== 'venda'">
+                    Comprar
+                </button>
 
-        <button
-          (click)="alterarFiltro('aluguel')"
-          class="text-sm font-semibold px-4 py-2 rounded-lg transition-all"
-          [class.bg-indigo-600]="filtroAtivo === 'aluguel'"
-          [class.text-white]="filtroAtivo === 'aluguel'"
-          [class.text-slate-500]="filtroAtivo !== 'aluguel'">
-          Alugar
-        </button>
+                <button (click)="alterarFiltro('aluguel')"
+                    class="text-sm font-semibold px-4 py-2 rounded-lg transition-all"
+                    [class.bg-indigo-600]="filtroAtivo === 'aluguel'" [class.text-white]="filtroAtivo === 'aluguel'"
+                    [class.text-slate-500]="filtroAtivo !== 'aluguel'">
+                    Alugar
+                </button>
 
-      </div>
+            </div>
 
-      <!-- Resultado + limpar busca -->
-      <div class="flex items-center gap-4">
-        <p class="text-sm text-slate-400 font-medium">
-          {{ totalResultados }} imóve{{ totalResultados !== 1 ? 'is' : 'l' }} encontrado{{ totalResultados !== 1 ? 's' : '' }}
-        </p>
+            <!-- Resultado + limpar busca -->
+            <div class="flex items-center gap-4">
+                <p class="text-sm text-slate-400 font-medium">
+                    {{ totalResultados }} imóve{{ totalResultados !== 1 ? 'is' : 'l' }} encontrado{{ totalResultados !==
+                    1 ? 's' : '' }}
+                </p>
 
-        @if (termoBusca) {
-          <button
-            (click)="limparBusca()"
-            class="text-xs text-indigo-600 font-bold hover:underline">
-            ✕ Limpar busca
-          </button>
+                @if (termoBusca) {
+                <button (click)="limparBusca()" class="text-xs text-indigo-600 font-bold hover:underline">
+                    ✕ Limpar busca
+                </button>
+                }
+            </div>
+
+        </div>
+    </section>
+
+    <!-- LISTAGEM -->
+    <section class="max-w-7xl mx-auto px-6 py-10">
+
+        <div class="mb-8">
+            <span class="text-indigo-600 text-xs font-extrabold uppercase tracking-widest">
+                Chegou este mês
+            </span>
+            <h2 class="text-3xl font-bold text-slate-900 mt-1">
+                Residências Exclusivas
+            </h2>
+        </div>
+
+        @if (carregando) {
+        <div class="flex justify-center items-center py-24">
+            <div class="w-10 h-10 border-4 border-indigo-600 border-t-transparent
+                rounded-full animate-spin"></div>
+        </div>
+        } @else if (erro) {
+        <div class="flex flex-col items-center justify-center py-24 text-slate-400">
+            <span class="text-5xl mb-4">⚠️</span>
+            <p class="text-lg font-semibold text-slate-600">{{ erro }}</p>
+            <button (click)="carregarImoveis()"
+                class="mt-6 bg-indigo-600 text-white font-bold px-6 py-3 rounded-xl text-sm">
+                Tentar novamente
+            </button>
+        </div>
+        } @else if (imoveis.length > 0) {
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            @for (imovel of imoveis; track imovel.id) {
+            <app-card-imovel [imovel]="imovel" />
+            }
+        </div>
+        } @else {
+        <div class="flex flex-col items-center justify-center py-24 text-slate-400">
+            <span class="text-6xl mb-4">🏚️</span>
+            <p class="text-lg font-semibold text-slate-600">Nenhum imóvel encontrado</p>
+            <button (click)="limparBusca(); alterarFiltro('todos')"
+                class="mt-6 bg-indigo-600 text-white font-bold px-6 py-3 rounded-xl text-sm">
+                Ver todos os imóveis
+            </button>
+        </div>
         }
-      </div>
 
-    </div>
-  </section>
-
-  <!-- LISTAGEM -->
-  <section class="max-w-7xl mx-auto px-6 py-10">
-
-    <div class="mb-8">
-      <span class="text-indigo-600 text-xs font-extrabold uppercase tracking-widest">
-        Chegou este mês
-      </span>
-      <h2 class="text-3xl font-bold text-slate-900 mt-1">
-        Residências Exclusivas
-      </h2>
-    </div>
-
-    @if (imoveis.length > 0) {
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        @for (imovel of imoveis; track imovel.id) {
-          <app-card-imovel [imovel]="imovel" />
-        }
-      </div>
-    } @else {
-      <!-- Estado vazio -->
-      <div class="flex flex-col items-center justify-center py-24 text-slate-400">
-        <span class="text-6xl mb-4">🏚️</span>
-        <p class="text-lg font-semibold text-slate-600">Nenhum imóvel encontrado</p>
-        <p class="text-sm mt-1">Tente outro termo ou remova os filtros</p>
-        <button
-          (click)="limparBusca(); alterarFiltro('todos')"
-          class="mt-6 bg-indigo-600 hover:bg-indigo-700 text-white
-                 font-bold px-6 py-3 rounded-xl transition-colors text-sm">
-          Ver todos os imóveis
-        </button>
-      </div>
-    }
-
-  </section>
+    </section>
 
 </main>

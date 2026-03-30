@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-
+import { authGuard } from './guards/auth.guard';
 export const routes: Routes = [
     {
     path: '',                        // → URL: /
@@ -17,6 +17,13 @@ export const routes: Routes = [
     path: 'cadastrar',                        // → URL: /
     loadComponent: () =>
       import('./paginas/cadastro-imovel/cadastro-imovel')
-      .then(m => m.CadastroImovel)
-  } 
+      .then(m => m.CadastroImovel),
+      canActivate: [authGuard]
+  }, 
+ {
+  path: 'auth/callback',
+  loadComponent: () =>
+    import('./paginas/auth-callback/auth-callback')
+    .then(m => m.AuthCallback)
+}
 ];
