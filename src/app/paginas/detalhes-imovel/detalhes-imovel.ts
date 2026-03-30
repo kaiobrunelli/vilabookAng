@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ImoveisService } from '../../servicos/imoveis';
@@ -15,6 +15,7 @@ export class DetalhesImovel {
   private route = inject(ActivatedRoute);
   private location = inject(Location);
   private imoveisService = inject(ImoveisService);
+  private cdr = inject(ChangeDetectorRef);  // ← adiciona
 
   imovel: any = null;
   carregando = true;
@@ -23,19 +24,20 @@ export class DetalhesImovel {
   indiceGaleria = 0;
 
   constructor() {
-    const id = this.route.snapshot.paramMap.get('id') as string; // ← string, não Number()
+    const id = this.route.snapshot.paramMap.get('id') as string;
     this.carregarImovel(id);
   }
 
   async carregarImovel(id: string): Promise<void> {
     try {
       this.carregando = true;
-      this.imovel = await this.imoveisService.buscarPorId(id); // ← await
+      this.imovel = await this.imoveisService.buscarPorId(id);
     } catch (e) {
       this.erro = 'Imóvel não encontrado.';
       console.error(e);
     } finally {
       this.carregando = false;
+      this.cdr.detectChanges();  // ← força re-renderizar
     }
   }
 
