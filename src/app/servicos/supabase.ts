@@ -17,35 +17,35 @@ export class SupabaseService {
       environment.supabaseKey
     );
   }
-// Login com Google
-async loginComGoogle(): Promise<void> {
-  const { error } = await this.supabase.auth.signInWithOAuth({
-    provider: 'google',
-    options: {
-      redirectTo: `${window.location.origin}/auth/callback`  // ← mudou
-    }
-  });
-  if (error) throw error;
-}
+  // Login com Google
+  async loginComGoogle(): Promise<void> {
+    const { error } = await this.supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback`  // ← mudou
+      }
+    });
+    if (error) throw error;
+  }
 
-// Logout
-async logout(): Promise<void> {
-  const { error } = await this.supabase.auth.signOut();
-  if (error) throw error;
-}
+  // Logout
+  async logout(): Promise<void> {
+    const { error } = await this.supabase.auth.signOut();
+    if (error) throw error;
+  }
 
-// Buscar usuário logado
-async usuarioAtual() {
-  const { data } = await this.supabase.auth.getUser();
-  return data.user;
-}
+  // Buscar usuário logado
+  async usuarioAtual() {
+    const { data } = await this.supabase.auth.getUser();
+    return data.user;
+  }
 
-// Observar mudanças de sessão
-onAuthChange(callback: (usuario: any) => void) {
-  this.supabase.auth.onAuthStateChange((_event, session) => {
-    callback(session?.user ?? null);
-  });
-}
+  // Observar mudanças de sessão
+  onAuthChange(callback: (usuario: any) => void) {
+    this.supabase.auth.onAuthStateChange((_event, session) => {
+      callback(session?.user ?? null);
+    });
+  }
   // Buscar todos os imóveis
   async listarImoveis() {
     const { data, error } = await this.supabase
@@ -76,9 +76,11 @@ onAuthChange(callback: (usuario: any) => void) {
 
   // Cadastrar imóvel
   async cadastrarImovel(imovel: any) {
+    const { data: { user } } = await this.supabase.auth.getUser();
+
     const { data, error } = await this.supabase
-      .from('imoveis')        // ← sem vbk.
-      .insert([imovel])
+      .from('imoveis')
+      .insert([{ ...imovel, criado_por: user?.id }])
       .select()
       .single();
 
@@ -102,5 +104,53 @@ onAuthChange(callback: (usuario: any) => void) {
       .getPublicUrl(nomeArquivo);
 
     return data.publicUrl;
+  }
+  // Buscar imóveis do usuário logado
+  async meusImoveis() {
+    const { data: { user } } = await this.supabase.auth.getUser();
+    if (!user) throw new Error('Não autenticado');
+
+    const { data, error } = await this.supabase
+      .from('imoveis')
+      .select('*')
+      .eq('criado_por', user.id)
+      .is('deletado_em', null)
+      .order('criado_em', { ascending: false });
+
+    if (error) throw error;
+    return data;
+  }
+
+  // Atualizar imóvel
+  async atualizarImovel(id: string, dados: any) {
+    const { data, error } = await this.supabase
+      .from('imoveis')
+      .update({ ...dados, atualizado_em: new Date().toISOString() })
+      .eq('id', id)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
+  }
+
+  // Soft delete
+  async removerImovel(id: string) {
+    const { error } = await this.supabase
+      .from('imoveis')
+      .update({ deletado_em: new Date().toISOString() })
+      .eq('id', id);
+
+    if (error) throw error;
+  }
+
+  // Alternar destaque
+  async toggleDestaque(id: string, destaque: boolean) {
+    const { error } = await this.supabase
+      .from('imoveis')
+      .update({ destaque })
+      .eq('id', id);
+
+    if (error) throw error;
   }
 }

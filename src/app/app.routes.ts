@@ -25,5 +25,12 @@ export const routes: Routes = [
   loadComponent: () =>
     import('./paginas/auth-callback/auth-callback')
     .then(m => m.AuthCallback)
+},
+{
+  path: 'meus-imoveis',
+  loadComponent: () =>
+    import('./paginas/meus-imoveis/meus-imoveis')
+    .then(m => m.MeusImoveis),
+  canActivate: [authGuard]
 }
 ];

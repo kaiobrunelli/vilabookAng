@@ -10,18 +10,24 @@ import { AuthService } from '../../servicos/auth';
 })
 export class Cabecalho {
   auth = inject(AuthService);
+  menuAberto = false;
+
+  toggleMenu(): void {
+    this.menuAberto = !this.menuAberto;
+  }
+
+  fecharMenu(): void {
+    this.menuAberto = false;
+  }
 
   async onAnunciarClick(): Promise<void> {
-    if (this.auth.estaLogado) {
-      // já logado → vai direto para cadastro
-      // o RouterLink no HTML cuida disso
-    } else {
-      // não logado → abre login com Google
+    if (!this.auth.estaLogado) {
       await this.auth.loginComGoogle();
     }
   }
 
   async onLogout(): Promise<void> {
+    this.fecharMenu();
     await this.auth.logout();
   }
 }
