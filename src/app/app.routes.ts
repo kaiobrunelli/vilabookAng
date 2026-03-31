@@ -41,7 +41,7 @@ export const routes: Routes = [
   },
   {
     path: 'mimos-neuza',
-    loadComponent: () => import('./paginas/mimos-neuza/mimos-neuza').then(m => m.default)
+    loadComponent: () => import('./paginas/mimos-neuza/mimos-neuza').then(m => m.MimosNeuzaPage)
   },
   {
     path: 'promocao-abril',

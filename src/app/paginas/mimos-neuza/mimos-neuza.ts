@@ -154,7 +154,7 @@ import { CommonModule } from '@angular/common';
     .animate-bounce { animation: floatUp 3s ease-in-out infinite; }
   `]
 })
-export default class MimosNeuzaPage {
+export  class MimosNeuzaPage {
   // ═══════════════════════════════════════════════
   // 🎁 EDITE SEUS PRESENTES AQUI
   gifts = [
