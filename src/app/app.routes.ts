@@ -45,6 +45,6 @@ export const routes: Routes = [
   },
   {
     path: 'promocao-abril',
-    loadComponent: () => import('./paginas/mimos-neuza/promocao-abril').then(m => m.PromocaoAbrilComponent)
+    loadComponent: () => import('./paginas/mimos-neuza/mimos-neuza').then(m => m.MimosNeuzaPage)
   }
 ];
