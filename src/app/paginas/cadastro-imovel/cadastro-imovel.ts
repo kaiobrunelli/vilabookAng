@@ -46,13 +46,14 @@ export class CadastroImovel {
     estado: '',
     endereco: '',
     telefone: '',
+    quartos: 0,
   };
 
-  incrementar(campo: 'suites' | 'banheiros' | 'vagas'): void {
+  incrementar(campo: 'suites' | 'banheiros' | 'vagas' | 'quartos'): void {
     this.form[campo]++;
   }
 
-  decrementar(campo: 'suites' | 'banheiros' | 'vagas'): void {
+  decrementar(campo: 'suites' | 'banheiros' | 'vagas' | 'quartos'): void {
     if (this.form[campo] > 0) this.form[campo]--;
   }
 
@@ -80,6 +81,20 @@ export class CadastroImovel {
 
     this.form.telefone = mascarado;
   }
+  mascararPreco(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    // Remove tudo que não é número
+    let numeros = input.value.replace(/\D/g, '');
+    // Remove zeros à esquerda
+    numeros = numeros.replace(/^0+/, '');
+    // Aplica pontos de milhar
+    const formatado = numeros.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    // Atualiza visual do input
+    input.value = formatado;
+    // Salva número puro no form
+    this.form.preco = parseInt(numeros) || 0;
+    this.limparErro('preco');
+  }
   validarEtapa(): boolean {
     this.erros = {}; // limpa erros anteriores
 
@@ -98,9 +113,9 @@ export class CadastroImovel {
         this.erros['descricao'] = 'A descrição deve ter pelo menos 20 caracteres';
       if (!this.form.telefone.trim())
         this.erros['telefone'] = 'O WhatsApp para contato é obrigatório';
-  
-    const apenasNumeros = this.form.telefone.replace(/\D/g, '');
-       if (this.form.telefone.trim() && apenasNumeros.length < 10)
+
+      const apenasNumeros = this.form.telefone.replace(/\D/g, '');
+      if (this.form.telefone.trim() && apenasNumeros.length < 10)
         this.erros['telefone'] = 'Informe um número válido com DDD';
     }
 
@@ -118,7 +133,7 @@ export class CadastroImovel {
         this.erros['bairro'] = 'O bairro é obrigatório';
       if (!this.form.cidade.trim())
         this.erros['cidade'] = 'A cidade é obrigatória';
- 
+
     }
 
     return Object.keys(this.erros).length === 0;
@@ -221,8 +236,8 @@ export class CadastroImovel {
         estado: 'MG', // garante sempre MG independente do form
         criado_por: this.auth.usuario()?.uid,
         email_anunciante: this.auth.usuario()?.email,
-        nome_anunciante: user?.user_metadata?.['name'] 
-        ?? 'Anônimo',             
+        nome_anunciante: user?.user_metadata?.['name']
+          ?? 'Anônimo',
       });
 
       sessionStorage.setItem('imovel_cadastrado', '1');

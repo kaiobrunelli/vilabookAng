@@ -5,11 +5,12 @@ export interface Imovel {
   cidade: string;
   preco: number;
   area: number;
+  quartos: number;
   suites: number;
   banheiros: number;
   vagas: number;
   tipo: 'apartamento' | 'casa' | 'cobertura';
-  finalidade: 'venda' | 'aluguel';
+  finalidade: 'venda' | 'aluguel' | 'diaria';
   destaque: boolean;
   novo: boolean;
   imagens: string[];

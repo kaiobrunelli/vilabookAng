@@ -43,9 +43,13 @@ export class CardImovel {
       style: 'currency',
       currency: 'BRL'
     });
-    return this.imovel.finalidade === 'aluguel' ? `${valor}/mês` : valor;
+    if (this.imovel.finalidade === 'aluguel') return `${valor}/mês`;
+    if (this.imovel.finalidade === 'diaria') return `${valor}/diária`;
+    return valor;
   }
+
+
   eBolinhAtiva(i: number): boolean {
-  return i === this.indiceAtivo;
-}
+    return i === this.indiceAtivo;
+  }
 }

@@ -39,11 +39,8 @@ auth = inject(AuthService);
         this.cdr.detectChanges(); // ← força Angular a ver a mudança
       }, 2000);
     }
-    const { data: { user } } = await this.supabase.getUser();
-    const nome_anunciante : string = user?.user_metadata?.['full_name'] 
-               ?? user?.user_metadata?.['name'] 
-               ?? user?.email;
-    console.log(nome_anunciante);
+
+  
     await this.carregarImoveis();
     
     this.route.queryParams.subscribe(params => {

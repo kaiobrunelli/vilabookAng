@@ -87,11 +87,12 @@
                 </div>
 
                 <!-- Finalidade -->
+                <!-- Finalidade -->
                 <div>
                     <label class="block text-sm font-semibold text-slate-700 mb-3">
                         Finalidade <span class="text-red-500">*</span>
                     </label>
-                    <div class="grid grid-cols-2 gap-3">
+                    <div class="grid grid-cols-3 gap-3">
                         <button (click)="form.finalidade = 'venda'; limparErro('finalidade')"
                             class="py-3 px-4 rounded-xl border-2 text-sm font-semibold transition-all"
                             [class.border-indigo-600]="form.finalidade === 'venda'"
@@ -100,7 +101,7 @@
                             [class.border-red-300]="temErro('finalidade') && form.finalidade !== 'venda'"
                             [class.border-slate-200]="!temErro('finalidade') && form.finalidade !== 'venda'"
                             [class.text-slate-500]="form.finalidade !== 'venda'">
-                            Venda
+                            🏠 Venda
                         </button>
                         <button (click)="form.finalidade = 'aluguel'; limparErro('finalidade')"
                             class="py-3 px-4 rounded-xl border-2 text-sm font-semibold transition-all"
@@ -110,7 +111,17 @@
                             [class.border-red-300]="temErro('finalidade') && form.finalidade !== 'aluguel'"
                             [class.border-slate-200]="!temErro('finalidade') && form.finalidade !== 'aluguel'"
                             [class.text-slate-500]="form.finalidade !== 'aluguel'">
-                            Aluguel
+                            🔑 Aluguel
+                        </button>
+                        <button (click)="form.finalidade = 'diaria'; limparErro('finalidade')"
+                            class="py-3 px-4 rounded-xl border-2 text-sm font-semibold transition-all"
+                            [class.border-indigo-600]="form.finalidade === 'diaria'"
+                            [class.bg-indigo-50]="form.finalidade === 'diaria'"
+                            [class.text-indigo-600]="form.finalidade === 'diaria'"
+                            [class.border-red-300]="temErro('finalidade') && form.finalidade !== 'diaria'"
+                            [class.border-slate-200]="!temErro('finalidade') && form.finalidade !== 'diaria'"
+                            [class.text-slate-500]="form.finalidade !== 'diaria'">
+                            📅 Diária
                         </button>
                     </div>
                     @if (temErro('finalidade')) {
@@ -228,7 +239,7 @@
             <h2 class="text-xl font-bold text-slate-800">Detalhes do Imóvel</h2>
 
             <!-- Contadores -->
-            <div class="grid grid-cols-3 gap-4">
+            <div class="grid grid-cols-4 gap-4">
 
                 <div class="bg-slate-50 rounded-2xl p-4 text-center">
                     <p class="text-xs font-bold text-slate-500 uppercase tracking-wide mb-3">Suítes</p>
@@ -242,7 +253,18 @@
                          hover:border-indigo-400 hover:text-indigo-600 transition-all font-bold">+</button>
                     </div>
                 </div>
-
+                <div class="bg-slate-50 rounded-2xl p-4 text-center">
+                    <p class="text-xs font-bold text-slate-500 uppercase tracking-wide mb-3">Quartos</p>
+                    <div class="flex items-center justify-center gap-3">
+                        <button (click)="decrementar('quartos')" class="w-8 h-8 rounded-full bg-white border border-slate-200
+                         flex items-center justify-center text-slate-600
+                         hover:border-indigo-400 hover:text-indigo-600 transition-all font-bold">−</button>
+                        <span class="text-xl font-extrabold text-slate-800 w-6 text-center">{{ form.quartos }}</span>
+                        <button (click)="incrementar('quartos')" class="w-8 h-8 rounded-full bg-white border border-slate-200
+                         flex items-center justify-center text-slate-600
+                         hover:border-indigo-400 hover:text-indigo-600 transition-all font-bold">+</button>
+                    </div>
+                </div>
                 <div class="bg-slate-50 rounded-2xl p-4 text-center">
                     <p class="text-xs font-bold text-slate-500 uppercase tracking-wide mb-3">Banheiros</p>
                     <div class="flex items-center justify-center gap-3">
@@ -287,15 +309,24 @@
             </div>
 
             <!-- Preço -->
+            <!-- Preço -->
             <div>
                 <label class="block text-sm font-semibold text-slate-700 mb-2">
-                    {{ form.finalidade === 'aluguel' ? 'Valor do aluguel (R$)' : 'Valor de venda (R$)' }}
+                    @if (form.finalidade === 'aluguel') { Valor do aluguel (R$/mês) }
+                    @else if (form.finalidade === 'diaria') { Valor da diária (R$) }
+                    @else { Valor de venda (R$) }
                     <span class="text-red-500">*</span>
                 </label>
-                <input type="number" [(ngModel)]="form.preco" (ngModelChange)="limparErro('preco')"
-                    placeholder="Ex: 770000" class="w-full border rounded-xl px-4 py-3 text-sm text-slate-800
-                outline-none focus:ring-2 transition-all" [class.border-red-300]="temErro('preco')"
-                    [class.border-slate-200]="!temErro('preco')" [class.focus:ring-indigo-400]="!temErro('preco')" />
+                <div class="relative">
+                    <span
+                        class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-semibold text-sm">R$</span>
+                    <input type="text" inputmode="numeric"
+                        [value]="form.preco ? form.preco.toLocaleString('pt-BR') : ''" (input)="mascararPreco($event)"
+                        (blur)="limparErro('preco')" placeholder="0" class="w-full border rounded-xl pl-10 pr-4 py-3 text-sm text-slate-800
+                   outline-none focus:ring-2 transition-all" [class.border-red-300]="temErro('preco')"
+                        [class.border-slate-200]="!temErro('preco')"
+                        [class.focus:ring-indigo-400]="!temErro('preco')" />
+                </div>
                 @if (temErro('preco')) {
                 <p class="text-red-500 text-xs mt-1.5 font-medium">⚠ {{ erros['preco'] }}</p>
                 }

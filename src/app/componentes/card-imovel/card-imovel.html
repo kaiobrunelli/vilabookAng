@@ -5,56 +5,44 @@
     <!-- Imagem -->
     <div class="relative aspect-[4/3] overflow-hidden">
 
-        <!-- Badge Novo / Destaque -->
         @if (imovel.novo) {
         <span class="absolute top-3 left-3 z-10 bg-white/90 backdrop-blur-sm
                    text-slate-800 text-[10px] font-extrabold uppercase tracking-wider
-                   px-2.5 py-1 rounded-lg">
-            Novo
-        </span>
+                   px-2.5 py-1 rounded-lg">Novo</span>
         }
         @if (imovel.destaque) {
         <span class="absolute top-3 left-3 z-10 bg-indigo-600 text-white
                    text-[10px] font-extrabold uppercase tracking-wider
-                   px-2.5 py-1 rounded-lg">
-            Destaque
-        </span>
+                   px-2.5 py-1 rounded-lg">Destaque</span>
         }
 
-        <!-- Badge finalidade -->
+        <!-- Badge finalidade — agora com diária -->
         <span class="absolute top-3 right-3 z-10 text-[10px] font-extrabold uppercase
-                 tracking-wider px-2.5 py-1 rounded-lg" [class.bg-emerald-500]="imovel.finalidade === 'venda'"
-            [class.bg-amber-500]="imovel.finalidade === 'aluguel'" [class.text-white]="true">
-            {{ imovel.finalidade === 'venda' ? 'Venda' : 'Aluguel' }}
+                 tracking-wider px-2.5 py-1 rounded-lg text-white"
+            [class.bg-emerald-500]="imovel.finalidade === 'venda'"
+            [class.bg-amber-500]="imovel.finalidade === 'aluguel'"
+            [class.bg-violet-500]="imovel.finalidade === 'diaria'">
+            {{ imovel.finalidade === 'venda' ? 'Venda' : imovel.finalidade === 'aluguel' ? 'Aluguel' : 'Diária' }}
         </span>
 
-        <!-- Imagem ativa -->
         <img [src]="imovel.imagens[indiceAtivo]" [alt]="imovel.titulo"
             class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105" />
 
-        <!-- Setas (aparecem no hover) -->
         @if (imovel.imagens.length > 1) {
-
         <button (click)="fotoAnterior($event)" class="absolute left-2 top-1/2 -translate-y-1/2 z-10
                w-8 h-8 flex items-center justify-center
                bg-white/80 backdrop-blur-sm rounded-full text-slate-700
                opacity-0 group-hover:opacity-100 transition-opacity duration-200
-               hover:bg-white shadow-md text-lg">
-            ‹
-        </button>
+               hover:bg-white shadow-md text-lg">‹</button>
 
         <button (click)="fotoProxima($event)" class="absolute right-2 top-1/2 -translate-y-1/2 z-10
                w-8 h-8 flex items-center justify-center
                bg-white/80 backdrop-blur-sm rounded-full text-slate-700
                opacity-0 group-hover:opacity-100 transition-opacity duration-200
-               hover:bg-white shadow-md text-lg">
-            ›
-        </button>
+               hover:bg-white shadow-md text-lg">›</button>
 
-        <!-- Indicadores de foto (bolinhas) -->
         <div class="absolute bottom-3 left-1/2 -translate-x-1/2 z-10
-            flex gap-1.5
-            opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                  flex gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
             @for (img of imovel.imagens; track img; let i = $index) {
             <button (click)="irParaFoto(i, $event)" class="rounded-full transition-all duration-200"
                 [style.width.px]="6" [style.height.px]="6"
@@ -63,29 +51,38 @@
             </button>
             }
         </div>
-
         }
 
     </div>
 
     <!-- Corpo -->
-    <div class="flex flex-col gap-3 p-5 flex-1">
+    <div class="flex flex-col gap-2 p-5 flex-1">
 
-        <div class="flex justify-between items-start gap-2">
-            <div class="min-w-0">
-                <h3 class="font-bold text-slate-900 truncate">{{ imovel.titulo }}</h3>
-                <p class="text-slate-500 text-xs mt-0.5">{{ imovel.bairro }}, {{ imovel.cidade }}</p>
-            </div>
-            <span class="text-indigo-600 font-extrabold text-sm whitespace-nowrap">
-                {{ precoFormatado }}
-            </span>
-        </div>
+        <!-- Linha 1: Título -->
+        <h3 class="font-bold text-slate-900 text-sm leading-snug line-clamp-2">
+            {{ imovel.titulo }}
+        </h3>
+
+        <!-- Linha 2: Preço -->
+        <p class="font-extrabold text-indigo-600 text-sm">
+            {{ precoFormatado }}
+        </p>
+
+        <!-- Linha 3: Cidade / Bairro -->
+        <p class="text-slate-400 text-xs">{{ imovel.bairro }}, {{ imovel.cidade }}</p>
 
         <!-- Specs -->
         <div class="flex items-center gap-3 py-3 border-y border-slate-100 flex-wrap">
+            @if (imovel.quartos) {
             <span class="text-slate-500 text-xs font-medium">
-                🛏 {{ imovel.suites }} Suíte{{ imovel.suites > 1 ? 's' : '' }}
+                🛏 {{ imovel.quartos }} Quarto{{ imovel.quartos > 1 ? 's' : '' }}
             </span>
+            }
+            @if (imovel.suites) {
+            <span class="text-slate-500 text-xs font-medium">
+                🛌 {{ imovel.suites }} Suíte{{ imovel.suites > 1 ? 's' : '' }}
+            </span>
+            }
             <span class="text-slate-500 text-xs font-medium">
                 🚿 {{ imovel.banheiros }} Banh.
             </span>

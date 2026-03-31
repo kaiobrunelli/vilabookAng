@@ -12,30 +12,33 @@
         </a>
 
         <!-- Nav -->
-        <!-- Filtros no centro -->
-        <div class="hidden md:flex gap-1 bg-slate-100 rounded-xl p-1">
-            <a [routerLink]="['/']" [queryParams]="{filtro: 'todos'}"
-                class="text-sm font-semibold px-4 py-2 rounded-lg transition-all"
-                [class.bg-indigo-600]="filtroAtivo === 'todos'" [class.text-white]="filtroAtivo === 'todos'"
-                [class.shadow-sm]="filtroAtivo === 'todos'" [class.text-slate-500]="filtroAtivo !== 'todos'"
-                [class.hover:text-slate-700]="filtroAtivo !== 'todos'">
-                Todos
-            </a>
-            <a [routerLink]="['/']" [queryParams]="{filtro: 'venda'}"
-                class="text-sm font-semibold px-4 py-2 rounded-lg transition-all"
-                [class.bg-indigo-600]="filtroAtivo === 'venda'" [class.text-white]="filtroAtivo === 'venda'"
-                [class.shadow-sm]="filtroAtivo === 'venda'" [class.text-slate-500]="filtroAtivo !== 'venda'"
-                [class.hover:text-slate-700]="filtroAtivo !== 'venda'">
-                Comprar
-            </a>
-            <a [routerLink]="['/']" [queryParams]="{filtro: 'aluguel'}"
-                class="text-sm font-semibold px-4 py-2 rounded-lg transition-all"
-                [class.bg-indigo-600]="filtroAtivo === 'aluguel'" [class.text-white]="filtroAtivo === 'aluguel'"
-                [class.shadow-sm]="filtroAtivo === 'aluguel'" [class.text-slate-500]="filtroAtivo !== 'aluguel'"
-                [class.hover:text-slate-700]="filtroAtivo !== 'aluguel'">
-                Alugar
-            </a>
-        </div>
+     <!-- Filtros no centro -->
+<div class="hidden md:flex gap-1 bg-slate-100 rounded-xl p-1">
+  <a [routerLink]="['/']" [queryParams]="{filtro: 'todos'}"
+    class="text-sm font-semibold px-4 py-2 rounded-lg transition-all"
+    [class.bg-white]="filtroAtivo === 'todos'"
+    [class.text-slate-900]="filtroAtivo === 'todos'"
+    [class.shadow-sm]="filtroAtivo === 'todos'"
+    [class.text-slate-500]="filtroAtivo !== 'todos'">
+    Todos
+  </a>
+  <a [routerLink]="['/']" [queryParams]="{filtro: 'venda'}"
+    class="text-sm font-semibold px-4 py-2 rounded-lg transition-all"
+    [class.bg-white]="filtroAtivo === 'venda'"
+    [class.text-slate-900]="filtroAtivo === 'venda'"
+    [class.shadow-sm]="filtroAtivo === 'venda'"
+    [class.text-slate-500]="filtroAtivo !== 'venda'">
+    Comprar
+  </a>
+  <a [routerLink]="['/']" [queryParams]="{filtro: 'aluguel'}"
+    class="text-sm font-semibold px-4 py-2 rounded-lg transition-all"
+    [class.bg-white]="filtroAtivo === 'aluguel'"
+    [class.text-slate-900]="filtroAtivo === 'aluguel'"
+    [class.shadow-sm]="filtroAtivo === 'aluguel'"
+    [class.text-slate-500]="filtroAtivo !== 'aluguel'">
+    Alugar
+  </a>
+</div>
 
         <!-- Botões -->
         <div class="flex items-center gap-3">
