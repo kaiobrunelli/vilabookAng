@@ -1,16 +1,56 @@
-<div class="bg-amber-200 flex flex-col">
-    <p>estudo works!</p>
-    <button (click)="verPaginaHome()" class="bg-pink-500 rounded-2xl w-fit  hover:bg-indigo-600 px-4 py-2">Ver Home Page </button>
-    <div>
-            @for(imovel of imoveis; track imovel.id){
-            <p>{{imovel.titulo  }}</p>
-            <p>{{imovel.cidade }}</p>
-            }
-          
+<div class="bg-amber-200 flex flex-col w-full h-screen items-center justify-center gap-6 p-4">
+    <div class="bg-red-300 flex flex-col items-center rounded-2xl px-6 py-3 shadow-sm">
+
+        <button (click)="verPaginaHome()" class="bg-pink-500 rounded-2xl w-fit hover:bg-indigo-600 px-4 py-2">
+            Ver Home Page
+        </button>
+
+        <input type="text" [formControl]="cidadeBusca" placeholder="Buscar por cidade" class="mt-4 px-4 py-2 rounded-xl border-2 bg-white border-gray-300
+             focus:border-indigo-500 outline-none transition-colors duration-200" />
+
+        <button (click)="abrirPaginaHome()" class="bg-amber-500 hover:bg-amber-600 px-4 py-2 rounded-xl mt-2">
+            Novo Botão
+        </button>
+
     </div>
+
+    <p>{{ cidadeBusca.value?.length }}</p>
+
+    <div>
+        <p>{{ respostaStatus }}</p>
+    </div>
+
+    <!-- 👇 BLOCO NOVO: consulta à API do Tibia -->
+    <div class="bg-white rounded-2xl px-6 py-4 shadow flex flex-col items-center gap-4 w-full max-w-md">
+
+        <button (click)="consultarBossDestaque()"
+            class="bg-purple-500 hover:bg-purple-600 text-white font-semibold px-6 py-2 rounded-xl transition-colors duration-200">
+            Consultar Boss em Destaque
+        </button>
+
+        @if (carregando) {
+        <p class="text-gray-500 animate-pulse">Carregando...</p>
+        }
+
+        @if (erro) {
+        <p class="text-red-500">{{ erro }}</p>
+        }
+
+        <!-- 👇 exibe o boss único, não uma lista -->
+        @if (boostedBoss) {
+        <div class="flex items-center gap-3 w-full p-3 bg-gray-100 rounded-xl">
+            <img [src]="boostedBoss.image_url" [alt]="boostedBoss.name" class="w-14 h-14 object-contain" />
+            <div>
+                <p class="font-bold text-gray-800">{{ boostedBoss.name }}</p>
+                <p class="text-sm text-purple-600">Boss em destaque hoje</p>
+            </div>
+        </div>
+        }
+
+        @if (!carregando && !erro && !boostedBoss) {
+        <p class="text-gray-400 text-sm">Clique no botão para buscar</p>
+        }
+
+    </div>
+
 </div>
-<!-- <button (click)="verPaginaHome(); $event.stopPropagation()" class="mt-auto w-full bg-slate-50 hover:bg-indigo-600
-         text-slate-800 hover:text-white font-semibold text-sm
-         py-3 rounded-xl transition-colors duration-200">
-    Ver Página Inicial
-</button> --> 

@@ -165,9 +165,7 @@ export class CadastroImovel {
     this.inputFotos.nativeElement.click();
   }
 
-  // Substitui onSelecionarImagens e comprimirImagem por isso:
-
-  async onSelecionarImagens(event: Event, input: HTMLInputElement): Promise<void> {
+   async onSelecionarImagens(event: Event, input: HTMLInputElement): Promise<void> {
     const arquivos = Array.from((event.target as HTMLInputElement).files ?? []);
     if (!arquivos.length) return;
 
@@ -233,7 +231,7 @@ export class CadastroImovel {
         imagens: urlsImagens,
         novo: true,
         destaque: false,
-        estado: 'MG', // garante sempre MG independente do form
+        estado: 'MG', 
         criado_por: this.auth.usuario()?.uid,
         email_anunciante: this.auth.usuario()?.email,
         nome_anunciante: user?.user_metadata?.['name']
