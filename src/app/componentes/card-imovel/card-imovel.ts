@@ -16,7 +16,11 @@ export class CardImovel {
   indiceAtivo = 0;
 
   verDetalhes(): void {
-    this.router.navigate(['/imovel', this.imovel.id]);
+    if (this.imovel.finalidade === 'diaria') {
+      this.router.navigate(['/pousada', this.imovel.id]);
+    } else {
+      this.router.navigate(['/imovel', this.imovel.id]);
+    }
   }
 
   irParaFoto(indice: number, event: Event): void {

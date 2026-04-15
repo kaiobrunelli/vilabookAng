@@ -120,10 +120,7 @@ get client() {
     return data;
   }
   async consultarCodigoStatus(codigo: string): Promise<string> {
-    const { data   }  = (await this.supabase.from('roleta_codigos').select('premio').eq('codigo', codigo).eq('usado', true).single()) as any;
-    
-  
-  
+    const { data   }  = (await this.supabase.from('roleta_codigos').select('premio').eq('codigo', codigo).eq('usado', true).single()) as any; 
 
     return data.premio || 'Código não encontrado ou não utilizado';
   }

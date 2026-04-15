@@ -7,10 +7,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Subject, debounceTime, firstValueFrom, takeUntil } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { TibiaBoostableBossesResponse, TibiaBoss, TibiaCreature } from './estudo.interface';
+import { DashboardPage } from './estudo2';
+import { InputSignalComponent } from "./estudoSignal";
+import { MoradoresPage } from "../../paginasCondominio/pages/moradores/moradores";
+import { RelatorioPage } from "../../paginasCondominio/pages/relatorio/relatorio";
 
 @Component({
   selector: 'app-estudo',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, DashboardPage, InputSignalComponent, RelatorioPage],
   templateUrl: './estudo.html',
   styleUrl: './estudo.css',
 })
@@ -19,10 +23,12 @@ export class Estudo {
   private supabase = inject(SupabaseService);
   private cdr = inject(ChangeDetectorRef);
   private http = inject(HttpClient);
-  
+
   carregando = false;
   erro = '';
-
+  abrirPaginaRelatorioxp(): void {
+    this.router.navigate(['/relatorioxp']);
+  }
   boostedBoss: TibiaBoss | null = null;
 
   async consultarBossDestaque(): Promise<void> {
@@ -48,8 +54,15 @@ export class Estudo {
   }
 
 
+  imoveis: any[] = [];
+  indiceAtivo = 0;
 
+  async carregarMeusImoveis(): Promise<void> {
 
+    this.imoveis = await this.supabase.meusImoveis();
+
+    this.cdr.detectChanges();
+  }
 
 
 
@@ -57,7 +70,7 @@ export class Estudo {
 
 
   respostaStatus = '';
-  imoveis: any[] = [];
+
   verPaginaHome(): void {
     this.router.navigate(['']);
   }
@@ -94,6 +107,7 @@ export class Estudo {
       debounceTime(400),
       takeUntil(this.destroy$)
     );
+    this.carregarMeusImoveis();
 
   }
 
@@ -101,10 +115,4 @@ export class Estudo {
 
 // async ngOnInit(): Promise<void> {
 //   await this.carregarMeusImoveis();
-// }
-// async carregarMeusImoveis(): Promise<void> {
-
-//   this.imoveis = await this.supabase.meusImoveis();
-
-//   this.cdr.detectChanges();
 // }

@@ -1,0 +1,26 @@
+<app-cabecalho />
+
+<div class="max-w-7xl mx-auto px-6 py-10">
+  <div class="mb-8">
+    <h1 class="text-2xl font-bold text-slate-900">Pousadas disponíveis</h1>
+    <p class="text-slate-500 mt-1">Encontre o lugar perfeito para se hospedar</p>
+  </div>
+
+  @if (carregando) {
+    <div class="flex justify-center items-center h-64">
+      <div class="w-8 h-8 border-4 border-slate-200 border-t-slate-800 rounded-full animate-spin"></div>
+    </div>
+  } @else if (pousadas.length === 0) {
+    <div class="flex flex-col items-center justify-center h-64 text-slate-400">
+      <p class="text-lg">Nenhuma pousada cadastrada ainda.</p>
+    </div>
+  } @else {
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      @for (p of pousadas; track p.id) {
+        <div (click)="abrirPousada(p.id)" class="cursor-pointer">
+          <app-card-imovel [imovel]="p" />
+        </div>
+      }
+    </div>
+  }
+</div>

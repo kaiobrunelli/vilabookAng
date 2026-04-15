@@ -46,5 +46,20 @@ export const routes: Routes = [
   {
     path: 'promocao-abril',
     loadComponent: () => import('./paginas/mimos-neuza/mimos-neuza').then(m => m.MimosNeuzaPage)
-  }
+  },
+
+  {
+    path: 'relatorioxp',
+    loadComponent: () => import('./paginas/estudo-relatorio/estudo-relatorio').then(m => m.EstudoRelatorio)
+  },
+  {
+  path: 'pousadas',
+  loadComponent: () =>
+    import('./paginas/pousadas/pousadas').then(m => m.Pousadas)
+},
+{
+  path: 'pousada/:id',
+  loadComponent: () =>
+    import('./paginas/detalhes-pousada/detalhes-pousada').then(m => m.DetalhesPousada)
+},
 ];

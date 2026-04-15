@@ -1,0 +1,81 @@
+<div class="bg-white rounded-2xl border border-slate-200 p-6 select-none">
+
+  <!-- Navegação -->
+  <div class="flex items-center justify-between mb-6">
+    <button
+      class="p-2 rounded-full hover:bg-slate-100 transition-colors disabled:opacity-30"
+      [disabled]="!podevoltar"
+      (click)="voltarMes()">
+      ‹
+    </button>
+    <div class="flex-1 grid grid-cols-2 gap-8 text-center">
+      <span class="text-sm font-semibold text-slate-900">
+        {{ MESES[mesAtual.getMonth()] }} {{ mesAtual.getFullYear() }}
+      </span>
+      <span class="text-sm font-semibold text-slate-900">
+        {{ MESES[mesProximo.getMonth()] }} {{ mesProximo.getFullYear() }}
+      </span>
+    </div>
+    <button
+      class="p-2 rounded-full hover:bg-slate-100 transition-colors"
+      (click)="avancarMes()">
+      ›
+    </button>
+  </div>
+
+  <!-- Duplo calendário -->
+  <div class="grid grid-cols-2 gap-8">
+    @for (mes of [0, 1]; track mes) {
+      <div>
+        <!-- Cabeçalho dias da semana -->
+        <div class="grid grid-cols-7 mb-2">
+          @for (d of DIAS; track d) {
+            <span class="text-center text-xs font-medium text-slate-400">{{ d }}</span>
+          }
+        </div>
+        <!-- Dias -->
+        <div class="grid grid-cols-7 gap-y-1">
+          @for (dia of (mes === 0 ? diasMesAtual : diasMesProximo); track $index) {
+            @if (dia === null) {
+              <span></span>
+            } @else {
+              <button
+                class="w-full aspect-square flex items-center justify-center text-xs font-medium transition-colors"
+                [class.text-slate-300]="isDiaPassado(dia) || isDiaOcupado(dia)"
+                [class.line-through]="isDiaPassado(dia)"
+                [class.cursor-not-allowed]="isDiaPassado(dia) || isDiaOcupado(dia)"
+                [class.bg-slate-100]="isDiaOcupado(dia) && !isDiaInicio(dia) && !isDiaFim(dia)"
+                [class.rounded-full]="!isDentroDoRange(dia)"
+                [class.rounded-none]="isDentroDoRange(dia) && !isDiaInicio(dia) && !isDiaFim(dia)"
+                [class.bg-slate-900]="isDiaInicio(dia) || isDiaFim(dia)"
+                [class.text-white]="isDiaInicio(dia) || isDiaFim(dia)"
+                [class.rounded-full]="isDiaInicio(dia) || isDiaFim(dia)"
+                [class.bg-slate-100]="isDentroDoRange(dia) && !isDiaInicio(dia) && !isDiaFim(dia)"
+                [class.text-slate-700]="isDentroDoRange(dia) && !isDiaInicio(dia) && !isDiaFim(dia)"
+                [class.hover:bg-slate-100]="!isDiaPassado(dia) && !isDiaOcupado(dia)"
+                [class.text-slate-800]="!isDiaPassado(dia) && !isDiaOcupado(dia) && !isDiaInicio(dia) && !isDiaFim(dia) && !isDentroDoRange(dia)"
+                [disabled]="isDiaPassado(dia) || isDiaOcupado(dia)"
+                (click)="clicarDia(dia)"
+                (mouseenter)="hoverDia(dia)"
+                (mouseleave)="hoverDia(null)">
+                {{ dia.getDate() }}
+              </button>
+            }
+          }
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Legenda -->
+  <div class="flex gap-6 mt-5 pt-4 border-t border-slate-100 text-xs text-slate-500">
+    <span class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-sm bg-slate-100 border border-slate-200"></span>
+      Indisponível
+    </span>
+    <span class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-slate-900"></span>
+      Selecionado
+    </span>
+  </div>
+</div>

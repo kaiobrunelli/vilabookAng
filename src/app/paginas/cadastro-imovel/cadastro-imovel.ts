@@ -231,7 +231,8 @@ export class CadastroImovel {
         imagens: urlsImagens,
         novo: true,
         destaque: false,
-        estado: 'MG', 
+        estado: 'MG',
+        categoria: this.form.finalidade === 'diaria' ? 'pousada' : 'imovel',
         criado_por: this.auth.usuario()?.uid,
         email_anunciante: this.auth.usuario()?.email,
         nome_anunciante: user?.user_metadata?.['name']

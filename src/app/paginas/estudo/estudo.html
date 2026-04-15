@@ -1,4 +1,14 @@
-<div class="bg-amber-200 flex flex-col w-full h-screen items-center justify-center gap-6 p-4">
+<div class="bg-amber-200 flex flex-col w-full min-h-screen items-center justify-center gap-6 p-4">
+    <div class="grid grid-cols-3 bg-amber-50">
+        <div class="bg-amber-300 col-span-2">
+            Item 1
+        </div>
+        <div class="sticky bg-blue-300 col-span-1">
+            Item 22
+        </div>
+    </div>
+
+
     <div class="bg-red-300 flex flex-col items-center rounded-2xl px-6 py-3 shadow-sm">
 
         <button (click)="verPaginaHome()" class="bg-pink-500 rounded-2xl w-fit hover:bg-indigo-600 px-4 py-2">
@@ -11,7 +21,17 @@
         <button (click)="abrirPaginaHome()" class="bg-amber-500 hover:bg-amber-600 px-4 py-2 rounded-xl mt-2">
             Novo Botão
         </button>
-
+        <button (click)="abrirPaginaRelatorioxp()" class="bg-amber-500 hover:bg-amber-600 px-4 py-2 rounded-xl mt-2">
+            Página Relatório
+        </button>
+        <div>
+            Estudo SignalR:
+            <app-input-signal></app-input-signal>
+        </div>
+        <div class="my-8">
+            Aqui
+            <app-relatorio></app-relatorio>
+        </div>
     </div>
 
     <p>{{ cidadeBusca.value?.length }}</p>
@@ -52,5 +72,35 @@
         }
 
     </div>
+    <article class="group flex flex-col bg-white rounded-2xl shadow-sm
+         hover:shadow-xl hover:-translate-y-1
+         transition-all duration-300 overflow-hidden cursor-pointer">
+        <span class="absolute  z-10 mt-4 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-2xl">Novo</span>
+
+
+        @if (imoveis.length > 0 && imoveis[0].imagens?.length > 0) {
+        <img [src]="imoveis[0].imagens[0]" alt="1Imagem do imóvel" class="w-full h-48 object-cover " />
+        }
+        @else {
+        <p>111Nenhuma imagem disponível ou carregando...</p>
+        }
+        <div class="flex flex-col justify-start p-4">
+            <div>
+                <h2 class="text-slate-900 leading-snug">Imóvel Residencial</h2>
+                <h2 class="text-slate-700">Morada Nova de Minas - MG</h2>
+
+                <h2 class="text-1xl font-bold text-blue-600">R$ 350.000,00</h2>
+            </div>
+            <div class="flex gap-3 py-3">
+                <span class="text-xs">Quarto</span>
+                <span class="text-xl">Suíte</span>
+                <span class="font-black">Banheiro</span>
+                <span class="font-bold">Banheiro</span>
+                <span class="font-semibold">Banheiro</span>
+            </div>
+            <button class="bg-red-400 rounded-2xl text-white text-lg">Ver Detalhes</button>
+        </div>
+
+    </article>
 
 </div>

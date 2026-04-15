@@ -32,6 +32,11 @@
                 [class.shadow-sm]="filtroAtivo === 'aluguel'" [class.text-slate-500]="filtroAtivo !== 'aluguel'">
                 Alugar
             </a>
+            <a routerLink="/pousadas" routerLinkActive="bg-white text-slate-900 shadow-sm"
+                [routerLinkActiveOptions]="{exact: false}"
+                class="text-sm font-semibold px-4 py-2 rounded-lg transition-all text-slate-500">
+                Estadias
+            </a>
         </div>
 
         <!-- Botões -->
