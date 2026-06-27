@@ -19,6 +19,9 @@ export class BubuPage implements OnInit, OnDestroy {
   private countdownTimer?: ReturnType<typeof setInterval>;
   private spawnTimer?: ReturnType<typeof setTimeout>;
   private bubbleId = 0;
+  private audio?: HTMLAudioElement;
+
+  musicPlaying = signal(false);
 
   days    = signal(0);
   hours   = signal(0);
@@ -79,11 +82,35 @@ export class BubuPage implements OnInit, OnDestroy {
     this.tick();
     this.countdownTimer = setInterval(() => this.tick(), 1000);
     this.scheduleNextBubble();
+    this.setupAudio();
   }
 
   ngOnDestroy(): void {
     clearInterval(this.countdownTimer);
     clearTimeout(this.spawnTimer);
+    this.audio?.pause();
+  }
+
+  private setupAudio(): void {
+    this.audio = new Audio('/music.mp3');
+    this.audio.loop = true;
+    this.audio.volume = 0.35;
+    this.audio.play()
+      .then(() => this.musicPlaying.set(true))
+      .catch(() => {
+        // Autoplay bloqueado pelo navegador — usuário clica no botão para iniciar
+        this.musicPlaying.set(false);
+      });
+  }
+
+  toggleMusic(): void {
+    if (!this.audio) return;
+    if (this.musicPlaying()) {
+      this.audio.pause();
+      this.musicPlaying.set(false);
+    } else {
+      this.audio.play().then(() => this.musicPlaying.set(true));
+    }
   }
 
   private scheduleNextBubble(): void {
