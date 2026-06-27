@@ -239,20 +239,30 @@
 .main-title {
   font-size: clamp(1.7rem, 3.8vw, 2.8rem);
   font-weight: 900;
-  color: #7B4D2E;
   text-align: center;
   letter-spacing: -0.5px;
   margin: 0;
-  text-shadow: 1px 1px 0 rgba(255,255,255,0.6);
-}
-
-.name-highlight {
-  background: linear-gradient(90deg, #C0392B, #8B4513, #C0392B, #D4856A);
+  background: linear-gradient(90deg,
+    #E84393, #FF6B35, #FFD93D, #6BCB77,
+    #4ECDC4, #C77DFF, #E84393, #FF6B35);
   background-size: 300% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: rainbow-text 5s linear infinite;
+  animation: rainbow-text 6s linear infinite;
+  filter: drop-shadow(1px 1px 0 rgba(255,255,255,0.7));
+}
+
+.name-highlight {
+  background: linear-gradient(90deg,
+    #FF6B35, #FFD93D, #6BCB77, #4ECDC4,
+    #C77DFF, #E84393, #FF6B35, #FFD93D);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbow-text 4s linear infinite reverse;
+  filter: drop-shadow(1px 1px 0 rgba(255,255,255,0.7));
 }
 
 .page-subtitle {
