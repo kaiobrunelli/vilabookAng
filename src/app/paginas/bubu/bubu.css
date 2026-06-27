@@ -202,7 +202,7 @@
   align-items: center;
   justify-content: center;
   padding: 2rem 1rem;
-  padding-top: calc(2rem + 100px);
+  padding-top: calc(2rem + 200px);
   min-height: 100vh;
 }
 
@@ -215,7 +215,7 @@
   align-items: center;
   gap: 0.75rem;
   margin-bottom: 0.3rem;
-  background: rgba(255, 248, 242, 0.72);
+  background: rgba(255, 248, 242, 0.85);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: 50px;
@@ -253,7 +253,7 @@
   font-weight: 800;
   margin: 0 0 1.2rem;
   text-align: center;
-  background: rgba(255, 248, 242, 0.72);
+  background: rgba(255, 248, 242, 0.85);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: 50px;
