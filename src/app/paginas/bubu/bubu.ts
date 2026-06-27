@@ -87,14 +87,12 @@ export class BubuPage implements OnInit, OnDestroy {
   }
 
   private scheduleNextBubble(): void {
-    // intervalo aleatório entre 1.2s e 3.6s
-    const delay = 1200 + Math.random() * 2400;
     this.spawnTimer = setTimeout(() => {
       if (!this.isBirthday() && this.activeBubbles().length < 3) {
         this.spawnBubble();
       }
       this.scheduleNextBubble();
-    }, delay);
+    }, 2000);
   }
 
   private spawnBubble(): void {
