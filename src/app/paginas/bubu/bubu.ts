@@ -104,6 +104,10 @@ export class BubuPage implements OnInit, OnDestroy {
     this.audio = new Audio('/music.mp3');
     this.audio.loop   = true;
     this.audio.volume = 0.35;
+    // garante seek após metadata carregar
+    this.audio.addEventListener('loadedmetadata', () => {
+      this.audio!.currentTime = 82;
+    }, { once: true });
   }
 
   toggleMusic(): void {
