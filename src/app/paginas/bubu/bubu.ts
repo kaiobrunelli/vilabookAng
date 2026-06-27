@@ -41,15 +41,16 @@ export class BubuPage implements OnInit, OnDestroy {
     emoji: ['💕', '💖', '🌸', '✨', '⭐', '🌟'][i % 6],
   }));
 
-  // 6 frases, espaçadas 6s — no steady state sempre ~2 visíveis, durations
-  // ligeiramente diferentes para criar deriva de fase e parecer aleatório.
+  // Delays de 4s entre si → ~3 visíveis ao mesmo tempo (visible window = 60% do cycle).
+  // Durations bem diferentes (18-25s, sem múltiplos comuns) → após cada rodada as
+  // fases derivam e elas aparecem em ordens diferentes, parecendo aleatório.
   readonly loveBubbles = [
-    { id: 0, text: 'TE AMO 💖',            left: '14%', delay: '0s',  dur: '20s' },
-    { id: 1, text: 'MINHA BUBU 🐻',        left: '72%', delay: '6s',  dur: '22s' },
-    { id: 2, text: 'MEU AMOR 💝',          left: '38%', delay: '12s', dur: '18s' },
-    { id: 3, text: 'MINHA PRINCESINHA 👸', left: '56%', delay: '18s', dur: '23s' },
-    { id: 4, text: 'MINHA PELUCINHA 🧸',   left: '26%', delay: '24s', dur: '19s' },
-    { id: 5, text: 'MINHA SONEQUINHA 😴',  left: '82%', delay: '30s', dur: '21s' },
+    { id: 0, text: 'TE AMO 💖',            left: '8%',  delay: '0s',  dur: '18s' },
+    { id: 1, text: 'MINHA BUBU 🐻',        left: '65%', delay: '4s',  dur: '25s' },
+    { id: 2, text: 'MEU AMOR 💝',          left: '30%', delay: '8s',  dur: '20s' },
+    { id: 3, text: 'MINHA PRINCESINHA 👸', left: '80%', delay: '12s', dur: '23s' },
+    { id: 4, text: 'MINHA PELUCINHA 🧸',   left: '18%', delay: '16s', dur: '19s' },
+    { id: 5, text: 'MINHA SONEQUINHA 😴',  left: '52%', delay: '20s', dur: '22s' },
   ];
 
   readonly confetti = Array.from({ length: 64 }, (_, i) => ({
