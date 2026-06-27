@@ -218,9 +218,10 @@
   background: rgba(255, 248, 242, 0.85);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  border: 2px solid rgba(220, 100, 110, 0.45);
   border-radius: 50px;
   padding: 0.55rem 1.4rem;
-  box-shadow: 0 4px 18px rgba(92, 52, 32, 0.12);
+  box-shadow: 0 4px 18px rgba(92, 52, 32, 0.12), 0 0 0 4px rgba(220, 100, 110, 0.08);
 }
 
 .deco-emoji {
@@ -256,9 +257,10 @@
   background: rgba(255, 248, 242, 0.85);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  border: 2px solid rgba(220, 100, 110, 0.45);
   border-radius: 50px;
   padding: 0.45rem 1.6rem;
-  box-shadow: 0 4px 14px rgba(92, 52, 32, 0.1);
+  box-shadow: 0 4px 14px rgba(92, 52, 32, 0.1), 0 0 0 4px rgba(220, 100, 110, 0.08);
   letter-spacing: 0.2px;
 }
 
