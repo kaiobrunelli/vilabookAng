@@ -1,7 +1,7 @@
 <div class="bubu-wrapper">
 
-  <!-- ══ Fundo animado ══ -->
-  <div class="animated-bg"></div>
+  <!-- ══ Fundo com imagem ══ -->
+  <div class="page-bg"></div>
 
   <!-- ══ Estrelas cintilantes ══ -->
   @for (s of stars; track s.id) {
@@ -24,78 +24,74 @@
 
   <!-- ══ Ursinhos laterais esquerda ══ -->
   <div class="side-col side-left">
-    <div class="mini-bear" style="animation-delay: 0s">
-      <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="22" cy="24" r="16" fill="#FFB6C1"/>
-        <circle cx="22" cy="24" r="10" fill="#FF8FA8"/>
-        <circle cx="78" cy="24" r="16" fill="#FFB6C1"/>
-        <circle cx="78" cy="24" r="10" fill="#FF8FA8"/>
-        <circle cx="50" cy="46" r="38" fill="#FFD6E4"/>
-        <ellipse cx="37" cy="38" rx="8" ry="9" fill="white"/>
-        <ellipse cx="63" cy="38" rx="8" ry="9" fill="white"/>
-        <circle cx="38.5" cy="40" r="5.5" fill="#1a1a2e"/>
-        <circle cx="64.5" cy="40" r="5.5" fill="#1a1a2e"/>
-        <circle cx="41" cy="37" r="2" fill="white"/>
-        <circle cx="67" cy="37" r="2" fill="white"/>
-        <ellipse cx="50" cy="55" rx="13" ry="10" fill="#FFADC5"/>
-        <ellipse cx="50" cy="49" rx="5" ry="3.5" fill="#FF69B4"/>
-        <path d="M43 57 Q50 64 57 57" stroke="#FF69B4" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <ellipse cx="27" cy="53" rx="9" ry="6" fill="#FF69B4" opacity="0.35"/>
-        <ellipse cx="73" cy="53" rx="9" ry="6" fill="#FF69B4" opacity="0.35"/>
-        <ellipse cx="50" cy="100" rx="30" ry="26" fill="#FFD6E4"/>
-        <ellipse cx="50" cy="97" rx="18" ry="17" fill="#FFE8F0"/>
-        <ellipse cx="18" cy="90" rx="13" ry="7" fill="#FFD6E4" transform="rotate(-20 18 90)"/>
-        <ellipse cx="82" cy="90" rx="13" ry="7" fill="#FFD6E4" transform="rotate(20 82 90)"/>
+
+    <!-- Dudu mini (marrom) -->
+    <div class="mini-bear" style="animation-delay:0s">
+      <svg viewBox="0 0 90 106" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="22" cy="23" r="15" fill="#5C3420"/>
+        <circle cx="68" cy="23" r="15" fill="#5C3420"/>
+        <circle cx="45" cy="48" r="36" fill="#7B4D2E"/>
+        <circle cx="34" cy="41" r="4.5" fill="#1A1005"/>
+        <circle cx="56" cy="41" r="4.5" fill="#1A1005"/>
+        <circle cx="36" cy="39" r="1.8" fill="white"/>
+        <circle cx="58" cy="39" r="1.8" fill="white"/>
+        <ellipse cx="45" cy="49" rx="3.5" ry="2.5" fill="#1A1005"/>
+        <path d="M40 53 Q45 59 50 53" stroke="#1A1005" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <ellipse cx="45" cy="57" rx="4" ry="3" fill="#E8607A"/>
+        <ellipse cx="28" cy="53" rx="8" ry="5" fill="#F4A0A0" opacity="0.55"/>
+        <ellipse cx="62" cy="53" rx="8" ry="5" fill="#F4A0A0" opacity="0.55"/>
+        <ellipse cx="45" cy="90" rx="30" ry="24" fill="#7B4D2E"/>
+        <ellipse cx="45" cy="87" rx="18" ry="15" fill="#9B6544"/>
+        <ellipse cx="18" cy="79" rx="13" ry="7" fill="#7B4D2E" transform="rotate(-20 18 79)"/>
+        <ellipse cx="72" cy="79" rx="13" ry="7" fill="#7B4D2E" transform="rotate(20 72 79)"/>
       </svg>
     </div>
-    <div class="mini-bear dudu" style="animation-delay: 0.9s">
-      <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="22" cy="24" r="16" fill="#FFE082"/>
-        <circle cx="22" cy="24" r="10" fill="#FFC107"/>
-        <circle cx="78" cy="24" r="16" fill="#FFE082"/>
-        <circle cx="78" cy="24" r="10" fill="#FFC107"/>
-        <circle cx="50" cy="46" r="38" fill="#FFF8E1"/>
-        <ellipse cx="37" cy="38" rx="8" ry="9" fill="white"/>
-        <ellipse cx="63" cy="38" rx="8" ry="9" fill="white"/>
-        <circle cx="38.5" cy="40" r="5.5" fill="#1a1a2e"/>
-        <circle cx="64.5" cy="40" r="5.5" fill="#1a1a2e"/>
-        <circle cx="41" cy="37" r="2" fill="white"/>
-        <circle cx="67" cy="37" r="2" fill="white"/>
-        <ellipse cx="50" cy="55" rx="13" ry="10" fill="#FFE0B2"/>
-        <ellipse cx="50" cy="49" rx="5" ry="3.5" fill="#FF8C42"/>
-        <path d="M43 57 Q50 64 57 57" stroke="#FF8C42" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <ellipse cx="27" cy="53" rx="9" ry="6" fill="#FFCC80" opacity="0.5"/>
-        <ellipse cx="73" cy="53" rx="9" ry="6" fill="#FFCC80" opacity="0.5"/>
-        <ellipse cx="50" cy="100" rx="30" ry="26" fill="#FFF8E1"/>
-        <ellipse cx="50" cy="97" rx="18" ry="17" fill="#FFF3E0"/>
-        <ellipse cx="18" cy="90" rx="13" ry="7" fill="#FFF8E1" transform="rotate(-20 18 90)"/>
-        <ellipse cx="82" cy="90" rx="13" ry="7" fill="#FFF8E1" transform="rotate(20 82 90)"/>
+
+    <!-- Bubu mini (branco) -->
+    <div class="mini-bear bubu-w" style="animation-delay:1s">
+      <svg viewBox="0 0 90 106" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="22" cy="23" r="15" fill="#DDD5CC"/>
+        <circle cx="22" cy="23" r="9" fill="#CCC4BA"/>
+        <circle cx="68" cy="23" r="15" fill="#DDD5CC"/>
+        <circle cx="68" cy="23" r="9" fill="#CCC4BA"/>
+        <circle cx="45" cy="48" r="36" fill="#F0EAE3"/>
+        <circle cx="34" cy="41" r="4.5" fill="#1A1005"/>
+        <circle cx="56" cy="41" r="4.5" fill="#1A1005"/>
+        <circle cx="36" cy="39" r="1.8" fill="white"/>
+        <circle cx="58" cy="39" r="1.8" fill="white"/>
+        <ellipse cx="45" cy="49" rx="3.5" ry="2.5" fill="#1A1005"/>
+        <path d="M40 53 Q45 59 50 53" stroke="#1A1005" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <ellipse cx="28" cy="53" rx="8" ry="5" fill="#F4A0A0" opacity="0.55"/>
+        <ellipse cx="62" cy="53" rx="8" ry="5" fill="#F4A0A0" opacity="0.55"/>
+        <ellipse cx="45" cy="90" rx="30" ry="24" fill="#F0EAE3"/>
+        <ellipse cx="45" cy="87" rx="18" ry="15" fill="#F8F3EF"/>
+        <ellipse cx="18" cy="79" rx="13" ry="7" fill="#F0EAE3" transform="rotate(-20 18 79)"/>
+        <ellipse cx="72" cy="79" rx="13" ry="7" fill="#F0EAE3" transform="rotate(20 72 79)"/>
       </svg>
     </div>
-    <div class="mini-bear" style="animation-delay: 1.7s">
-      <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="22" cy="24" r="16" fill="#FFB6C1"/>
-        <circle cx="22" cy="24" r="10" fill="#FF8FA8"/>
-        <circle cx="78" cy="24" r="16" fill="#FFB6C1"/>
-        <circle cx="78" cy="24" r="10" fill="#FF8FA8"/>
-        <circle cx="50" cy="46" r="38" fill="#FFD6E4"/>
-        <ellipse cx="37" cy="38" rx="8" ry="9" fill="white"/>
-        <ellipse cx="63" cy="38" rx="8" ry="9" fill="white"/>
-        <circle cx="38.5" cy="40" r="5.5" fill="#1a1a2e"/>
-        <circle cx="64.5" cy="40" r="5.5" fill="#1a1a2e"/>
-        <circle cx="41" cy="37" r="2" fill="white"/>
-        <circle cx="67" cy="37" r="2" fill="white"/>
-        <ellipse cx="50" cy="55" rx="13" ry="10" fill="#FFADC5"/>
-        <ellipse cx="50" cy="49" rx="5" ry="3.5" fill="#FF69B4"/>
-        <path d="M43 57 Q50 64 57 57" stroke="#FF69B4" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <ellipse cx="27" cy="53" rx="9" ry="6" fill="#FF69B4" opacity="0.35"/>
-        <ellipse cx="73" cy="53" rx="9" ry="6" fill="#FF69B4" opacity="0.35"/>
-        <ellipse cx="50" cy="100" rx="30" ry="26" fill="#FFD6E4"/>
-        <ellipse cx="50" cy="97" rx="18" ry="17" fill="#FFE8F0"/>
-        <ellipse cx="18" cy="90" rx="13" ry="7" fill="#FFD6E4" transform="rotate(-20 18 90)"/>
-        <ellipse cx="82" cy="90" rx="13" ry="7" fill="#FFD6E4" transform="rotate(20 82 90)"/>
+
+    <!-- Dudu mini -->
+    <div class="mini-bear" style="animation-delay:1.8s">
+      <svg viewBox="0 0 90 106" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="22" cy="23" r="15" fill="#5C3420"/>
+        <circle cx="68" cy="23" r="15" fill="#5C3420"/>
+        <circle cx="45" cy="48" r="36" fill="#7B4D2E"/>
+        <circle cx="34" cy="41" r="4.5" fill="#1A1005"/>
+        <circle cx="56" cy="41" r="4.5" fill="#1A1005"/>
+        <circle cx="36" cy="39" r="1.8" fill="white"/>
+        <circle cx="58" cy="39" r="1.8" fill="white"/>
+        <ellipse cx="45" cy="49" rx="3.5" ry="2.5" fill="#1A1005"/>
+        <path d="M40 53 Q45 59 50 53" stroke="#1A1005" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <ellipse cx="45" cy="57" rx="4" ry="3" fill="#E8607A"/>
+        <ellipse cx="28" cy="53" rx="8" ry="5" fill="#F4A0A0" opacity="0.55"/>
+        <ellipse cx="62" cy="53" rx="8" ry="5" fill="#F4A0A0" opacity="0.55"/>
+        <ellipse cx="45" cy="90" rx="30" ry="24" fill="#7B4D2E"/>
+        <ellipse cx="45" cy="87" rx="18" ry="15" fill="#9B6544"/>
+        <ellipse cx="18" cy="79" rx="13" ry="7" fill="#7B4D2E" transform="rotate(-20 18 79)"/>
+        <ellipse cx="72" cy="79" rx="13" ry="7" fill="#7B4D2E" transform="rotate(20 72 79)"/>
       </svg>
     </div>
+
   </div>
 
   <!-- ══ Conteúdo central ══ -->
@@ -118,101 +114,89 @@
         <!-- Ursinhos herói -->
         <div class="hero-bears-row">
 
-          <!-- Bubu grande (rosa) -->
+          <!-- Dudu grande (marrom) -->
           <div class="hero-bear sway-a">
-            <svg viewBox="0 0 120 148" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 110 135" xmlns="http://www.w3.org/2000/svg">
               <!-- Chapéu de festa -->
-              <polygon points="60,2 38,46 82,46" fill="#FF6B6B"/>
-              <rect x="38" y="43" width="44" height="6" fill="#FFD93D" rx="2"/>
-              <circle cx="52" cy="30" r="3" fill="#FFD93D"/>
-              <circle cx="61" cy="18" r="2.5" fill="#4ECDC4"/>
-              <circle cx="70" cy="28" r="2" fill="#C77DFF"/>
-              <line x1="60" y1="2" x2="60" y2="2"/>
+              <polygon points="55,4 35,48 75,48" fill="#C77DFF"/>
+              <rect x="35" y="45" width="40" height="6" fill="#FFD93D" rx="2"/>
+              <circle cx="47" cy="30" r="3.5" fill="#FFD93D"/>
+              <circle cx="57" cy="17" r="2.5" fill="#FF6B6B"/>
+              <circle cx="65" cy="29" r="2.5" fill="#4ECDC4"/>
               <!-- Orelhas -->
-              <circle cx="28" cy="60" r="20" fill="#FFB6C1"/>
-              <circle cx="28" cy="60" r="13" fill="#FF8FA8"/>
-              <circle cx="92" cy="60" r="20" fill="#FFB6C1"/>
-              <circle cx="92" cy="60" r="13" fill="#FF8FA8"/>
+              <circle cx="24" cy="57" r="19" fill="#5C3420"/>
+              <circle cx="86" cy="57" r="19" fill="#5C3420"/>
               <!-- Cabeça -->
-              <circle cx="60" cy="82" r="46" fill="#FFD6E4"/>
+              <circle cx="55" cy="80" r="44" fill="#7B4D2E"/>
               <!-- Olhos -->
-              <ellipse cx="44" cy="73" rx="10" ry="11" fill="white"/>
-              <ellipse cx="76" cy="73" rx="10" ry="11" fill="white"/>
-              <circle cx="45.5" cy="75" r="7" fill="#1a1a2e"/>
-              <circle cx="77.5" cy="75" r="7" fill="#1a1a2e"/>
-              <circle cx="48" cy="72" r="2.5" fill="white"/>
-              <circle cx="80" cy="72" r="2.5" fill="white"/>
-              <circle cx="43" cy="78" r="1.2" fill="white"/>
-              <circle cx="75" cy="78" r="1.2" fill="white"/>
-              <!-- Focinho -->
-              <ellipse cx="60" cy="91" rx="16" ry="12" fill="#FFADC5"/>
-              <ellipse cx="60" cy="84" rx="6.5" ry="4.5" fill="#FF69B4"/>
-              <path d="M52 93 Q60 102 68 93" stroke="#FF69B4" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <circle cx="41" cy="72" r="6" fill="#1A1005"/>
+              <circle cx="69" cy="72" r="6" fill="#1A1005"/>
+              <circle cx="44" cy="69" r="2.5" fill="white"/>
+              <circle cx="72" cy="69" r="2.5" fill="white"/>
+              <!-- Nariz -->
+              <ellipse cx="55" cy="81" rx="4.5" ry="3" fill="#1A1005"/>
+              <!-- Boca com língua -->
+              <path d="M48 87 Q55 95 62 87" stroke="#1A1005" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <ellipse cx="55" cy="92" rx="6" ry="5" fill="#E8607A"/>
               <!-- Bochechas -->
-              <ellipse cx="34" cy="88" rx="12" ry="8" fill="#FF69B4" opacity="0.35"/>
-              <ellipse cx="86" cy="88" rx="12" ry="8" fill="#FF69B4" opacity="0.35"/>
+              <ellipse cx="34" cy="87" rx="12" ry="8" fill="#F4A0A0" opacity="0.5"/>
+              <ellipse cx="76" cy="87" rx="12" ry="8" fill="#F4A0A0" opacity="0.5"/>
               <!-- Corpo -->
-              <ellipse cx="60" cy="135" rx="38" ry="30" fill="#FFD6E4"/>
-              <ellipse cx="60" cy="131" rx="22" ry="20" fill="#FFE8F0"/>
+              <ellipse cx="55" cy="122" rx="38" ry="28" fill="#7B4D2E"/>
+              <ellipse cx="55" cy="118" rx="22" ry="19" fill="#9B6544"/>
               <!-- Braços -->
-              <ellipse cx="20" cy="122" rx="16" ry="9" fill="#FFD6E4" transform="rotate(-22 20 122)"/>
-              <ellipse cx="100" cy="122" rx="16" ry="9" fill="#FFD6E4" transform="rotate(22 100 122)"/>
-              <!-- Patinhas -->
-              <circle cx="14" cy="114" r="10" fill="#FFD6E4"/>
-              <circle cx="106" cy="114" r="10" fill="#FFD6E4"/>
+              <ellipse cx="17" cy="110" rx="16" ry="9" fill="#7B4D2E" transform="rotate(-22 17 110)"/>
+              <ellipse cx="93" cy="110" rx="16" ry="9" fill="#7B4D2E" transform="rotate(22 93 110)"/>
+              <circle cx="10" cy="100" r="10" fill="#7B4D2E"/>
+              <circle cx="100" cy="100" r="10" fill="#7B4D2E"/>
             </svg>
-            <span class="bear-label">Bubu 🌸</span>
+            <span class="bear-label">Dudu 🌟</span>
           </div>
 
           <div class="center-deco">
             <span class="center-emoji pulse-a">💖</span>
-            <span class="center-emoji pulse-b">🌟</span>
+            <span class="center-emoji pulse-b">🌸</span>
             <span class="center-emoji pulse-a">💖</span>
           </div>
 
-          <!-- Dudu grande (amarelo) -->
+          <!-- Bubu grande (branco) -->
           <div class="hero-bear sway-b">
-            <svg viewBox="0 0 120 148" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 110 135" xmlns="http://www.w3.org/2000/svg">
               <!-- Chapéu -->
-              <polygon points="60,2 38,46 82,46" fill="#4ECDC4"/>
-              <rect x="38" y="43" width="44" height="6" fill="#FFD93D" rx="2"/>
-              <circle cx="52" cy="30" r="3" fill="#FF6B6B"/>
-              <circle cx="61" cy="18" r="2.5" fill="#FF69B4"/>
-              <circle cx="70" cy="28" r="2" fill="#C77DFF"/>
-              <!-- Orelhas -->
-              <circle cx="28" cy="60" r="20" fill="#FFE082"/>
-              <circle cx="28" cy="60" r="13" fill="#FFC107"/>
-              <circle cx="92" cy="60" r="20" fill="#FFE082"/>
-              <circle cx="92" cy="60" r="13" fill="#FFC107"/>
-              <!-- Cabeça -->
-              <circle cx="60" cy="82" r="46" fill="#FFF8E1"/>
+              <polygon points="55,4 35,48 75,48" fill="#FF6B6B"/>
+              <rect x="35" y="45" width="40" height="6" fill="#FFD93D" rx="2"/>
+              <circle cx="47" cy="30" r="3.5" fill="#4ECDC4"/>
+              <circle cx="57" cy="17" r="2.5" fill="#C77DFF"/>
+              <circle cx="65" cy="29" r="2.5" fill="#FFD93D"/>
+              <!-- Orelhas (cinza claro) -->
+              <circle cx="24" cy="57" r="19" fill="#CCC4BA"/>
+              <circle cx="24" cy="57" r="12" fill="#BDB5AA"/>
+              <circle cx="86" cy="57" r="19" fill="#CCC4BA"/>
+              <circle cx="86" cy="57" r="12" fill="#BDB5AA"/>
+              <!-- Cabeça (branco) -->
+              <circle cx="55" cy="80" r="44" fill="#F0EAE3"/>
               <!-- Olhos -->
-              <ellipse cx="44" cy="73" rx="10" ry="11" fill="white"/>
-              <ellipse cx="76" cy="73" rx="10" ry="11" fill="white"/>
-              <circle cx="45.5" cy="75" r="7" fill="#1a1a2e"/>
-              <circle cx="77.5" cy="75" r="7" fill="#1a1a2e"/>
-              <circle cx="48" cy="72" r="2.5" fill="white"/>
-              <circle cx="80" cy="72" r="2.5" fill="white"/>
-              <circle cx="43" cy="78" r="1.2" fill="white"/>
-              <circle cx="75" cy="78" r="1.2" fill="white"/>
-              <!-- Focinho -->
-              <ellipse cx="60" cy="91" rx="16" ry="12" fill="#FFE0B2"/>
-              <ellipse cx="60" cy="84" rx="6.5" ry="4.5" fill="#FF8C42"/>
-              <path d="M52 93 Q60 102 68 93" stroke="#FF8C42" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <circle cx="41" cy="72" r="6" fill="#1A1005"/>
+              <circle cx="69" cy="72" r="6" fill="#1A1005"/>
+              <circle cx="44" cy="69" r="2.5" fill="white"/>
+              <circle cx="72" cy="69" r="2.5" fill="white"/>
+              <!-- Nariz -->
+              <ellipse cx="55" cy="81" rx="4.5" ry="3" fill="#1A1005"/>
+              <!-- Boca -->
+              <path d="M48 87 Q55 95 62 87" stroke="#1A1005" stroke-width="2" fill="none" stroke-linecap="round"/>
               <!-- Bochechas -->
-              <ellipse cx="34" cy="88" rx="12" ry="8" fill="#FFCC80" opacity="0.5"/>
-              <ellipse cx="86" cy="88" rx="12" ry="8" fill="#FFCC80" opacity="0.5"/>
+              <ellipse cx="34" cy="87" rx="12" ry="8" fill="#F4A0A0" opacity="0.5"/>
+              <ellipse cx="76" cy="87" rx="12" ry="8" fill="#F4A0A0" opacity="0.5"/>
               <!-- Corpo -->
-              <ellipse cx="60" cy="135" rx="38" ry="30" fill="#FFF8E1"/>
-              <ellipse cx="60" cy="131" rx="22" ry="20" fill="#FFF3E0"/>
+              <ellipse cx="55" cy="122" rx="38" ry="28" fill="#F0EAE3"/>
+              <ellipse cx="55" cy="118" rx="22" ry="19" fill="#F8F3EF"/>
               <!-- Braços -->
-              <ellipse cx="20" cy="122" rx="16" ry="9" fill="#FFF8E1" transform="rotate(-22 20 122)"/>
-              <ellipse cx="100" cy="122" rx="16" ry="9" fill="#FFF8E1" transform="rotate(22 100 122)"/>
-              <!-- Patinhas -->
-              <circle cx="14" cy="114" r="10" fill="#FFF8E1"/>
-              <circle cx="106" cy="114" r="10" fill="#FFF8E1"/>
+              <ellipse cx="17" cy="110" rx="16" ry="9" fill="#F0EAE3" transform="rotate(-22 17 110)"/>
+              <ellipse cx="93" cy="110" rx="16" ry="9" fill="#F0EAE3" transform="rotate(22 93 110)"/>
+              <circle cx="10" cy="100" r="10" fill="#F0EAE3"/>
+              <circle cx="100" cy="100" r="10" fill="#F0EAE3"/>
             </svg>
-            <span class="bear-label">Dudu ⭐</span>
+            <span class="bear-label">Bubu 🌸</span>
           </div>
         </div>
 
@@ -246,8 +230,6 @@
     } @else {
 
       <!-- ── ANIVERSÁRIO! ── -->
-
-      <!-- Confete caindo -->
       @for (c of confetti; track c.id) {
         <div
           class="confetti-p"
@@ -262,44 +244,38 @@
       }
 
       <div class="birthday-section">
-
         <h1 class="bday-title">🎊 FELIZ ANIVERSÁRIO 🎊</h1>
         <h2 class="bday-name">Bubu! 💖</h2>
 
         <div class="bday-bears-row">
 
-          <!-- Bubu comemorando (braços para cima) -->
+          <!-- Dudu celebrando (braços para cima) -->
           <div class="dance-bear dance-l">
-            <svg viewBox="0 0 120 148" xmlns="http://www.w3.org/2000/svg">
-              <polygon points="60,2 38,46 82,46" fill="#FF6B6B"/>
-              <rect x="38" y="43" width="44" height="6" fill="#FFD93D" rx="2"/>
-              <circle cx="52" cy="28" r="3.5" fill="#FFD93D"/>
-              <circle cx="64" cy="16" r="2.5" fill="#4ECDC4"/>
-              <circle cx="72" cy="30" r="2.5" fill="#C77DFF"/>
-              <circle cx="28" cy="60" r="20" fill="#FFB6C1"/>
-              <circle cx="28" cy="60" r="13" fill="#FF8FA8"/>
-              <circle cx="92" cy="60" r="20" fill="#FFB6C1"/>
-              <circle cx="92" cy="60" r="13" fill="#FF8FA8"/>
-              <circle cx="60" cy="82" r="46" fill="#FFD6E4"/>
-              <ellipse cx="44" cy="73" rx="10" ry="11" fill="white"/>
-              <ellipse cx="76" cy="73" rx="10" ry="11" fill="white"/>
-              <circle cx="45.5" cy="75" r="7" fill="#1a1a2e"/>
-              <circle cx="77.5" cy="75" r="7" fill="#1a1a2e"/>
-              <circle cx="48" cy="72" r="2.5" fill="white"/>
-              <circle cx="80" cy="72" r="2.5" fill="white"/>
-              <ellipse cx="60" cy="91" rx="16" ry="12" fill="#FFADC5"/>
-              <ellipse cx="60" cy="84" rx="6.5" ry="4.5" fill="#FF69B4"/>
-              <path d="M51 91 Q60 103 69 91" stroke="#FF69B4" stroke-width="3" fill="none" stroke-linecap="round"/>
-              <rect x="56" y="93" width="8" height="5" rx="1" fill="white" opacity="0.75"/>
-              <ellipse cx="34" cy="88" rx="12" ry="8" fill="#FF69B4" opacity="0.35"/>
-              <ellipse cx="86" cy="88" rx="12" ry="8" fill="#FF69B4" opacity="0.35"/>
-              <ellipse cx="60" cy="135" rx="38" ry="30" fill="#FFD6E4"/>
-              <ellipse cx="60" cy="131" rx="22" ry="20" fill="#FFE8F0"/>
-              <!-- Braços para cima -->
-              <ellipse cx="18" cy="108" rx="16" ry="9" fill="#FFD6E4" transform="rotate(-60 18 108)"/>
-              <ellipse cx="102" cy="108" rx="16" ry="9" fill="#FFD6E4" transform="rotate(60 102 108)"/>
-              <circle cx="10" cy="97" r="10" fill="#FFD6E4"/>
-              <circle cx="110" cy="97" r="10" fill="#FFD6E4"/>
+            <svg viewBox="0 0 110 140" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="55,4 35,48 75,48" fill="#C77DFF"/>
+              <rect x="35" y="45" width="40" height="6" fill="#FFD93D" rx="2"/>
+              <circle cx="47" cy="28" r="3.5" fill="#FFD93D"/>
+              <circle cx="57" cy="15" r="2.5" fill="#FF6B6B"/>
+              <circle cx="66" cy="27" r="2.5" fill="#4ECDC4"/>
+              <circle cx="24" cy="57" r="19" fill="#5C3420"/>
+              <circle cx="86" cy="57" r="19" fill="#5C3420"/>
+              <circle cx="55" cy="80" r="44" fill="#7B4D2E"/>
+              <circle cx="41" cy="72" r="6" fill="#1A1005"/>
+              <circle cx="69" cy="72" r="6" fill="#1A1005"/>
+              <circle cx="44" cy="69" r="2.5" fill="white"/>
+              <circle cx="72" cy="69" r="2.5" fill="white"/>
+              <ellipse cx="55" cy="81" rx="4.5" ry="3" fill="#1A1005"/>
+              <path d="M47 87 Q55 98 63 87" stroke="#1A1005" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <ellipse cx="55" cy="93" rx="7" ry="5.5" fill="#E8607A"/>
+              <ellipse cx="34" cy="87" rx="12" ry="8" fill="#F4A0A0" opacity="0.5"/>
+              <ellipse cx="76" cy="87" rx="12" ry="8" fill="#F4A0A0" opacity="0.5"/>
+              <ellipse cx="55" cy="125" rx="38" ry="28" fill="#7B4D2E"/>
+              <ellipse cx="55" cy="121" rx="22" ry="19" fill="#9B6544"/>
+              <!-- Braços para CIMA -->
+              <ellipse cx="14" cy="104" rx="16" ry="9" fill="#7B4D2E" transform="rotate(-60 14 104)"/>
+              <ellipse cx="96" cy="104" rx="16" ry="9" fill="#7B4D2E" transform="rotate(60 96 104)"/>
+              <circle cx="7" cy="92" r="10" fill="#7B4D2E"/>
+              <circle cx="103" cy="92" r="10" fill="#7B4D2E"/>
             </svg>
           </div>
 
@@ -308,123 +284,112 @@
             <div class="bday-sparkles">✨🌟✨</div>
           </div>
 
-          <!-- Dudu comemorando -->
+          <!-- Bubu celebrando (braços para cima) -->
           <div class="dance-bear dance-r">
-            <svg viewBox="0 0 120 148" xmlns="http://www.w3.org/2000/svg">
-              <polygon points="60,2 38,46 82,46" fill="#4ECDC4"/>
-              <rect x="38" y="43" width="44" height="6" fill="#FFD93D" rx="2"/>
-              <circle cx="52" cy="28" r="3.5" fill="#FF6B6B"/>
-              <circle cx="64" cy="16" r="2.5" fill="#FF69B4"/>
-              <circle cx="72" cy="30" r="2.5" fill="#C77DFF"/>
-              <circle cx="28" cy="60" r="20" fill="#FFE082"/>
-              <circle cx="28" cy="60" r="13" fill="#FFC107"/>
-              <circle cx="92" cy="60" r="20" fill="#FFE082"/>
-              <circle cx="92" cy="60" r="13" fill="#FFC107"/>
-              <circle cx="60" cy="82" r="46" fill="#FFF8E1"/>
-              <ellipse cx="44" cy="73" rx="10" ry="11" fill="white"/>
-              <ellipse cx="76" cy="73" rx="10" ry="11" fill="white"/>
-              <circle cx="45.5" cy="75" r="7" fill="#1a1a2e"/>
-              <circle cx="77.5" cy="75" r="7" fill="#1a1a2e"/>
-              <circle cx="48" cy="72" r="2.5" fill="white"/>
-              <circle cx="80" cy="72" r="2.5" fill="white"/>
-              <ellipse cx="60" cy="91" rx="16" ry="12" fill="#FFE0B2"/>
-              <ellipse cx="60" cy="84" rx="6.5" ry="4.5" fill="#FF8C42"/>
-              <path d="M51 91 Q60 103 69 91" stroke="#FF8C42" stroke-width="3" fill="none" stroke-linecap="round"/>
-              <rect x="56" y="93" width="8" height="5" rx="1" fill="white" opacity="0.75"/>
-              <ellipse cx="34" cy="88" rx="12" ry="8" fill="#FFCC80" opacity="0.5"/>
-              <ellipse cx="86" cy="88" rx="12" ry="8" fill="#FFCC80" opacity="0.5"/>
-              <ellipse cx="60" cy="135" rx="38" ry="30" fill="#FFF8E1"/>
-              <ellipse cx="60" cy="131" rx="22" ry="20" fill="#FFF3E0"/>
-              <ellipse cx="18" cy="108" rx="16" ry="9" fill="#FFF8E1" transform="rotate(-60 18 108)"/>
-              <ellipse cx="102" cy="108" rx="16" ry="9" fill="#FFF8E1" transform="rotate(60 102 108)"/>
-              <circle cx="10" cy="97" r="10" fill="#FFF8E1"/>
-              <circle cx="110" cy="97" r="10" fill="#FFF8E1"/>
+            <svg viewBox="0 0 110 140" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="55,4 35,48 75,48" fill="#FF6B6B"/>
+              <rect x="35" y="45" width="40" height="6" fill="#FFD93D" rx="2"/>
+              <circle cx="47" cy="28" r="3.5" fill="#4ECDC4"/>
+              <circle cx="57" cy="15" r="2.5" fill="#C77DFF"/>
+              <circle cx="66" cy="27" r="2.5" fill="#FFD93D"/>
+              <circle cx="24" cy="57" r="19" fill="#CCC4BA"/>
+              <circle cx="24" cy="57" r="12" fill="#BDB5AA"/>
+              <circle cx="86" cy="57" r="19" fill="#CCC4BA"/>
+              <circle cx="86" cy="57" r="12" fill="#BDB5AA"/>
+              <circle cx="55" cy="80" r="44" fill="#F0EAE3"/>
+              <circle cx="41" cy="72" r="6" fill="#1A1005"/>
+              <circle cx="69" cy="72" r="6" fill="#1A1005"/>
+              <circle cx="44" cy="69" r="2.5" fill="white"/>
+              <circle cx="72" cy="69" r="2.5" fill="white"/>
+              <ellipse cx="55" cy="81" rx="4.5" ry="3" fill="#1A1005"/>
+              <path d="M47 87 Q55 98 63 87" stroke="#1A1005" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <ellipse cx="34" cy="87" rx="12" ry="8" fill="#F4A0A0" opacity="0.5"/>
+              <ellipse cx="76" cy="87" rx="12" ry="8" fill="#F4A0A0" opacity="0.5"/>
+              <ellipse cx="55" cy="125" rx="38" ry="28" fill="#F0EAE3"/>
+              <ellipse cx="55" cy="121" rx="22" ry="19" fill="#F8F3EF"/>
+              <ellipse cx="14" cy="104" rx="16" ry="9" fill="#F0EAE3" transform="rotate(-60 14 104)"/>
+              <ellipse cx="96" cy="104" rx="16" ry="9" fill="#F0EAE3" transform="rotate(60 96 104)"/>
+              <circle cx="7" cy="92" r="10" fill="#F0EAE3"/>
+              <circle cx="103" cy="92" r="10" fill="#F0EAE3"/>
             </svg>
           </div>
         </div>
 
         <p class="bday-msg">Que seu dia seja tão lindo quanto você! 🌸</p>
         <p class="bday-submsg">Muita saúde, amor e alegria sempre! 💕🐻💕</p>
-
       </div>
-    }
 
+    }
   </main>
 
   <!-- ══ Ursinhos laterais direita ══ -->
   <div class="side-col side-right">
-    <div class="mini-bear dudu" style="animation-delay: 0.4s">
-      <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="22" cy="24" r="16" fill="#FFE082"/>
-        <circle cx="22" cy="24" r="10" fill="#FFC107"/>
-        <circle cx="78" cy="24" r="16" fill="#FFE082"/>
-        <circle cx="78" cy="24" r="10" fill="#FFC107"/>
-        <circle cx="50" cy="46" r="38" fill="#FFF8E1"/>
-        <ellipse cx="37" cy="38" rx="8" ry="9" fill="white"/>
-        <ellipse cx="63" cy="38" rx="8" ry="9" fill="white"/>
-        <circle cx="38.5" cy="40" r="5.5" fill="#1a1a2e"/>
-        <circle cx="64.5" cy="40" r="5.5" fill="#1a1a2e"/>
-        <circle cx="41" cy="37" r="2" fill="white"/>
-        <circle cx="67" cy="37" r="2" fill="white"/>
-        <ellipse cx="50" cy="55" rx="13" ry="10" fill="#FFE0B2"/>
-        <ellipse cx="50" cy="49" rx="5" ry="3.5" fill="#FF8C42"/>
-        <path d="M43 57 Q50 64 57 57" stroke="#FF8C42" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <ellipse cx="27" cy="53" rx="9" ry="6" fill="#FFCC80" opacity="0.5"/>
-        <ellipse cx="73" cy="53" rx="9" ry="6" fill="#FFCC80" opacity="0.5"/>
-        <ellipse cx="50" cy="100" rx="30" ry="26" fill="#FFF8E1"/>
-        <ellipse cx="50" cy="97" rx="18" ry="17" fill="#FFF3E0"/>
-        <ellipse cx="18" cy="90" rx="13" ry="7" fill="#FFF8E1" transform="rotate(-20 18 90)"/>
-        <ellipse cx="82" cy="90" rx="13" ry="7" fill="#FFF8E1" transform="rotate(20 82 90)"/>
+
+    <div class="mini-bear bubu-w" style="animation-delay:0.5s">
+      <svg viewBox="0 0 90 106" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="22" cy="23" r="15" fill="#DDD5CC"/>
+        <circle cx="22" cy="23" r="9" fill="#CCC4BA"/>
+        <circle cx="68" cy="23" r="15" fill="#DDD5CC"/>
+        <circle cx="68" cy="23" r="9" fill="#CCC4BA"/>
+        <circle cx="45" cy="48" r="36" fill="#F0EAE3"/>
+        <circle cx="34" cy="41" r="4.5" fill="#1A1005"/>
+        <circle cx="56" cy="41" r="4.5" fill="#1A1005"/>
+        <circle cx="36" cy="39" r="1.8" fill="white"/>
+        <circle cx="58" cy="39" r="1.8" fill="white"/>
+        <ellipse cx="45" cy="49" rx="3.5" ry="2.5" fill="#1A1005"/>
+        <path d="M40 53 Q45 59 50 53" stroke="#1A1005" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <ellipse cx="28" cy="53" rx="8" ry="5" fill="#F4A0A0" opacity="0.55"/>
+        <ellipse cx="62" cy="53" rx="8" ry="5" fill="#F4A0A0" opacity="0.55"/>
+        <ellipse cx="45" cy="90" rx="30" ry="24" fill="#F0EAE3"/>
+        <ellipse cx="45" cy="87" rx="18" ry="15" fill="#F8F3EF"/>
+        <ellipse cx="18" cy="79" rx="13" ry="7" fill="#F0EAE3" transform="rotate(-20 18 79)"/>
+        <ellipse cx="72" cy="79" rx="13" ry="7" fill="#F0EAE3" transform="rotate(20 72 79)"/>
       </svg>
     </div>
-    <div class="mini-bear" style="animation-delay: 1.3s">
-      <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="22" cy="24" r="16" fill="#FFB6C1"/>
-        <circle cx="22" cy="24" r="10" fill="#FF8FA8"/>
-        <circle cx="78" cy="24" r="16" fill="#FFB6C1"/>
-        <circle cx="78" cy="24" r="10" fill="#FF8FA8"/>
-        <circle cx="50" cy="46" r="38" fill="#FFD6E4"/>
-        <ellipse cx="37" cy="38" rx="8" ry="9" fill="white"/>
-        <ellipse cx="63" cy="38" rx="8" ry="9" fill="white"/>
-        <circle cx="38.5" cy="40" r="5.5" fill="#1a1a2e"/>
-        <circle cx="64.5" cy="40" r="5.5" fill="#1a1a2e"/>
-        <circle cx="41" cy="37" r="2" fill="white"/>
-        <circle cx="67" cy="37" r="2" fill="white"/>
-        <ellipse cx="50" cy="55" rx="13" ry="10" fill="#FFADC5"/>
-        <ellipse cx="50" cy="49" rx="5" ry="3.5" fill="#FF69B4"/>
-        <path d="M43 57 Q50 64 57 57" stroke="#FF69B4" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <ellipse cx="27" cy="53" rx="9" ry="6" fill="#FF69B4" opacity="0.35"/>
-        <ellipse cx="73" cy="53" rx="9" ry="6" fill="#FF69B4" opacity="0.35"/>
-        <ellipse cx="50" cy="100" rx="30" ry="26" fill="#FFD6E4"/>
-        <ellipse cx="50" cy="97" rx="18" ry="17" fill="#FFE8F0"/>
-        <ellipse cx="18" cy="90" rx="13" ry="7" fill="#FFD6E4" transform="rotate(-20 18 90)"/>
-        <ellipse cx="82" cy="90" rx="13" ry="7" fill="#FFD6E4" transform="rotate(20 82 90)"/>
+
+    <div class="mini-bear" style="animation-delay:1.4s">
+      <svg viewBox="0 0 90 106" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="22" cy="23" r="15" fill="#5C3420"/>
+        <circle cx="68" cy="23" r="15" fill="#5C3420"/>
+        <circle cx="45" cy="48" r="36" fill="#7B4D2E"/>
+        <circle cx="34" cy="41" r="4.5" fill="#1A1005"/>
+        <circle cx="56" cy="41" r="4.5" fill="#1A1005"/>
+        <circle cx="36" cy="39" r="1.8" fill="white"/>
+        <circle cx="58" cy="39" r="1.8" fill="white"/>
+        <ellipse cx="45" cy="49" rx="3.5" ry="2.5" fill="#1A1005"/>
+        <path d="M40 53 Q45 59 50 53" stroke="#1A1005" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <ellipse cx="45" cy="57" rx="4" ry="3" fill="#E8607A"/>
+        <ellipse cx="28" cy="53" rx="8" ry="5" fill="#F4A0A0" opacity="0.55"/>
+        <ellipse cx="62" cy="53" rx="8" ry="5" fill="#F4A0A0" opacity="0.55"/>
+        <ellipse cx="45" cy="90" rx="30" ry="24" fill="#7B4D2E"/>
+        <ellipse cx="45" cy="87" rx="18" ry="15" fill="#9B6544"/>
+        <ellipse cx="18" cy="79" rx="13" ry="7" fill="#7B4D2E" transform="rotate(-20 18 79)"/>
+        <ellipse cx="72" cy="79" rx="13" ry="7" fill="#7B4D2E" transform="rotate(20 72 79)"/>
       </svg>
     </div>
-    <div class="mini-bear dudu" style="animation-delay: 2.1s">
-      <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="22" cy="24" r="16" fill="#FFE082"/>
-        <circle cx="22" cy="24" r="10" fill="#FFC107"/>
-        <circle cx="78" cy="24" r="16" fill="#FFE082"/>
-        <circle cx="78" cy="24" r="10" fill="#FFC107"/>
-        <circle cx="50" cy="46" r="38" fill="#FFF8E1"/>
-        <ellipse cx="37" cy="38" rx="8" ry="9" fill="white"/>
-        <ellipse cx="63" cy="38" rx="8" ry="9" fill="white"/>
-        <circle cx="38.5" cy="40" r="5.5" fill="#1a1a2e"/>
-        <circle cx="64.5" cy="40" r="5.5" fill="#1a1a2e"/>
-        <circle cx="41" cy="37" r="2" fill="white"/>
-        <circle cx="67" cy="37" r="2" fill="white"/>
-        <ellipse cx="50" cy="55" rx="13" ry="10" fill="#FFE0B2"/>
-        <ellipse cx="50" cy="49" rx="5" ry="3.5" fill="#FF8C42"/>
-        <path d="M43 57 Q50 64 57 57" stroke="#FF8C42" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <ellipse cx="27" cy="53" rx="9" ry="6" fill="#FFCC80" opacity="0.5"/>
-        <ellipse cx="73" cy="53" rx="9" ry="6" fill="#FFCC80" opacity="0.5"/>
-        <ellipse cx="50" cy="100" rx="30" ry="26" fill="#FFF8E1"/>
-        <ellipse cx="50" cy="97" rx="18" ry="17" fill="#FFF3E0"/>
-        <ellipse cx="18" cy="90" rx="13" ry="7" fill="#FFF8E1" transform="rotate(-20 18 90)"/>
-        <ellipse cx="82" cy="90" rx="13" ry="7" fill="#FFF8E1" transform="rotate(20 82 90)"/>
+
+    <div class="mini-bear bubu-w" style="animation-delay:2.2s">
+      <svg viewBox="0 0 90 106" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="22" cy="23" r="15" fill="#DDD5CC"/>
+        <circle cx="22" cy="23" r="9" fill="#CCC4BA"/>
+        <circle cx="68" cy="23" r="15" fill="#DDD5CC"/>
+        <circle cx="68" cy="23" r="9" fill="#CCC4BA"/>
+        <circle cx="45" cy="48" r="36" fill="#F0EAE3"/>
+        <circle cx="34" cy="41" r="4.5" fill="#1A1005"/>
+        <circle cx="56" cy="41" r="4.5" fill="#1A1005"/>
+        <circle cx="36" cy="39" r="1.8" fill="white"/>
+        <circle cx="58" cy="39" r="1.8" fill="white"/>
+        <ellipse cx="45" cy="49" rx="3.5" ry="2.5" fill="#1A1005"/>
+        <path d="M40 53 Q45 59 50 53" stroke="#1A1005" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <ellipse cx="28" cy="53" rx="8" ry="5" fill="#F4A0A0" opacity="0.55"/>
+        <ellipse cx="62" cy="53" rx="8" ry="5" fill="#F4A0A0" opacity="0.55"/>
+        <ellipse cx="45" cy="90" rx="30" ry="24" fill="#F0EAE3"/>
+        <ellipse cx="45" cy="87" rx="18" ry="15" fill="#F8F3EF"/>
+        <ellipse cx="18" cy="79" rx="13" ry="7" fill="#F0EAE3" transform="rotate(-20 18 79)"/>
+        <ellipse cx="72" cy="79" rx="13" ry="7" fill="#F0EAE3" transform="rotate(20 72 79)"/>
       </svg>
     </div>
+
   </div>
 
 </div>
