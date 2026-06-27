@@ -21,21 +21,20 @@ export class BubuPage implements OnInit, OnDestroy {
   private bubbleId = 0;
   private audio?: HTMLAudioElement;
 
-  musicPlaying = signal(false);
-
+  // ── Sinais de estado ──────────────────────────
   days    = signal(0);
   hours   = signal(0);
   minutes = signal(0);
   seconds = signal(0);
-
-  activeBubbles = signal<ActiveBubble[]>([]);
+  activeBubbles  = signal<ActiveBubble[]>([]);
+  musicPlaying   = signal(false);
+  splashVisible  = signal(true);
+  splashFading   = signal(false);
 
   isBirthday = computed(
     () =>
-      this.days() === 0 &&
-      this.hours() === 0 &&
-      this.minutes() === 0 &&
-      this.seconds() === 0,
+      this.days() === 0 && this.hours() === 0 &&
+      this.minutes() === 0 && this.seconds() === 0,
   );
 
   private readonly phrases = [
@@ -47,6 +46,7 @@ export class BubuPage implements OnInit, OnDestroy {
     'MINHA SONEQUINHA 😴',
   ];
 
+  // ── Decorações estáticas ──────────────────────
   readonly stars = Array.from({ length: 28 }, (_, i) => ({
     id: i,
     left: `${((i * 37 + 7) % 94) + 3}%`,
@@ -68,20 +68,15 @@ export class BubuPage implements OnInit, OnDestroy {
     left: `${(i * 1.5625).toFixed(1)}%`,
     delay: `${((i * 0.07) % 4).toFixed(2)}s`,
     duration: `${(2.5 + (i % 6) * 0.4).toFixed(1)}s`,
-    color: [
-      '#FF6B6B', '#FFD93D', '#6BCB77', '#4ECDC4',
-      '#C77DFF', '#FF9A9E', '#FFB6C1', '#FFEAA7',
-      '#A8E6CF', '#FF8B94',
-    ][i % 10],
+    color: ['#FF6B6B','#FFD93D','#6BCB77','#4ECDC4','#C77DFF','#FF9A9E','#FFB6C1','#FFEAA7','#A8E6CF','#FF8B94'][i % 10],
     size: `${10 + (i % 5) * 3}px`,
     isCircle: i % 3 !== 0,
-    rotation: (i * 47) % 360,
   }));
 
+  // ── Lifecycle ────────────────────────────────
   ngOnInit(): void {
     this.tick();
     this.countdownTimer = setInterval(() => this.tick(), 1000);
-    this.scheduleNextBubble();
     this.setupAudio();
   }
 
@@ -91,16 +86,24 @@ export class BubuPage implements OnInit, OnDestroy {
     this.audio?.pause();
   }
 
+  // ── Splash ───────────────────────────────────
+  startExperience(): void {
+    if (this.splashFading()) return;
+
+    this.audio?.play().then(() => this.musicPlaying.set(true));
+
+    this.splashFading.set(true);
+    setTimeout(() => {
+      this.splashVisible.set(false);
+      this.scheduleNextBubble();   // começa os balões só após o clique
+    }, 1000);
+  }
+
+  // ── Música ───────────────────────────────────
   private setupAudio(): void {
     this.audio = new Audio('/music.mp3');
-    this.audio.loop = true;
+    this.audio.loop   = true;
     this.audio.volume = 0.35;
-    this.audio.play()
-      .then(() => this.musicPlaying.set(true))
-      .catch(() => {
-        // Autoplay bloqueado pelo navegador — usuário clica no botão para iniciar
-        this.musicPlaying.set(false);
-      });
   }
 
   toggleMusic(): void {
@@ -113,28 +116,27 @@ export class BubuPage implements OnInit, OnDestroy {
     }
   }
 
+  // ── Balões ───────────────────────────────────
   private scheduleNextBubble(): void {
     this.spawnTimer = setTimeout(() => {
-      if (!this.isBirthday() && this.activeBubbles().length < 3) {
-        this.spawnBubble();
-      }
+      if (!this.isBirthday()) this.spawnBubble();
       this.scheduleNextBubble();
-    }, 2000);
+    }, 3000);
   }
 
   private spawnBubble(): void {
-    const LIFESPAN = 7500;
+    const LIFESPAN = 9000;
     const id   = this.bubbleId++;
     const text = this.phrases[Math.floor(Math.random() * this.phrases.length)];
-    const left = `${6 + Math.random() * 80}%`;
+    const left = `${8 + Math.random() * 76}%`;
 
     this.activeBubbles.update(list => [...list, { id, text, left }]);
-
     setTimeout(() => {
       this.activeBubbles.update(list => list.filter(b => b.id !== id));
     }, LIFESPAN);
   }
 
+  // ── Countdown ────────────────────────────────
   private tick(): void {
     const diff = this.birthdayDate.getTime() - Date.now();
     if (diff <= 0) {
