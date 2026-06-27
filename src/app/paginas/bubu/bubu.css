@@ -542,7 +542,7 @@
   font-size: clamp(1.05rem, 2.4vw, 1.45rem);
   font-weight: 900;
   font-style: italic;
-  background: linear-gradient(90deg, #E84393, #FF6B35, #FFD93D, #C77DFF, #E84393);
+  background: linear-gradient(90deg, #9B59B6, #C77DFF, #7D3C98, #C77DFF, #9B59B6);
   background-size: 300% 100%;
   -webkit-background-clip: text;
   background-clip: text;
