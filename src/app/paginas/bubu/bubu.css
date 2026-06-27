@@ -345,6 +345,16 @@
 }
 
 /* ════════════════════════════════════════
+   SEÇÃO DE CONTAGEM
+════════════════════════════════════════ */
+
+.countdown-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ════════════════════════════════════════
    TÍTULO
 ════════════════════════════════════════ */
 
@@ -401,7 +411,8 @@
   font-size: clamp(1.15rem, 2.5vw, 1.5rem);
   color: #6B3A1F;
   font-weight: 800;
-  margin: 0 0 1.2rem;
+  margin: 0 auto 1.2rem;
+  width: fit-content;
   text-align: center;
   background: rgba(255, 248, 242, 0.85);
   backdrop-filter: blur(10px);
