@@ -41,22 +41,15 @@ export class BubuPage implements OnInit, OnDestroy {
     emoji: ['💕', '💖', '🌸', '✨', '⭐', '🌟'][i % 6],
   }));
 
+  // 6 frases, espaçadas 6s — no steady state sempre ~2 visíveis, durations
+  // ligeiramente diferentes para criar deriva de fase e parecer aleatório.
   readonly loveBubbles = [
-    { id: 0,  text: 'TE AMO 💖',             left: '8%',  delay: '0s',   dur: '7s'  },
-    { id: 1,  text: 'MINHA PRINCESINHA 👸',  left: '24%', delay: '2.1s', dur: '8.5s'},
-    { id: 2,  text: 'MEU AMOR 💝',           left: '42%', delay: '4.2s', dur: '6.5s'},
-    { id: 3,  text: 'MINHA BUBU 🐻',         left: '60%', delay: '1.3s', dur: '7.5s'},
-    { id: 4,  text: 'MINHA PELUCINHA 🧸',    left: '76%', delay: '3.5s', dur: '6s'  },
-    { id: 5,  text: 'MINHA SONEQUINHA 😴',   left: '88%', delay: '5.8s', dur: '8s'  },
-    { id: 6,  text: 'TE AMO 💖',             left: '52%', delay: '6.5s', dur: '7s'  },
-    { id: 7,  text: 'MEU AMOR 💝',           left: '16%', delay: '8s',   dur: '6.5s'},
-    { id: 8,  text: 'MINHA BUBU 🐻',         left: '70%', delay: '0.7s', dur: '7.5s'},
-    { id: 9,  text: 'MINHA PRINCESINHA 👸',  left: '36%', delay: '9s',   dur: '9s'  },
-    { id: 10, text: 'MINHA PELUCINHA 🧸',    left: '82%', delay: '4s',   dur: '6s'  },
-    { id: 11, text: 'MINHA SONEQUINHA 😴',   left: '4%',  delay: '7s',   dur: '8s'  },
-    { id: 12, text: 'TE AMO 💖',             left: '93%', delay: '3s',   dur: '7s'  },
-    { id: 13, text: 'MEU AMOR 💝',           left: '47%', delay: '10s',  dur: '6.5s'},
-    { id: 14, text: 'MINHA BUBU 🐻',         left: '30%', delay: '5s',   dur: '7.5s'},
+    { id: 0, text: 'TE AMO 💖',            left: '14%', delay: '0s',  dur: '20s' },
+    { id: 1, text: 'MINHA BUBU 🐻',        left: '72%', delay: '6s',  dur: '22s' },
+    { id: 2, text: 'MEU AMOR 💝',          left: '38%', delay: '12s', dur: '18s' },
+    { id: 3, text: 'MINHA PRINCESINHA 👸', left: '56%', delay: '18s', dur: '23s' },
+    { id: 4, text: 'MINHA PELUCINHA 🧸',   left: '26%', delay: '24s', dur: '19s' },
+    { id: 5, text: 'MINHA SONEQUINHA 😴',  left: '82%', delay: '30s', dur: '21s' },
   ];
 
   readonly confetti = Array.from({ length: 64 }, (_, i) => ({

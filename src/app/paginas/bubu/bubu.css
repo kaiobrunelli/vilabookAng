@@ -84,10 +84,11 @@
 }
 
 @keyframes float-up-fade {
-  0%   { transform: translateY(0) scale(0.75);    opacity: 0; }
-  12%  { transform: translateY(-18px) scale(1);   opacity: 1; }
-  80%  { opacity: 0.85; }
-  100% { transform: translateY(-62vh) scale(0.9); opacity: 0; }
+  0%   { transform: translateY(0) scale(0.82);      opacity: 0; }
+  6%   { transform: translateY(-14px) scale(1.04);  opacity: 1; }
+  55%  { opacity: 1; }
+  68%  { transform: translateY(-42vh) scale(0.93);  opacity: 0; }
+  100% { transform: translateY(-42vh) scale(0.93);  opacity: 0; }
 }
 
 @keyframes sparkle-spin {
