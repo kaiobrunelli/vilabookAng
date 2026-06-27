@@ -227,15 +227,9 @@
 
       </div>
 
-      <!-- ── Balões de amor subindo ── -->
-      @for (b of loveBubbles; track b.id) {
-        <div
-          class="love-bubble"
-          [style.left]="b.left"
-          [style.animation-delay]="b.delay"
-          [style.animation-duration]="b.dur">
-          {{ b.text }}
-        </div>
+      <!-- ── Balões de amor subindo (gerados dinamicamente) ── -->
+      @for (b of activeBubbles(); track b.id) {
+        <div class="love-bubble" [style.left]="b.left">{{ b.text }}</div>
       }
 
     } @else {

@@ -1,6 +1,12 @@
 import { Component, signal, computed, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+interface ActiveBubble {
+  id: number;
+  text: string;
+  left: string;
+}
+
 @Component({
   selector: 'app-bubu',
   standalone: true,
@@ -10,12 +16,16 @@ import { CommonModule } from '@angular/common';
 })
 export class BubuPage implements OnInit, OnDestroy {
   private readonly birthdayDate = new Date('2026-07-09T00:00:00');
-  private timer?: ReturnType<typeof setInterval>;
+  private countdownTimer?: ReturnType<typeof setInterval>;
+  private spawnTimer?: ReturnType<typeof setTimeout>;
+  private bubbleId = 0;
 
-  days = signal(0);
-  hours = signal(0);
+  days    = signal(0);
+  hours   = signal(0);
   minutes = signal(0);
   seconds = signal(0);
+
+  activeBubbles = signal<ActiveBubble[]>([]);
 
   isBirthday = computed(
     () =>
@@ -24,6 +34,15 @@ export class BubuPage implements OnInit, OnDestroy {
       this.minutes() === 0 &&
       this.seconds() === 0,
   );
+
+  private readonly phrases = [
+    'TE AMO 💖',
+    'MINHA PRINCESINHA 👸',
+    'MEU AMOR 💝',
+    'MINHA BUBU 🐻',
+    'MINHA PELUCINHA 🧸',
+    'MINHA SONEQUINHA 😴',
+  ];
 
   readonly stars = Array.from({ length: 28 }, (_, i) => ({
     id: i,
@@ -40,18 +59,6 @@ export class BubuPage implements OnInit, OnDestroy {
     delay: `${((i * 0.55) % 4).toFixed(2)}s`,
     emoji: ['💕', '💖', '🌸', '✨', '⭐', '🌟'][i % 6],
   }));
-
-  // Delays de 4s entre si → ~3 visíveis ao mesmo tempo (visible window = 60% do cycle).
-  // Durations bem diferentes (18-25s, sem múltiplos comuns) → após cada rodada as
-  // fases derivam e elas aparecem em ordens diferentes, parecendo aleatório.
-  readonly loveBubbles = [
-    { id: 0, text: 'TE AMO 💖',            left: '8%',  delay: '0s',  dur: '18s' },
-    { id: 1, text: 'MINHA BUBU 🐻',        left: '65%', delay: '4s',  dur: '25s' },
-    { id: 2, text: 'MEU AMOR 💝',          left: '30%', delay: '8s',  dur: '20s' },
-    { id: 3, text: 'MINHA PRINCESINHA 👸', left: '80%', delay: '12s', dur: '23s' },
-    { id: 4, text: 'MINHA PELUCINHA 🧸',   left: '18%', delay: '16s', dur: '19s' },
-    { id: 5, text: 'MINHA SONEQUINHA 😴',  left: '52%', delay: '20s', dur: '22s' },
-  ];
 
   readonly confetti = Array.from({ length: 64 }, (_, i) => ({
     id: i,
@@ -70,21 +77,45 @@ export class BubuPage implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.tick();
-    this.timer = setInterval(() => this.tick(), 1000);
+    this.countdownTimer = setInterval(() => this.tick(), 1000);
+    this.scheduleNextBubble();
   }
 
   ngOnDestroy(): void {
-    clearInterval(this.timer);
+    clearInterval(this.countdownTimer);
+    clearTimeout(this.spawnTimer);
+  }
+
+  private scheduleNextBubble(): void {
+    // intervalo aleatório entre 1.2s e 3.6s
+    const delay = 1200 + Math.random() * 2400;
+    this.spawnTimer = setTimeout(() => {
+      if (!this.isBirthday() && this.activeBubbles().length < 3) {
+        this.spawnBubble();
+      }
+      this.scheduleNextBubble();
+    }, delay);
+  }
+
+  private spawnBubble(): void {
+    const LIFESPAN = 7500;
+    const id   = this.bubbleId++;
+    const text = this.phrases[Math.floor(Math.random() * this.phrases.length)];
+    const left = `${6 + Math.random() * 80}%`;
+
+    this.activeBubbles.update(list => [...list, { id, text, left }]);
+
+    setTimeout(() => {
+      this.activeBubbles.update(list => list.filter(b => b.id !== id));
+    }, LIFESPAN);
   }
 
   private tick(): void {
     const diff = this.birthdayDate.getTime() - Date.now();
     if (diff <= 0) {
-      this.days.set(0);
-      this.hours.set(0);
-      this.minutes.set(0);
-      this.seconds.set(0);
-      clearInterval(this.timer!);
+      this.days.set(0); this.hours.set(0);
+      this.minutes.set(0); this.seconds.set(0);
+      clearInterval(this.countdownTimer!);
       return;
     }
     this.days.set(Math.floor(diff / 86_400_000));
