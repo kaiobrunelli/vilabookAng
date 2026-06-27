@@ -227,6 +227,17 @@
 
       </div>
 
+      <!-- ── Balões de amor subindo ── -->
+      @for (b of loveBubbles; track b.id) {
+        <div
+          class="love-bubble"
+          [style.left]="b.left"
+          [style.animation-delay]="b.delay"
+          [style.animation-duration]="b.dur">
+          {{ b.text }}
+        </div>
+      }
+
     } @else {
 
       <!-- ── ANIVERSÁRIO! ── -->
